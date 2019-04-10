@@ -1,0 +1,8 @@
+﻿CREATE TABLE [dbo].[tblGroupMember]
+(
+	[Id] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY, 
+    [GroupId] UNIQUEIDENTIFIER NOT NULL, 
+    [PerformerId] UNIQUEIDENTIFIER NOT NULL, 
+    [StartDate] DATETIME NOT NULL, 
+    [EndDate] DATETIME NULL
+)

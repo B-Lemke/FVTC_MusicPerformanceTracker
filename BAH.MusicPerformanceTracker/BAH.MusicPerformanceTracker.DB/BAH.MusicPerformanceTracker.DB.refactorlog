@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="c58d9a92-6dbd-4e08-bf7a-e2d398f1ceb1" ChangeDateTime="04/10/2019 16:25:47">
+    <Property Name="ElementName" Value="[dbo].[tblPiece].[YearWritter]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[tblPiece]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="YearWritten" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="f791c532-2e8b-4ea6-8b1b-7f8fce4ec5d5" ChangeDateTime="04/10/2019 16:32:13">
+    <Property Name="ElementName" Value="[dbo].[tblPieceWriter].[ArrangerOrComposer]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[tblPieceWriter]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ComposerTypeId" />
+  </Operation>
+</Operations>
