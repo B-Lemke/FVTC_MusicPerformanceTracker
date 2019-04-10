@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ba9dc03731c4494596513ebe410b3cb7" Name="Diagram1">
+        <EntityTypeShape EntityType="lemkedbModel.tblComposer" Width="1.5" PointX="0.5" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="lemkedbModel.tblComposerType" Width="1.5" PointX="2.5" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="lemkedbModel.tblDirector" Width="1.5" PointX="2.5" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="lemkedbModel.tblGenre" Width="1.5" PointX="4.5" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="lemkedbModel.tblGroup" Width="1.5" PointX="4.5" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="lemkedbModel.tblGroupMember" Width="1.5" PointX="6.5" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="lemkedbModel.tblPerformance" Width="1.5" PointX="0.5" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="lemkedbModel.tblPerformancePiece" Width="1.5" PointX="2.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="lemkedbModel.tblPerformer" Width="1.5" PointX="6.5" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="lemkedbModel.tblPiece" Width="1.5" PointX="4.5" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="lemkedbModel.tblPieceGenre" Width="1.5" PointX="6.5" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="lemkedbModel.tblPieceWriter" Width="1.5" PointX="8.5" PointY="0.5" IsExpanded="true" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

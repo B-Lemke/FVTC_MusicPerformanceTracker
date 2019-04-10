@@ -5,6 +5,10 @@ VisualStudioVersion = 15.0.28307.271
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "BAH.MusicPerformanceTracker.DB", "BAH.MusicPerformanceTracker.DB\BAH.MusicPerformanceTracker.DB.sqlproj", "{A62E438A-A6E6-4042-82EF-7071684D4D67}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BAH.MusicPerformanceTracker.PL", "BAH.MusicPerformanceTracker.PL\BAH.MusicPerformanceTracker.PL.csproj", "{ADF72DE3-396E-4BF1-B1C0-B0EF1ED58539}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BAH.MusicPerformanceTracker.PL.Test", "BAH.MusicPerformanceTracker.PL.Test\BAH.MusicPerformanceTracker.PL.Test.csproj", "{43744B29-943D-4BA8-AAB7-1371225FB4A8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,6 +21,14 @@ Global
 		{A62E438A-A6E6-4042-82EF-7071684D4D67}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A62E438A-A6E6-4042-82EF-7071684D4D67}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A62E438A-A6E6-4042-82EF-7071684D4D67}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{ADF72DE3-396E-4BF1-B1C0-B0EF1ED58539}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADF72DE3-396E-4BF1-B1C0-B0EF1ED58539}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADF72DE3-396E-4BF1-B1C0-B0EF1ED58539}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADF72DE3-396E-4BF1-B1C0-B0EF1ED58539}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43744B29-943D-4BA8-AAB7-1371225FB4A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43744B29-943D-4BA8-AAB7-1371225FB4A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43744B29-943D-4BA8-AAB7-1371225FB4A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43744B29-943D-4BA8-AAB7-1371225FB4A8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
