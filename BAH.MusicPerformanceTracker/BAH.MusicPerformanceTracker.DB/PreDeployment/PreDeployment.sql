@@ -9,17 +9,18 @@
                SELECT * FROM [$(TableName)]					
 --------------------------------------------------------------------------------------
 */
-DROP TABLE IF EXISTS dbo.tblGroupMember;
-DROP TABLE IF EXISTS dbo.tblPerformancePiece;
-DROP TABLE IF EXISTS dbo.tblPieceWriter;
-DROP TABLE IF EXISTS dbo.tblPieceGenre;
-DROP TABLE IF EXISTS dbo.tblPiece;
-DROP TABLE IF EXISTS dbo.tblComposer;
-DROP TABLE IF EXISTS dbo.tblComposerType;
-DROP TABLE IF EXISTS dbo.tblDirector;
-DROP TABLE IF EXISTS dbo.tblGenre;
-DROP TABLE IF EXISTS dbo.tblGroup;
-DROP TABLE IF EXISTS dbo.tblPerformance;
-DROP TABLE IF EXISTS dbo.tblPerformer;
+DROP TABLE IF EXISTS [music].tblGroupMember;
+DROP TABLE IF EXISTS [music].tblPerformancePiece;
+DROP TABLE IF EXISTS [music].tblPieceWriter;
+DROP TABLE IF EXISTS [music].tblPieceGenre;
+DROP TABLE IF EXISTS [music].tblPiece;
+DROP TABLE IF EXISTS [music].tblComposer;
+DROP TABLE IF EXISTS [music].tblComposerType;
+DROP TABLE IF EXISTS [music].tblDirector;
+DROP TABLE IF EXISTS [music].tblGenre;
+DROP TABLE IF EXISTS [music].tblGroup;
+DROP TABLE IF EXISTS [music].tblPerformance;
+DROP TABLE IF EXISTS [music].tblPerformer;
 
 
+DROP SCHEMA IF EXISTS [music]

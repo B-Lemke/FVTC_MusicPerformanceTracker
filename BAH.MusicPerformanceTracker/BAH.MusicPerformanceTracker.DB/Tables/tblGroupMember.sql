@@ -1,4 +1,4 @@
-﻿CREATE TABLE [dbo].[tblGroupMember]
+﻿CREATE TABLE [music].[tblGroupMember]
 (
 	[Id] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY, 
     [GroupId] UNIQUEIDENTIFIER NOT NULL, 

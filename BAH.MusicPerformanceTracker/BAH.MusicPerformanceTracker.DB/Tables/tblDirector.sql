@@ -1,4 +1,4 @@
-﻿CREATE TABLE [dbo].[tblDirector]
+﻿CREATE TABLE [music].[tblDirector]
 (
 	[Id] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY, 
     [FirstName] VARCHAR(50) NOT NULL, 

@@ -1,4 +1,4 @@
-﻿CREATE TABLE [dbo].[tblPerformancePiece]
+﻿CREATE TABLE [music].[tblPerformancePiece]
 (
 	[Id] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY, 
     [DirectorId] UNIQUEIDENTIFIER NULL, 

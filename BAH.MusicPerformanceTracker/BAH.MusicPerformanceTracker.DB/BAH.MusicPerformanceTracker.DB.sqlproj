@@ -75,6 +75,7 @@
     <Build Include="Tables\tblComposer.sql" />
     <Build Include="Tables\tblPieceGenre.sql" />
     <Build Include="Tables\tblGenre.sql" />
+    <Build Include="Tables\music.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="BAH.MusicPerformanceTracker.DB.refactorlog" />
@@ -84,5 +85,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="BAH.MusicPerformanceTracker.DB.publish.xml" />
+    <None Include="PostDeployment\DefaultData\Performers.sql" />
+    <None Include="PostDeployment\DefaultData\Groups.sql" />
+    <None Include="PostDeployment\DefaultData\GroupMembers.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="PostDeployment\PostDeployment.sql" />
   </ItemGroup>
 </Project>
