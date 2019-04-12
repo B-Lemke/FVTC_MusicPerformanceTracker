@@ -75,6 +75,9 @@
     <Compile Include="tblDirector.cs">
       <DependentUpon>MusicPerformanceTracker.tt</DependentUpon>
     </Compile>
+    <Compile Include="tblGender.cs">
+      <DependentUpon>MusicPerformanceTracker.tt</DependentUpon>
+    </Compile>
     <Compile Include="tblGenre.cs">
       <DependentUpon>MusicPerformanceTracker.tt</DependentUpon>
     </Compile>
@@ -82,6 +85,12 @@
       <DependentUpon>MusicPerformanceTracker.tt</DependentUpon>
     </Compile>
     <Compile Include="tblGroupMember.cs">
+      <DependentUpon>MusicPerformanceTracker.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblInstrument.cs">
+      <DependentUpon>MusicPerformanceTracker.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblLocation.cs">
       <DependentUpon>MusicPerformanceTracker.tt</DependentUpon>
     </Compile>
     <Compile Include="tblPerformance.cs">
@@ -100,6 +109,9 @@
       <DependentUpon>MusicPerformanceTracker.tt</DependentUpon>
     </Compile>
     <Compile Include="tblPieceWriter.cs">
+      <DependentUpon>MusicPerformanceTracker.tt</DependentUpon>
+    </Compile>
+    <Compile Include="tblRace.cs">
       <DependentUpon>MusicPerformanceTracker.tt</DependentUpon>
     </Compile>
   </ItemGroup>

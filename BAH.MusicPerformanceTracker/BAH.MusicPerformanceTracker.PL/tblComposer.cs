@@ -17,9 +17,9 @@ namespace BAH.MusicPerformanceTracker.PL
         public System.Guid Id { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public string Gender { get; set; }
-        public string Race { get; set; }
-        public string Location { get; set; }
+        public Nullable<System.Guid> GenderId { get; set; }
+        public Nullable<System.Guid> RaceId { get; set; }
+        public Nullable<System.Guid> LocationId { get; set; }
         public string Bio { get; set; }
     }
 }

@@ -5,18 +5,22 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="ba9dc03731c4494596513ebe410b3cb7" Name="Diagram1">
-        <EntityTypeShape EntityType="lemkedbModel.tblComposer" Width="1.5" PointX="0.5" PointY="0.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="lemkedbModel.tblComposerType" Width="1.5" PointX="2.5" PointY="0.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="lemkedbModel.tblDirector" Width="1.5" PointX="2.5" PointY="3.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="lemkedbModel.tblGenre" Width="1.5" PointX="4.5" PointY="0.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="lemkedbModel.tblGroup" Width="1.5" PointX="4.5" PointY="3.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="lemkedbModel.tblGroupMember" Width="1.5" PointX="6.5" PointY="0.5" IsExpanded="true" />
         <EntityTypeShape EntityType="lemkedbModel.tblPerformance" Width="1.5" PointX="0.5" PointY="6.5" IsExpanded="true" />
         <EntityTypeShape EntityType="lemkedbModel.tblPerformancePiece" Width="1.5" PointX="2.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="lemkedbModel.tblPerformer" Width="1.5" PointX="6.5" PointY="3.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="lemkedbModel.tblPiece" Width="1.5" PointX="4.5" PointY="6.5" IsExpanded="true" />
         <EntityTypeShape EntityType="lemkedbModel.tblPieceGenre" Width="1.5" PointX="6.5" PointY="6.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="lemkedbModel.tblPieceWriter" Width="1.5" PointX="8.5" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="lemkedbModel.tblComposerType" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="lemkedbModel.tblDirector" Width="1.5" PointX="2.75" PointY="3.75" />
+        <EntityTypeShape EntityType="lemkedbModel.tblGender" Width="1.5" PointX="4.75" PointY="0.75" />
+        <EntityTypeShape EntityType="lemkedbModel.tblGenre" Width="1.5" PointX="4.75" PointY="3.75" />
+        <EntityTypeShape EntityType="lemkedbModel.tblGroup" Width="1.5" PointX="6.75" PointY="0.75" />
+        <EntityTypeShape EntityType="lemkedbModel.tblGroupMember" Width="1.5" PointX="8.75" PointY="0.75" />
+        <EntityTypeShape EntityType="lemkedbModel.tblInstrument" Width="1.5" PointX="6.75" PointY="3.75" />
+        <EntityTypeShape EntityType="lemkedbModel.tblLocation" Width="1.5" PointX="8.75" PointY="3.75" />
+        <EntityTypeShape EntityType="lemkedbModel.tblPerformer" Width="1.5" PointX="5.75" PointY="9.75" />
+        <EntityTypeShape EntityType="lemkedbModel.tblPieceWriter" Width="1.5" PointX="9.75" PointY="6.75" />
+        <EntityTypeShape EntityType="lemkedbModel.tblRace" Width="1.5" PointX="7.75" PointY="9.75" />
+        <EntityTypeShape EntityType="lemkedbModel.tblPiece" Width="1.5" PointX="0.75" PointY="10.75" />
+        <EntityTypeShape EntityType="lemkedbModel.tblComposer" Width="1.5" PointX="10.375" PointY="9.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

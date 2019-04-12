@@ -19,5 +19,6 @@ namespace BAH.MusicPerformanceTracker.PL
         public System.Guid PerformerId { get; set; }
         public System.DateTime StartDate { get; set; }
         public Nullable<System.DateTime> EndDate { get; set; }
+        public System.Guid Instrument { get; set; }
     }
 }

@@ -20,7 +20,7 @@
 	SELECT @AustraliaId = Id FROM music.tblLocation WHERE Description = 'Australia';
 	SELECT @WisconsinId = Id FROM music.tblLocation WHERE Description = 'Wisconsin';
 
-	INSERT INTO [music].tblComposer(Id, FirstName, LastName, Location, Race, Gender, Bio)
+	INSERT INTO [music].tblComposer(Id, FirstName, LastName, LocationId, RaceId, GenderId, Bio)
 	VALUES 
 	(NEWID(), 'Modest', 'Mussorgsky', @RussiaId, @WhiteId, @MaleId, 'Modest Mussorgsky was a Russian Composer and a member of "The Five". He wrote music during the romantic period and strove to establsih a unique russian identity through music. Many of his works were inspired by Russian folk music.'),
 	(NEWID(), 'Alex', 'Shapiro', @WashingtonId, @WhiteId, @FemaleId, 'Composer Alex Shapiro aligns note after note with the hope that at least a few of them will actually sound good next to each other. Her persistence at this activity, as well as non-fiction music writing, arts advocacy, public speaking, wildlife photography, and the shameless instigation of insufferable puns on Facebook, has led to a happy life. Drawing from a broad musical palette that giddily ignores genre, Alex''s acoustic and electroacoustic works are published by Activist Music LLC, performed and broadcast daily, and can be found on nearly thirty commercial releases from record labels around the world.'),

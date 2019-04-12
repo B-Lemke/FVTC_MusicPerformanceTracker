@@ -12,12 +12,9 @@ namespace BAH.MusicPerformanceTracker.PL
     using System;
     using System.Collections.Generic;
     
-    public partial class tblPiece
+    public partial class tblGender
     {
         public System.Guid Id { get; set; }
-        public string Name { get; set; }
-        public string GradeLevel { get; set; }
-        public Nullable<int> YearWritten { get; set; }
-        public string PefromanceNotes { get; set; }
+        public string Description { get; set; }
     }
 }
