@@ -1,11 +1,12 @@
 ﻿BEGIN
-	INSERT INTO [music].tblPerformer(Id, FirstName, LastName, Instrument)
+	INSERT INTO [music].tblPerformer(Id, FirstName, LastName)
 	VALUES
-	(NEWID(), 'Broderick', 'Lemke', 'Saxophone'),
-	(NEWID(), 'Hailey', 'Mattingly', 'Flute'),
-	(NEWID(), 'Hunter', 'Siebers', 'Trap Percussion'),
-	(NEWID(), 'Nick', 'Sternitzky', 'French Horn'),
-	(NEWID(), 'Lizzie', 'Tesch', 'Saxophone'),
-	(NEWID(), 'Erin', 'Hanke', 'Saxophone'),
-	(NEWID(), 'Caitlin', 'Deuchert', 'Euphonium')
+	(NEWID(), 'Broderick', 'Lemke'),
+	(NEWID(), 'Hailey', 'Mattingly'),
+	(NEWID(), 'Hunter', 'Siebers'),
+	(NEWID(), 'Nick', 'Sternitzky'),
+	(NEWID(), 'Lizzie', 'Tesch'),
+	(NEWID(), 'Erin', 'Hanke'),
+	(NEWID(), 'Caitlin', 'Deuchert')
 END
+GO

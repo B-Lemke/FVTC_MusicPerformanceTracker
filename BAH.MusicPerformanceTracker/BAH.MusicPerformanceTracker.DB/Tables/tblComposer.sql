@@ -1,10 +1,10 @@
 ﻿CREATE TABLE [music].[tblComposer]
 (
 	[Id] UNIQUEIDENTIFIER NOT NULL PRIMARY KEY, 
-    [FirstName] NCHAR(10) NOT NULL, 
-    [LastName] NCHAR(10) NOT NULL, 
-    [Gender] NCHAR(10) NULL, 
-    [Race] NCHAR(10) NULL, 
-    [Location] NCHAR(10) NULL, 
-    [Bio] NCHAR(10) NULL
+    [FirstName] VARCHAR(50) NOT NULL, 
+    [LastName] VARCHAR(50) NOT NULL, 
+    [Gender] UNIQUEIDENTIFIER NULL, 
+    [Race] UNIQUEIDENTIFIER NULL, 
+    [Location] UNIQUEIDENTIFIER NULL, 
+    [Bio] TEXT NULL
 )

@@ -8,3 +8,4 @@
 	(NEWID(), 'Jazz Ensemble', 'The goal of jazz ensemble is the study and performance of jazz ensemble literature from a variety of styles and eras. All ensemble members are required to attend daily rehearsals, dress rehearsals and concerts. Smaller ensemble work is also offered through the jazz combo program and is organized based on instrumentation and student interest. All participants will work on the development of improvisational skills, effective musical style and teamwork. Fall and Spring semesters.',
 			'1992-01-06')
 END
+GO

@@ -76,6 +76,10 @@
     <Build Include="Tables\tblPieceGenre.sql" />
     <Build Include="Tables\tblGenre.sql" />
     <Build Include="Tables\music.sql" />
+    <Build Include="Tables\tblInstrument.sql" />
+    <Build Include="Tables\tblLocation.sql" />
+    <Build Include="Tables\tblGender.sql" />
+    <Build Include="Tables\tblRace.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="BAH.MusicPerformanceTracker.DB.refactorlog" />
@@ -88,6 +92,19 @@
     <None Include="PostDeployment\DefaultData\Performers.sql" />
     <None Include="PostDeployment\DefaultData\Groups.sql" />
     <None Include="PostDeployment\DefaultData\GroupMembers.sql" />
+    <None Include="PostDeployment\DefaultData\Genres.sql" />
+    <None Include="PostDeployment\DefaultData\PieceWriters.sql" />
+    <None Include="PostDeployment\DefaultData\Composers.sql" />
+    <None Include="PostDeployment\DefaultData\Pieces.sql" />
+    <None Include="PostDeployment\DefaultData\ComposerTypes.sql" />
+    <None Include="PostDeployment\DefaultData\Genders.sql" />
+    <None Include="PostDeployment\DefaultData\Races.sql" />
+    <None Include="PostDeployment\DefaultData\Locations.sql" />
+    <None Include="PostDeployment\DefaultData\Instruments.sql" />
+    <None Include="PostDeployment\DefaultData\Directors.sql" />
+    <None Include="PostDeployment\DefaultData\Performances.sql" />
+    <None Include="PostDeployment\DefaultData\PerformancePieces.sql" />
+    <None Include="PostDeployment\DefaultData\PieceGenres.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="PostDeployment\PostDeployment.sql" />

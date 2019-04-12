@@ -10,6 +10,32 @@ Post-Deployment Script Template
 --------------------------------------------------------------------------------------
 */
 
-:r .\DefaultData\Groups.sql
+--Tables that don't rely on others
+:r .\DefaultData\Instruments.sql
+:r .\DefaultData\Genders.sql
+:r .\DefaultData\Genres.sql
+:r .\DefaultData\Locations.sql
+:r .\DefaultData\Races.sql
+:r .\DefaultData\ComposerTypes.sql
 :r .\DefaultData\Performers.sql
+:r .\DefaultData\Groups.sql
+:r .\DefaultData\Pieces.sql
+:r .\DefaultData\Directors.sql
+:r .\DefaultData\Performances.sql
+
+--Uses piece genres
+:r .\DefaultData\PieceGenres.sql
+GO
+
+--Uses location race gender
+:r .\DefaultData\Composers.sql
+GO
+
+--Uses Performer, Group, Instrument
 :r .\DefaultData\GroupMembers.sql
+GO
+--Uses piece, composer, composertype
+:r .\DefaultData\PieceWriters.sql
+GO
+--Uses piece, director, group, and performance
+:r .\DefaultData\PerformancePieces.sql

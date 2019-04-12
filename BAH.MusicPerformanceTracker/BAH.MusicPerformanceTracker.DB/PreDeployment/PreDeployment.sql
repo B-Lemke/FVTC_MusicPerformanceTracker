@@ -21,6 +21,9 @@ DROP TABLE IF EXISTS [music].tblGenre;
 DROP TABLE IF EXISTS [music].tblGroup;
 DROP TABLE IF EXISTS [music].tblPerformance;
 DROP TABLE IF EXISTS [music].tblPerformer;
-
+DROP TABLE IF EXISTS [music].tblGender;
+DROP TABLE IF EXISTS [music].tblInstrument;
+DROP TABLE IF EXISTS [music].tblLocation;
+DROP TABLE IF EXISTS [music].tblRace;
 
 DROP SCHEMA IF EXISTS [music]

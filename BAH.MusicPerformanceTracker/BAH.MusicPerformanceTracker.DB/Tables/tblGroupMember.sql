@@ -4,5 +4,6 @@
     [GroupId] UNIQUEIDENTIFIER NOT NULL, 
     [PerformerId] UNIQUEIDENTIFIER NOT NULL, 
     [StartDate] DATETIME NOT NULL, 
-    [EndDate] DATETIME NULL
+    [EndDate] DATETIME NULL, 
+    [Instrument] UNIQUEIDENTIFIER NOT NULL
 )
