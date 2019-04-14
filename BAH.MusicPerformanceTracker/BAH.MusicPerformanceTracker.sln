@@ -13,6 +13,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BAH.MusicPerformanceTracker
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BAH.MusicPerformanceTracker.BL.Test", "BAH.MusicPerformanceTracker.BL.Test\BAH.MusicPerformanceTracker.BL.Test.csproj", "{841285CB-70CC-4363-AEC3-F68F6587C14F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BAH.MusicPerformanceTracker.SL", "BAH.MusicPerformanceTracker.SL\BAH.MusicPerformanceTracker.SL.csproj", "{D8FE2821-CFB3-4DCD-A39F-7E6E785AC29F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BAH.MusicPerformanceTracker.SL.Tests", "BAH.MusicPerformanceTracker.SL.Tests\BAH.MusicPerformanceTracker.SL.Tests.csproj", "{ED613E24-E9D0-492D-B697-BAE8B4247DFD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +45,14 @@ Global
 		{841285CB-70CC-4363-AEC3-F68F6587C14F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{841285CB-70CC-4363-AEC3-F68F6587C14F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{841285CB-70CC-4363-AEC3-F68F6587C14F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D8FE2821-CFB3-4DCD-A39F-7E6E785AC29F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D8FE2821-CFB3-4DCD-A39F-7E6E785AC29F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D8FE2821-CFB3-4DCD-A39F-7E6E785AC29F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D8FE2821-CFB3-4DCD-A39F-7E6E785AC29F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED613E24-E9D0-492D-B697-BAE8B4247DFD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED613E24-E9D0-492D-B697-BAE8B4247DFD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED613E24-E9D0-492D-B697-BAE8B4247DFD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED613E24-E9D0-492D-B697-BAE8B4247DFD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
