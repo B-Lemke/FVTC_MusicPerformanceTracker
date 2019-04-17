@@ -12,7 +12,6 @@
         <EntityTypeShape EntityType="lemkedbModel.tblDirector" Width="1.5" PointX="2.75" PointY="3.75" />
         <EntityTypeShape EntityType="lemkedbModel.tblGender" Width="1.5" PointX="4.75" PointY="0.75" />
         <EntityTypeShape EntityType="lemkedbModel.tblGenre" Width="1.5" PointX="4.75" PointY="3.75" />
-        <EntityTypeShape EntityType="lemkedbModel.tblGroup" Width="1.5" PointX="6.75" PointY="0.75" />
         <EntityTypeShape EntityType="lemkedbModel.tblGroupMember" Width="1.5" PointX="8.75" PointY="0.75" />
         <EntityTypeShape EntityType="lemkedbModel.tblInstrument" Width="1.5" PointX="6.75" PointY="3.75" />
         <EntityTypeShape EntityType="lemkedbModel.tblLocation" Width="1.5" PointX="8.75" PointY="3.75" />
@@ -21,6 +20,7 @@
         <EntityTypeShape EntityType="lemkedbModel.tblRace" Width="1.5" PointX="7.75" PointY="9.75" />
         <EntityTypeShape EntityType="lemkedbModel.tblPiece" Width="1.5" PointX="0.75" PointY="10.75" />
         <EntityTypeShape EntityType="lemkedbModel.tblComposer" Width="1.5" PointX="10.375" PointY="9.75" />
+        <EntityTypeShape EntityType="lemkedbModel.tblGroup" Width="1.5" PointX="6.75" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

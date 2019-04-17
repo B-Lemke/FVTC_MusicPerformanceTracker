@@ -208,7 +208,6 @@
           <EntitySet Name="tblDirectors" EntityType="lemkedbModel.tblDirector" />
           <EntitySet Name="tblGenders" EntityType="lemkedbModel.tblGender" />
           <EntitySet Name="tblGenres" EntityType="lemkedbModel.tblGenre" />
-          <EntitySet Name="tblGroups" EntityType="lemkedbModel.tblGroup" />
           <EntitySet Name="tblGroupMembers" EntityType="lemkedbModel.tblGroupMember" />
           <EntitySet Name="tblInstruments" EntityType="lemkedbModel.tblInstrument" />
           <EntitySet Name="tblLocations" EntityType="lemkedbModel.tblLocation" />
@@ -217,6 +216,7 @@
           <EntitySet Name="tblRaces" EntityType="lemkedbModel.tblRace" />
           <EntitySet Name="tblPieces" EntityType="lemkedbModel.tblPiece" />
           <EntitySet Name="tblComposers" EntityType="lemkedbModel.tblComposer" />
+          <EntitySet Name="tblGroups" EntityType="lemkedbModel.tblGroup" />
         </EntityContainer>
         <EntityType Name="tblComposerType">
           <Key>
@@ -248,15 +248,6 @@
           </Key>
           <Property Name="Id" Type="Guid" Nullable="false" />
           <Property Name="Description" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="tblGroup">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="Guid" Nullable="false" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="FoundedDate" Type="DateTime" Precision="3" />
-          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="tblGroupMember">
           <Key>
@@ -329,6 +320,15 @@
           <Property Name="LocationId" Type="Guid" />
           <Property Name="Bio" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="tblGroup">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Guid" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="FoundedDate" Type="DateTime" Precision="3" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -400,16 +400,6 @@
             <EntityTypeMapping TypeName="lemkedbModel.tblGenre">
               <MappingFragment StoreEntitySet="tblGenre">
                 <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tblGroups">
-            <EntityTypeMapping TypeName="lemkedbModel.tblGroup">
-              <MappingFragment StoreEntitySet="tblGroup">
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="FoundedDate" ColumnName="FoundedDate" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -489,6 +479,16 @@
                 <ScalarProperty Name="GenderId" ColumnName="GenderId" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblGroups">
+            <EntityTypeMapping TypeName="lemkedbModel.tblGroup">
+              <MappingFragment StoreEntitySet="tblGroup">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="FoundedDate" ColumnName="FoundedDate" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

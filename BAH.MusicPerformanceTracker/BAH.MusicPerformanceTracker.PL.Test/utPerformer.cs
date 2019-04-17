@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using BAH.MusicPerformanceTracker.PL;
 
 namespace BAH.MusicPerformanceTracker.PL.Test
 {
@@ -9,13 +11,13 @@ namespace BAH.MusicPerformanceTracker.PL.Test
         [TestMethod]
         public void LoadTest()
         {
-            using (SurveyEntities dc = new SurveyEntities())
+            using (MusicEntities dc = new MusicEntities())
             {
                 int expected = 7;
 
-                var activations = dc.tblActivations;
+                var performers = dc.tblPerformers;
 
-                int actual = activations.Count();
+                int actual = performers.Count();
 
                 Assert.AreEqual(expected, actual);
             }
@@ -25,56 +27,54 @@ namespace BAH.MusicPerformanceTracker.PL.Test
         [TestMethod]
         public void InsertTest()
         {
-            using (SurveyEntities dc = new SurveyEntities())
+            using (MusicEntities dc = new MusicEntities())
             {
-                tblActivation activation = new tblActivation();
-                activation.Id = Guid.NewGuid();
-                activation.StartDate = DateTime.Now;
-                activation.EndDate = DateTime.Now.AddYears(10);
-                activation.QuestionId = dc.tblQuestions.FirstOrDefault(q => q.Text == "Who sprouts mung beans in their desk drawers?").Id;
-                activation.ActivationCode = "utest";
+                tblPerformer performer = new tblPerformer();
+                performer.Id = Guid.NewGuid();
+                performer.FirstName = "First Name Test";
+                performer.LastName = "Last Name Test";
 
-                dc.tblActivations.Add(activation);
+                dc.tblPerformers.Add(performer);
 
                 dc.SaveChanges();
 
-                tblActivation retrievedActivation = dc.tblActivations.FirstOrDefault(a => a.ActivationCode == "utest");
+                tblPerformer retrievedPerformer = dc.tblPerformers.FirstOrDefault(a => a.FirstName == "First Name Test");
 
-                Assert.AreEqual(activation.Id, retrievedActivation.Id);
+                Assert.AreEqual(performer.Id, retrievedPerformer.Id);
             }
         }
 
         [TestMethod]
         public void UpdateTest()
         {
-            using (SurveyEntities dc = new SurveyEntities())
+            using (MusicEntities dc = new MusicEntities())
             {
-                tblActivation activation = dc.tblActivations.FirstOrDefault(a => a.ActivationCode == "utest");
+                tblPerformer performer = dc.tblPerformers.FirstOrDefault(a => a.FirstName == "First Name Test");
 
-                activation.ActivationCode = "updat";
+                performer.LastName = "Last Name Updated";
 
                 dc.SaveChanges();
 
-                tblActivation retrievedActivation = dc.tblActivations.FirstOrDefault(a => a.ActivationCode == "updat");
+                tblPerformer retrievedPerformer = dc.tblPerformers.FirstOrDefault(a => a.LastName == "Last Name Updated");
 
-                Assert.IsNotNull(retrievedActivation);
+                Assert.IsNotNull(retrievedPerformer);
             }
         }
 
         [TestMethod]
         public void DeleteTest()
         {
-            using (SurveyEntities dc = new SurveyEntities())
+            using (MusicEntities dc = new MusicEntities())
             {
-                tblActivation activation = dc.tblActivations.FirstOrDefault(a => a.ActivationCode == "updat");
+                tblPerformer performer = dc.tblPerformers.FirstOrDefault(a => a.LastName == "Last Name Updated");
 
-                dc.tblActivations.Remove(activation);
+                dc.tblPerformers.Remove(performer);
 
                 dc.SaveChanges();
 
-                tblActivation retrievedActivation = dc.tblActivations.FirstOrDefault(a => a.ActivationCode == "updat");
+                tblPerformer retrievedPerformer = dc.tblPerformers.FirstOrDefault(a => a.LastName == "Last Name Updated");
 
-                Assert.IsNull(retrievedActivation);
+                Assert.IsNull(retrievedPerformer);
             }
         }
     }

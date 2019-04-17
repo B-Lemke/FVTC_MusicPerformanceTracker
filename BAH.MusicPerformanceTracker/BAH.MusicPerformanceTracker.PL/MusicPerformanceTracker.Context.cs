@@ -32,7 +32,6 @@ namespace BAH.MusicPerformanceTracker.PL
         public virtual DbSet<tblDirector> tblDirectors { get; set; }
         public virtual DbSet<tblGender> tblGenders { get; set; }
         public virtual DbSet<tblGenre> tblGenres { get; set; }
-        public virtual DbSet<tblGroup> tblGroups { get; set; }
         public virtual DbSet<tblGroupMember> tblGroupMembers { get; set; }
         public virtual DbSet<tblInstrument> tblInstruments { get; set; }
         public virtual DbSet<tblLocation> tblLocations { get; set; }
@@ -41,5 +40,6 @@ namespace BAH.MusicPerformanceTracker.PL
         public virtual DbSet<tblRace> tblRaces { get; set; }
         public virtual DbSet<tblPiece> tblPieces { get; set; }
         public virtual DbSet<tblComposer> tblComposers { get; set; }
+        public virtual DbSet<tblGroup> tblGroups { get; set; }
     }
 }
