@@ -101,6 +101,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\HomeControllerTest.cs" />
     <Compile Include="Controllers\ValuesControllerTest.cs" />
+    <Compile Include="utRace.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.config" />
@@ -109,6 +110,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BAH.MusicPerformanceTracker.BL\BAH.MusicPerformanceTracker.BL.csproj">
+      <Project>{c67943ee-8dd5-4c97-a116-cc54baf28441}</Project>
+      <Name>BAH.MusicPerformanceTracker.BL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BAH.MusicPerformanceTracker.SL\BAH.MusicPerformanceTracker.SL.csproj">
       <Project>{D8FE2821-CFB3-4DCD-A39F-7E6E785AC29F}</Project>
       <Name>BAH.MusicPerformanceTracker.SL</Name>

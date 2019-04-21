@@ -8,7 +8,7 @@ using BAH.MusicPerformanceTracker.BL;
 
 namespace BAH.MusicPerformanceTracker.SL.Controllers
 {
-    public class LocaitonController : ApiController
+    public class LocationController : ApiController
     {
         // GET: api/Locaiton
         public IEnumerable<Location> Get()
