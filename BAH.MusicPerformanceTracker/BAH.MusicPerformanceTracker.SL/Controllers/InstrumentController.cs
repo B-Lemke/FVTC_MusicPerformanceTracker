@@ -33,7 +33,7 @@ namespace BAH.MusicPerformanceTracker.SL.Controllers
         }
 
         // PUT: api/Instrument/5
-        public void Put(int id, Instrument instrument)
+        public void Put(Guid id, Instrument instrument)
         {
             instrument.Update();
         }

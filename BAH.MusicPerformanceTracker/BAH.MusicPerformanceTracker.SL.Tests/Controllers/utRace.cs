@@ -17,7 +17,7 @@ namespace BAH.MusicPerformanceTracker.SL.Tests
         {
             HttpClient client = new HttpClient();
             client.DefaultRequestHeaders.Add("x-apikey", "12345");
-            client.BaseAddress = new Uri("http://localhost:59933/api/");
+            client.BaseAddress = new Uri("http://musicperformancetracker.azurewebsites.net/api/");
             return client;
         }
 
@@ -96,6 +96,7 @@ namespace BAH.MusicPerformanceTracker.SL.Tests
             HttpResponseMessage response = client.PostAsync("Race", content).Result;
 
             //Assert
+            races.Clear();
             races.Load();
             Assert.AreEqual(originalCount + 1, races.Count);
         }
@@ -147,6 +148,7 @@ namespace BAH.MusicPerformanceTracker.SL.Tests
             }
 
             //Assert
+            races.Clear();
             races.Load();
             Assert.AreEqual(originalCount - 1, races.Count);
         }

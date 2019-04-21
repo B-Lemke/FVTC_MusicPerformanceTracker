@@ -25,5 +25,23 @@ namespace BAH.MusicPerformanceTracker.SL.Controllers
             gender.LoadById();
             return gender;
         }
+
+        // POST: api/Locaiton
+        public void Post(Gender gender)
+        {
+            gender.Insert();
+        }
+
+        // PUT: api/Locaiton/5
+        public void Put(Guid id, Gender gender)
+        {
+            gender.Update();
+        }
+
+        // DELETE: api/Locaiton/5
+        public void Delete(Guid id)
+        {
+            Get(id).Delete();
+        }
     }
 }
