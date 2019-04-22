@@ -1,7 +1,7 @@
 ﻿BEGIN
 	INSERT INTO [music].tblPiece(Id, Name, YearWritten, GradeLevel, PefromanceNotes)
 	VALUES
-	(NEWID(), 'Lincolnshire Posy', 1937, 6, 'Lincolnshire Posy was conceived and scored directly for wind band in 1937. The composer tells us it is a collection of six English folksongs -- a bunch of “musical wildflowers” (hence the title) -- based on tunes collected in Lincolnshire, England mainly in the years 1905 - 1906 with the help of an early phonograph. It is dedicated to the yeomen folksingers who sang so sweetly.
+	(NEWID(), 'Lincolnshire Posy', 1937, '6', 'Lincolnshire Posy was conceived and scored directly for wind band in 1937. The composer tells us it is a collection of six English folksongs -- a bunch of “musical wildflowers” (hence the title) -- based on tunes collected in Lincolnshire, England mainly in the years 1905 - 1906 with the help of an early phonograph. It is dedicated to the yeomen folksingers who sang so sweetly.
 
 The composer wrote, “Each number is intended to be a kind of musical portrait of the singer’s personality and habits of song, - his regular or irregular wonts of rhythm, his preference for gaunt or ornately arabesqued delivery, his contrasts of legato and staccato, his tendency toward breadth or delicacy of tone”. 
 
@@ -17,7 +17,7 @@ The composer wrote, “Each number is intended to be a kind of musical portrait 
 
 6. “The Lost Lady Found” (Dance Song) is the most conventional set- ting of all, in straight 3/4 meter with usual accompaniment patterns. '),
 
-	(NEWID(), 'Rock Music', 2016, 2.5, 'Music doesn''t have to be experienced as an element separate from the rest of our daily lives. It''s as much part of our world as the ground on which we walk. Composing ROCK MUSIC was the perfect opportunity to make this point about the geology of our planet, and the changes in climate that are permanently altering our landscape.
+	(NEWID(), 'Rock Music', 2016, '2.5', 'Music doesn''t have to be experienced as an element separate from the rest of our daily lives. It''s as much part of our world as the ground on which we walk. Composing ROCK MUSIC was the perfect opportunity to make this point about the geology of our planet, and the changes in climate that are permanently altering our landscape.
 
 In my ongoing desire to encourage people to step away from their screens and go outdoors, I asked the students of Patrick Marsh Middle School in Sun Prairie, WI to venture out into their neighborhoods, lower their gaze to the substrate on which they walk, find a pair of rocks, discover sounds that can be coaxed from them, and record the results. My inbox was soon filled with nearly 100 mp3s sporting a stunning variety of geological sonic creativity. Many of those sounds, some with distinct pitches and rhythms, are the basis of the accompaniment audio track over which ROCK MUSIC is composed.
 
@@ -25,7 +25,7 @@ In parallel to this holistic vision, band director Chris Gleason invited a scien
 
 Throughout this geo-electroacoustic piece, the music slowly crawls, melts, and scrapes over a sonic landscape in random, irregular ways: much as the glaciers carved the world we know. And as with our world, the piece''s ending slowly melts away to a haunting silence.'),
 
-	(NEWID(), 'Pictures At An Exhibition', 1874, 6, 'Pictures at an Exhibition (Russian: Картинки с выставки – Воспоминание о Викторе Гартмане, translit. Kartínki s výstavki – Vospominániye o Víktore Gártmane, lit. ''Pictures from an Exhibition – A Remembrance of Viktor Hartmann'', French: Tableaux d''une exposition) is a suite of ten pieces (plus a recurring, varied Promenade) composed for piano by Russian composer Modest Mussorgsky in 1874.
+	(NEWID(), 'Pictures At An Exhibition', 1874, '6', 'Pictures at an Exhibition (Russian: Картинки с выставки – Воспоминание о Викторе Гартмане, translit. Kartínki s výstavki – Vospominániye o Víktore Gártmane, lit. ''Pictures from an Exhibition – A Remembrance of Viktor Hartmann'', French: Tableaux d''une exposition) is a suite of ten pieces (plus a recurring, varied Promenade) composed for piano by Russian composer Modest Mussorgsky in 1874.
 
 The suite is Mussorgsky''s most famous piano composition and has become a showpiece for virtuoso pianists. It has become further known through various orchestrations and arrangements produced by other musicians and composers, with Maurice Ravel''s arrangement being by far the most recorded and performed.')
 END

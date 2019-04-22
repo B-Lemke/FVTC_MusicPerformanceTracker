@@ -56,6 +56,8 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="utComposer.cs" />
+    <Compile Include="utPiece.cs" />
     <Compile Include="utGroup.cs" />
     <Compile Include="utGroupMember.cs" />
     <Compile Include="utPerformer.cs" />
