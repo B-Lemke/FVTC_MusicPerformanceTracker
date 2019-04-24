@@ -56,10 +56,13 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="utGroup.cs" />
     <Compile Include="utComposerType.cs" />
+    <Compile Include="utGroupMemeber.cs" />
     <Compile Include="utInstrument.cs" />
     <Compile Include="utLocation.cs" />
     <Compile Include="utComposer.cs" />
+    <Compile Include="utPerformer.cs" />
     <Compile Include="utPieceWriter.cs" />
     <Compile Include="utPiece.cs" />
     <Compile Include="utRace.cs" />

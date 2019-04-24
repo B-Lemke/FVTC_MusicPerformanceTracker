@@ -31,14 +31,14 @@ namespace BAH.MusicPerformanceTracker.PL.Test
             {
                 tblPerformer performer = new tblPerformer();
                 performer.Id = Guid.NewGuid();
-                performer.FirstName = "First Name Test";
-                performer.LastName = "Last Name Test";
+                performer.FirstName = "PL First Name Test";
+                performer.LastName = "PL Last Name Test";
 
                 dc.tblPerformers.Add(performer);
 
                 dc.SaveChanges();
 
-                tblPerformer retrievedPerformer = dc.tblPerformers.FirstOrDefault(a => a.FirstName == "First Name Test");
+                tblPerformer retrievedPerformer = dc.tblPerformers.FirstOrDefault(a => a.FirstName == "PL First Name Test");
 
                 Assert.AreEqual(performer.Id, retrievedPerformer.Id);
             }
@@ -49,13 +49,13 @@ namespace BAH.MusicPerformanceTracker.PL.Test
         {
             using (MusicEntities dc = new MusicEntities())
             {
-                tblPerformer performer = dc.tblPerformers.FirstOrDefault(a => a.FirstName == "First Name Test");
+                tblPerformer performer = dc.tblPerformers.FirstOrDefault(a => a.FirstName == "PL First Name Test");
 
-                performer.LastName = "Last Name Updated";
+                performer.LastName = "PL Last Name Updated";
 
                 dc.SaveChanges();
 
-                tblPerformer retrievedPerformer = dc.tblPerformers.FirstOrDefault(a => a.LastName == "Last Name Updated");
+                tblPerformer retrievedPerformer = dc.tblPerformers.FirstOrDefault(a => a.LastName == "PL Last Name Updated");
 
                 Assert.IsNotNull(retrievedPerformer);
             }
@@ -66,13 +66,13 @@ namespace BAH.MusicPerformanceTracker.PL.Test
         {
             using (MusicEntities dc = new MusicEntities())
             {
-                tblPerformer performer = dc.tblPerformers.FirstOrDefault(a => a.LastName == "Last Name Updated");
+                tblPerformer performer = dc.tblPerformers.FirstOrDefault(a => a.FirstName == "PL First Name Test");
 
                 dc.tblPerformers.Remove(performer);
 
                 dc.SaveChanges();
 
-                tblPerformer retrievedPerformer = dc.tblPerformers.FirstOrDefault(a => a.LastName == "Last Name Updated");
+                tblPerformer retrievedPerformer = dc.tblPerformers.FirstOrDefault(a => a.FirstName == "PL First Name Test");
 
                 Assert.IsNull(retrievedPerformer);
             }
