@@ -3,10 +3,10 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Linq;
 using BAH.MusicPerformanceTracker.PL;
 
-namespace BAH.MusicPerformancePieceTracker.PL.Test
+namespace BAH.MusicPerformanceTracker.PL.Test
 {
     [TestClass]
-    public class utPerformancePiecePiece
+    public class utPerformancePiece
     {
         [TestMethod]
         public void LoadTest()
@@ -33,7 +33,7 @@ namespace BAH.MusicPerformancePieceTracker.PL.Test
                 performancepiece.Id = Guid.NewGuid();
                 performancepiece.DirectorId = dc.tblDirectors.FirstOrDefault(p => p.FirstName == "Broderick").Id;
                 performancepiece.GroupId = dc.tblGroups.FirstOrDefault(p => p.Name == "Jazz Ensemble").Id;
-                performancepiece.PerformanceId = dc.tblPerformances.FirstOrDefault(p => p.Name == "Jazz Ensemble").Id;
+                performancepiece.PerformanceId = dc.tblPerformances.FirstOrDefault(p => p.Name == "Spring Concert").Id;
                 performancepiece.PieceId = dc.tblPieces.FirstOrDefault(p => p.Name == "Rock Music").Id;
                 performancepiece.Notes = "PL Test";
                 performancepiece.MP3Path = "PL Test";

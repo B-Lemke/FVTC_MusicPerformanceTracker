@@ -33,7 +33,7 @@ namespace BAH.MusicPerformanceTracker.PL.Test
                 groupmember.Id = Guid.NewGuid();
                 groupmember.PerformerId = dc.tblPerformers.FirstOrDefault(p => p.FirstName == "Hunter").Id;
                 groupmember.GroupId = dc.tblGroups.FirstOrDefault(p => p.Name == "Concert Band").Id;
-                groupmember.StartDate = DateTime.Now;
+                groupmember.StartDate = Convert.ToDateTime("04/24/3000");
                 groupmember.EndDate = DateTime.Now.AddDays(2);
                 groupmember.Instrument = dc.tblInstruments.FirstOrDefault(p => p.Description == "Saxophone").Id;
 
@@ -41,25 +41,27 @@ namespace BAH.MusicPerformanceTracker.PL.Test
 
                 dc.SaveChanges();
 
-                tblGroupMember retrievedGroupMember = dc.tblGroupMembers.FirstOrDefault(a => a.PerformerId == groupmember.PerformerId && a.Instrument == groupmember.Instrument);
+                tblGroupMember retrievedGroupMember = dc.tblGroupMembers.FirstOrDefault(a => a.StartDate == groupmember.StartDate);
 
                 Assert.AreEqual(groupmember.Id, retrievedGroupMember.Id);
             }
         }
 
-        /*
+        
         [TestMethod]
         public void UpdateTest()
         {
-            using (MusicEntities dc = new MusicEntities())
+            using (MusicEntities dc = new MusicEntities()) 
             {
-                tblGroupMember groupmember = dc.tblGroupMembers.FirstOrDefault(a => a.Name == "Test GroupMember");
+                DateTime startTime = Convert.ToDateTime("04/24/3000");
 
-                groupmember.Name = "Updated Test GroupMember";
+                tblGroupMember groupmember = dc.tblGroupMembers.FirstOrDefault(a => a.StartDate == startTime);
+
+                groupmember.EndDate = DateTime.Now.AddDays(5);
 
                 dc.SaveChanges();
 
-                tblGroupMember retrievedGroupMember = dc.tblGroupMembers.FirstOrDefault(a => a.Name == "Updated Test GroupMember");
+                tblGroupMember retrievedGroupMember = dc.tblGroupMembers.FirstOrDefault(a => a.StartDate == groupmember.StartDate);
 
                 Assert.IsNotNull(retrievedGroupMember);
             }
@@ -70,17 +72,19 @@ namespace BAH.MusicPerformanceTracker.PL.Test
         {
             using (MusicEntities dc = new MusicEntities())
             {
-                tblGroupMember groupmember = dc.tblGroupMembers.FirstOrDefault(a => a.Name == "Updated Test GroupMember");
+                DateTime startTime = Convert.ToDateTime("04/24/3000");
+
+                tblGroupMember groupmember = dc.tblGroupMembers.FirstOrDefault(a => a.StartDate == startTime);
 
                 dc.tblGroupMembers.Remove(groupmember);
 
                 dc.SaveChanges();
 
-                tblGroupMember retrievedGroupMember = dc.tblGroupMembers.FirstOrDefault(a => a.Name == "Updated Test GroupMember");
+                tblGroupMember retrievedGroupMember = dc.tblGroupMembers.FirstOrDefault(a => a.StartDate == groupmember.StartDate);
 
                 Assert.IsNull(retrievedGroupMember);
             }
         }
-        */
+        
     }
 }

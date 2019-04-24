@@ -8,7 +8,7 @@ using BAH.MusicPerformanceTracker.PL;
 
 namespace BAH.MusicPerformanceTracker.BL
 {
-    public class Composer
+    public class Performer
     {
         public Guid Id { get; set; }
         [DisplayName("First Name")]
@@ -18,18 +18,8 @@ namespace BAH.MusicPerformanceTracker.BL
         [DisplayName("Full Name")]
         public string FullName => $"{FirstName} {LastName}";
 
-        [DisplayName("Gender")]
-        public Guid GenderId { get; set; }
-        [DisplayName("Race")]
-        public Guid RaceId { get; set; }
-        [DisplayName("Location")]
-        public Guid LocationId { get; set; }
 
-        public string Bio { get; set; }
-
-
-
-        //Retrieve the composer from the database with this Id
+        //Retrieve the performer from the database with this Id
         public void LoadById()
         {
             try
@@ -37,15 +27,11 @@ namespace BAH.MusicPerformanceTracker.BL
                 using (MusicEntities dc = new MusicEntities())
                 {
                     //Retrieve from the db
-                    tblComposer composer = dc.tblComposers.FirstOrDefault(c => c.Id == this.Id);
+                    tblPerformer performer = dc.tblPerformers.FirstOrDefault(p => p.Id == this.Id);
 
-                    //Set this composer's properties
-                    this.FirstName = composer.FirstName;
-                    this.LastName = composer.LastName;
-                    this.GenderId = composer.GenderId.HasValue ? composer.GenderId.Value : Guid.Empty;
-                    this.RaceId = composer.RaceId.HasValue ? composer.RaceId.Value : Guid.Empty;
-                    this.LocationId = composer.LocationId.HasValue ? composer.LocationId.Value : Guid.Empty;
-                    this.Bio = composer.Bio;
+                    //Set this performer's properties
+                    this.FirstName = performer.FirstName;
+                    this.LastName = performer.LastName;
                 }
             }
             catch (Exception ex)
@@ -55,7 +41,7 @@ namespace BAH.MusicPerformanceTracker.BL
         }
 
 
-        //Insert the composer into the db, and generate a new Id for it.
+        //Insert the performer into the db, and generate a new Id for it.
         public int Insert()
         {
             try
@@ -66,19 +52,15 @@ namespace BAH.MusicPerformanceTracker.BL
                     this.Id = Guid.NewGuid();
 
                     //Set the properties
-                    tblComposer composer = new tblComposer
+                    tblPerformer performer = new tblPerformer
                     {
                         Id = this.Id,
                         FirstName = this.FirstName,
                         LastName = this.LastName,
-                        GenderId = this.GenderId,
-                        LocationId = this.LocationId,
-                        RaceId = this.RaceId,
-                        Bio = this.Bio
                     };
 
                     //Add it to the table and save changes
-                    dc.tblComposers.Add(composer);
+                    dc.tblPerformers.Add(performer);
                     return dc.SaveChanges();
                 }
             }
@@ -95,15 +77,11 @@ namespace BAH.MusicPerformanceTracker.BL
                 using (MusicEntities dc = new MusicEntities())
                 {
                     //Retrieve the record from the DB
-                    tblComposer composer = dc.tblComposers.FirstOrDefault(c => c.Id == this.Id);
+                    tblPerformer performer = dc.tblPerformers.FirstOrDefault(c => c.Id == this.Id);
 
                     //Update the properties
-                    composer.FirstName = this.FirstName;
-                    composer.LastName = this.LastName;
-                    composer.GenderId = this.GenderId;
-                    composer.LocationId = this.LocationId;
-                    composer.RaceId = this.RaceId;
-                    composer.Bio = this.Bio;
+                    performer.FirstName = this.FirstName;
+                    performer.LastName = this.LastName;
 
                     //Save the changes
                     return dc.SaveChanges();
@@ -122,10 +100,10 @@ namespace BAH.MusicPerformanceTracker.BL
                 using (MusicEntities dc = new MusicEntities())
                 {
                     //Retrieve it from the DB
-                    tblComposer composer = dc.tblComposers.FirstOrDefault(c => c.Id == this.Id);
+                    tblPerformer performer = dc.tblPerformers.FirstOrDefault(p => p.Id == this.Id);
 
-                    //Remove the composer
-                    dc.tblComposers.Remove(composer);
+                    //Remove the performer
+                    dc.tblPerformers.Remove(performer);
 
                     //Save the changes
                     return dc.SaveChanges();
@@ -138,8 +116,7 @@ namespace BAH.MusicPerformanceTracker.BL
         }
     }
 
-
-    public class ComposerList : List<Composer>
+    public class PerformerList : List<Performer>
     {
         public void Load()
         {
@@ -147,22 +124,17 @@ namespace BAH.MusicPerformanceTracker.BL
             {
                 using (MusicEntities dc = new MusicEntities())
                 {
-                    var results = dc.tblComposers;
-                    foreach (tblComposer c in results)
+                    var results = dc.tblPerformers;
+                    foreach (tblPerformer p in results)
                     {
-                        Composer composer = new Composer
+                        Performer performer = new Performer
                         {
-                            Id = c.Id,
-                            Bio = c.Bio,
-                            FirstName = c.FirstName,
-                            LastName = c.LastName,
-                            GenderId = c.GenderId.HasValue ? c.GenderId.Value : Guid.Empty,
-                            LocationId = c.LocationId.HasValue ? c.LocationId.Value : Guid.Empty,
-                            RaceId = c.RaceId.HasValue ? c.RaceId.Value : Guid.Empty
-
+                            Id = p.Id,
+                            FirstName = p.FirstName,
+                            LastName = p.LastName
                         };
 
-                        this.Add(composer);
+                        this.Add(performer);
                     }
                 }
             }
