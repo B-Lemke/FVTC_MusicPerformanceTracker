@@ -133,5 +133,38 @@ namespace BAH.MusicPerformanceTracker.BL
                 throw ex;
             }
         }
+
+        public void LoadByPieceId(Guid id)
+        {
+            try
+            {
+                using (MusicEntities dc = new MusicEntities())
+                {
+                    var results = from pg in dc.tblPieceGenres
+                                  join g in dc.tblGenres on pg.GenreId equals g.Id
+                                  where pg.PieceId == id
+                                  select new
+                                  {
+                                      g.Id,
+                                      g.Description
+                                  };
+
+                    foreach (var g in results)
+                    {
+                        Genre genre = new Genre
+                        {
+                            Id = g.Id,
+                            Description = g.Description
+                        };
+
+                        this.Add(genre);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

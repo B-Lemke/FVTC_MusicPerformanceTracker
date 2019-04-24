@@ -15,7 +15,7 @@ namespace BAH.MusicPerformanceTracker.BL
         public int YearWritten { get; set; }
         public string PerformanceNotes { get; set; }
         public GenreList Genres { get; set; }
-
+        public PieceWriterList PieceWriters {get;set;}
 
         //Retrieve the piece from the database with this Id
         public void LoadById()
@@ -39,6 +39,8 @@ namespace BAH.MusicPerformanceTracker.BL
                     }
                     this.GradeLevel = piece.GradeLevel;
                     this.PerformanceNotes = piece.PefromanceNotes;
+                    LoadPieceWriters();
+                    LoadGenres();
                 }
             }
             catch (Exception ex)
@@ -47,6 +49,11 @@ namespace BAH.MusicPerformanceTracker.BL
             }
         }
 
+        public void LoadPieceWriters()
+        {
+            this.PieceWriters = new PieceWriterList();
+            this.PieceWriters.LoadByPieceId(this.Id);
+        }
 
         //Insert the piece into the db, and generate a new Id for it.
         public int Insert()
@@ -148,27 +155,8 @@ namespace BAH.MusicPerformanceTracker.BL
         //Load the genres onto this piece
         public void LoadGenres()
         {
-            try
-            {
-                using (MusicEntities dc = new MusicEntities())
-                {
-                    this.Genres = new GenreList();
-
-                    //Retrieve from the DB
-                    var results = dc.tblPieceGenres.Where(g => g.PieceId == this.Id);
-
-                    foreach(var pieceGenre in results)
-                    {
-                        Genre genre = new Genre { Id = pieceGenre.Id };
-                        genre.LoadById();
-                        this.Genres.Add(genre);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
+            Genres = new GenreList();
+            Genres.LoadByPieceId(this.Id);
         }
     }
 
@@ -199,8 +187,10 @@ namespace BAH.MusicPerformanceTracker.BL
                         {
                             piece.YearWritten = -1;
                         }
-
+                        piece.LoadPieceWriters();
+                        piece.LoadGenres();
                         this.Add(piece);
+
                     }
                 }
             }

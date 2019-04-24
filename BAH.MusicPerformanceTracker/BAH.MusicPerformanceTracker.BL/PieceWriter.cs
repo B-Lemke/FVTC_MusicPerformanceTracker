@@ -146,5 +146,34 @@ namespace BAH.MusicPerformanceTracker.BL
                 throw ex;
             }
         }
+
+
+
+        public void LoadByPieceId(Guid id)
+        {
+            try
+            {
+                using (MusicEntities dc = new MusicEntities())
+                {
+                    var results = dc.tblPieceWriters.Where(pw => pw.PieceId == id);
+                    foreach (tblPieceWriter p in results)
+                    {
+                        PieceWriter pieceWriter = new PieceWriter
+                        {
+                            Id = p.Id,
+                            ComposerTypeId = p.ComposerTypeId,
+                            ComposerId = p.ComposerId,
+                            PieceId = p.PieceId
+                        };
+
+                        this.Add(pieceWriter);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

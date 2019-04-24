@@ -46,7 +46,7 @@
                  ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto" />
         <Label Content="Composer Bio:" HorizontalAlignment="Left" Margin="559,37,0,0" VerticalAlignment="Top" FontSize="20"/>
         <Button x:Name="btnDeleteComposer" Content="Delete" HorizontalAlignment="Left" Margin="967,461,0,0" VerticalAlignment="Top" Width="140" Height="35" RenderTransformOrigin="-0.182,0.586" FontSize="16"/>
-        <Button x:Name="btnSAve" Content="Save" HorizontalAlignment="Left" Margin="797,461,0,0" VerticalAlignment="Top" Width="140" Height="35" RenderTransformOrigin="-0.182,0.586" FontSize="16"/>
+        <Button x:Name="btnSave" Content="Save" HorizontalAlignment="Left" Margin="797,461,0,0" VerticalAlignment="Top" Width="140" Height="35" RenderTransformOrigin="-0.182,0.586" FontSize="16"/>
         <Button x:Name="btnNew" Content="New" HorizontalAlignment="Left" Margin="626,461,0,0" VerticalAlignment="Top" Width="140" Height="35" RenderTransformOrigin="-0.182,0.586" FontSize="16"/>
     </Grid>
 </Window>

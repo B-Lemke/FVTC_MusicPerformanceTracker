@@ -147,7 +147,7 @@ namespace BAH.MusicPerformanceTracker.BL
             {
                 using (MusicEntities dc = new MusicEntities())
                 {
-                    var results = dc.tblComposers;
+                    var results = dc.tblComposers.OrderBy(c => c.LastName);
                     foreach (tblComposer c in results)
                     {
                         Composer composer = new Composer
