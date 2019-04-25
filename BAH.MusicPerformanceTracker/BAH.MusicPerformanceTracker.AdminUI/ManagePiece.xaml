@@ -27,11 +27,126 @@
         <TextBox x:Name="txtPerformanceNotes" HorizontalAlignment="Left" Height="478" Margin="518,88,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="563" FontSize="18" AcceptsReturn="True" AcceptsTab="True"  SpellCheck.IsEnabled="True" 
             ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto" />
         <Label Content="Performance Notes:" HorizontalAlignment="Left" Margin="518,33,0,0" VerticalAlignment="Top" FontSize="20"/>
-        <ListBox x:Name="lstComposer" HorizontalAlignment="Left" Height="110" Margin="140,234,0,0" VerticalAlignment="Top" Width="347" SelectionMode="Multiple"/>
-        <ListBox x:Name="lstArranger" HorizontalAlignment="Left" Height="110" Margin="140,374,0,0" VerticalAlignment="Top" Width="347" SelectionMode="Multiple"/>
+        
+        <ListBox x:Name="lstComposer" HorizontalAlignment="Left" Height="110" Margin="140,234,0,0" VerticalAlignment="Top" Width="347" SelectionMode="Multiple" FontSize="14">
+            <ListBox.Resources>
+                <SolidColorBrush x:Key="ItemContainerBackground" Color="#FFF" />
+                <SolidColorBrush x:Key="ItemContainerForeground" Color="#000" />
+                <SolidColorBrush x:Key="ItemContainerBoderBrush" Color="#999" />
+                <SolidColorBrush x:Key="ItemContainerMouseOverBackground" Color="#FF94C0FF" />
+                <SolidColorBrush x:Key="ItemContainerBorderMouseOverBackground" Color="#FF5C437A" />
+                <SolidColorBrush x:Key="ItemContainerMouseOverForeground" Color="Black" />
+                <SolidColorBrush x:Key="ItemContainerSelectedBackground" Color="#FF5C437A"/>
+                <SolidColorBrush x:Key="ItemContainerSelectedForeground" Color="#FFFFFF"/>
+            </ListBox.Resources>
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="{x:Type ListBoxItem}">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                                <Border
+                                    x:Name="Bd"
+                                    Background="{TemplateBinding Background}" >
+                                    <ContentPresenter />
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="Padding" Value="5,0,0,0" />
+                    <Setter Property="Background" Value="{StaticResource ItemContainerBackground}" />
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Background" Value="{StaticResource ItemContainerSelectedBackground}" />
+                            <Setter Property="Foreground" Value="{StaticResource ItemContainerSelectedForeground}" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="{StaticResource ItemContainerMouseOverBackground}" />
+                            <Setter Property="Foreground" Value="{StaticResource ItemContainerMouseOverForeground}" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </ListBox.ItemContainerStyle>
+        </ListBox>
+        <ListBox x:Name="lstArranger" HorizontalAlignment="Left" Height="110" Margin="140,374,0,0" VerticalAlignment="Top" Width="347" SelectionMode="Multiple" FontSize="14">
+            <ListBox.Resources>
+                <SolidColorBrush x:Key="ItemContainerBackground" Color="#FFF" />
+                <SolidColorBrush x:Key="ItemContainerForeground" Color="#000" />
+                <SolidColorBrush x:Key="ItemContainerBoderBrush" Color="#999" />
+                <SolidColorBrush x:Key="ItemContainerMouseOverBackground" Color="#FF94C0FF" />
+                <SolidColorBrush x:Key="ItemContainerBorderMouseOverBackground" Color="#FF5C437A" />
+                <SolidColorBrush x:Key="ItemContainerMouseOverForeground" Color="Black" />
+                <SolidColorBrush x:Key="ItemContainerSelectedBackground" Color="#FF5C437A"/>
+                <SolidColorBrush x:Key="ItemContainerSelectedForeground" Color="#FFFFFF"/>
+            </ListBox.Resources>
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="{x:Type ListBoxItem}">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                                <Border
+                                    x:Name="Bd"
+                                    Background="{TemplateBinding Background}" >
+                                    <ContentPresenter />
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="Padding" Value="5,0,0,0" />
+                    <Setter Property="Background" Value="{StaticResource ItemContainerBackground}" />
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Background" Value="{StaticResource ItemContainerSelectedBackground}" />
+                            <Setter Property="Foreground" Value="{StaticResource ItemContainerSelectedForeground}" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="{StaticResource ItemContainerMouseOverBackground}" />
+                            <Setter Property="Foreground" Value="{StaticResource ItemContainerMouseOverForeground}" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </ListBox.ItemContainerStyle>
+        </ListBox>
         <Label Content="Composer(s):" HorizontalAlignment="Left" Margin="10,234,0,0" VerticalAlignment="Top" FontSize="20"/>
         <Label Content="Arranger(s):" HorizontalAlignment="Left" Margin="22,374,0,0" VerticalAlignment="Top" FontSize="20"/>
-        <ListBox x:Name="lstGenre" HorizontalAlignment="Left" Height="110" Margin="140,514,0,0" VerticalAlignment="Top" Width="347" SelectionMode="Multiple"/>
+        <ListBox x:Name="lstGenre" HorizontalAlignment="Left" Height="110" Margin="140,514,0,0" VerticalAlignment="Top" Width="347" SelectionMode="Multiple" FontSize="14">
+            <ListBox.Resources>
+                <SolidColorBrush x:Key="ItemContainerBackground" Color="#FFF" />
+                <SolidColorBrush x:Key="ItemContainerForeground" Color="#000" />
+                <SolidColorBrush x:Key="ItemContainerBoderBrush" Color="#999" />
+                <SolidColorBrush x:Key="ItemContainerMouseOverBackground" Color="#FF94C0FF" />
+                <SolidColorBrush x:Key="ItemContainerBorderMouseOverBackground" Color="#FF5C437A" />
+                <SolidColorBrush x:Key="ItemContainerMouseOverForeground" Color="Black" />
+                <SolidColorBrush x:Key="ItemContainerSelectedBackground" Color="#FF5C437A"/>
+                <SolidColorBrush x:Key="ItemContainerSelectedForeground" Color="#FFFFFF"/>
+            </ListBox.Resources>
+            <ListBox.ItemContainerStyle>
+                <Style TargetType="{x:Type ListBoxItem}">
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                                <Border
+                                    x:Name="Bd"
+                                    Background="{TemplateBinding Background}" >
+                                    <ContentPresenter />
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="Padding" Value="5,0,0,0" />
+                    <Setter Property="Background" Value="{StaticResource ItemContainerBackground}" />
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Background" Value="{StaticResource ItemContainerSelectedBackground}" />
+                            <Setter Property="Foreground" Value="{StaticResource ItemContainerSelectedForeground}" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="{StaticResource ItemContainerMouseOverBackground}" />
+                            <Setter Property="Foreground" Value="{StaticResource ItemContainerMouseOverForeground}" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </ListBox.ItemContainerStyle>
+        </ListBox>
         <Label Content="Genres:" HorizontalAlignment="Left" Margin="51,514,0,0" VerticalAlignment="Top" FontSize="20"/>
         <Button x:Name="btnDeleteComposer" Content="Delete" HorizontalAlignment="Left" Margin="938,589,0,0" VerticalAlignment="Top" Width="140" Height="35" RenderTransformOrigin="-0.182,0.586" FontSize="16"/>
         <Button x:Name="btnSave" Content="Save" HorizontalAlignment="Left" Margin="768,589,0,0" VerticalAlignment="Top" Width="140" Height="35" RenderTransformOrigin="-0.182,0.586" FontSize="16"/>

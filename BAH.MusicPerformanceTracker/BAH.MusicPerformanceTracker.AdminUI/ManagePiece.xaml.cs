@@ -26,6 +26,7 @@ namespace BAH.MusicPerformanceTracker.AdminUI
         PieceList pieces;
         GenreList genres;
         ComposerList composers;
+        ComposerTypeList composerTypes;
 
         private static HttpClient InitializeClient()
         {
@@ -118,6 +119,28 @@ namespace BAH.MusicPerformanceTracker.AdminUI
                     throw new Exception("Error: " + composerResponse.ReasonPhrase);
                 }
 
+
+                string composerTypeResult;
+                dynamic composerTypeItems;
+                HttpResponseMessage composerTypeResponse;
+
+                //Call the API
+                composerTypeResponse = client.GetAsync("ComposerType").Result;
+
+                if (composerTypeResponse.StatusCode == System.Net.HttpStatusCode.OK)
+                {
+                    //Process response
+                    composerTypeResult = composerTypeResponse.Content.ReadAsStringAsync().Result;
+
+                    //Put json into a piece list
+                    composerTypeItems = (JArray)JsonConvert.DeserializeObject(composerTypeResult);
+                    composerTypes = composerTypeItems.ToObject<ComposerTypeList>();
+                }
+                else
+                {
+                    throw new Exception("Error: " + composerTypeResponse.ReasonPhrase);
+                }
+
             }
             catch (Exception ex)
             {
@@ -165,6 +188,31 @@ namespace BAH.MusicPerformanceTracker.AdminUI
                 lstGenre.SelectedItems.Add(genreToAdd);
             }
 
+            lstComposer.SelectedItems.Clear();
+            //Get the composerTypeId for composer
+            Guid composerTypeGuid = composerTypes.FirstOrDefault(ct => ct.Description == "Composer").Id;
+            foreach (PieceWriter pieceWriter in piece.PieceWriters)
+            {
+                //If this piecewrite is a composer, select them
+                if (pieceWriter.ComposerTypeId == composerTypeGuid)
+                {
+                    Composer composerToSelect = composers.FirstOrDefault(c => c.Id == pieceWriter.ComposerId);
+                    lstComposer.SelectedItems.Add(composerToSelect);
+                }
+            }
+
+            lstArranger.SelectedItems.Clear();
+            //Get the composerTypeId for composer
+            Guid arrangerTypeId = composerTypes.FirstOrDefault(ct => ct.Description == "Arranger").Id;
+            foreach (PieceWriter pieceWriter in piece.PieceWriters)
+            {
+                //If this piecewrite is a composer, select them
+                if (pieceWriter.ComposerTypeId == arrangerTypeId)
+                {
+                    Composer arrangerToSelect = composers.FirstOrDefault(c => c.Id == pieceWriter.ComposerId);
+                    lstArranger.SelectedItems.Add(arrangerToSelect);
+                }
+            }
         }
     }
 }
