@@ -60,7 +60,7 @@ namespace BAH.MusicPerformanceTracker.AdminUI
                 //Call the API
                 pieceResponse = client.GetAsync("Piece").Result;
 
-                if(pieceResponse.StatusCode == System.Net.HttpStatusCode.OK)
+                if (pieceResponse.StatusCode == System.Net.HttpStatusCode.OK)
                 {
                     //Process response
                     result = pieceResponse.Content.ReadAsStringAsync().Result;
@@ -174,44 +174,221 @@ namespace BAH.MusicPerformanceTracker.AdminUI
 
         private void CboPiece_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            Piece piece = pieces.ElementAt(cboPiece.SelectedIndex);
-            //Change the boxes on screen based onthe selected object.
-            txtGradeLevel.Text = piece.GradeLevel;
-            txtName.Text = piece.Name;
-            txtPerformanceNotes.Text = piece.PerformanceNotes;
-            txtYearWritten.Text = piece.YearWritten.ToString();
-
-            lstGenre.SelectedItems.Clear();
-            foreach(Genre genre in piece.Genres)
+            if (cboPiece.SelectedItem != null)
             {
-                Genre genreToAdd = genres.FirstOrDefault(g => g.Id == genre.Id);
-                lstGenre.SelectedItems.Add(genreToAdd);
-            }
+                Piece piece = pieces.ElementAt(cboPiece.SelectedIndex);
+                //Change the boxes on screen based onthe selected object.
+                txtGradeLevel.Text = piece.GradeLevel;
+                txtName.Text = piece.Name;
+                txtPerformanceNotes.Text = piece.PerformanceNotes;
+                txtYearWritten.Text = piece.YearWritten.ToString();
 
-            lstComposer.SelectedItems.Clear();
-            //Get the composerTypeId for composer
-            Guid composerTypeGuid = composerTypes.FirstOrDefault(ct => ct.Description == "Composer").Id;
-            foreach (PieceWriter pieceWriter in piece.PieceWriters)
-            {
-                //If this piecewrite is a composer, select them
-                if (pieceWriter.ComposerTypeId == composerTypeGuid)
+                lstGenre.SelectedItems.Clear();
+                foreach (Genre genre in piece.Genres)
                 {
-                    Composer composerToSelect = composers.FirstOrDefault(c => c.Id == pieceWriter.ComposerId);
-                    lstComposer.SelectedItems.Add(composerToSelect);
+                    Genre genreToAdd = genres.FirstOrDefault(g => g.Id == genre.Id);
+                    lstGenre.SelectedItems.Add(genreToAdd);
                 }
-            }
 
+                lstComposer.SelectedItems.Clear();
+                //Get the composerTypeId for composer
+                Guid composerTypeGuid = composerTypes.FirstOrDefault(ct => ct.Description == "Composer").Id;
+                foreach (PieceWriter pieceWriter in piece.PieceWriters)
+                {
+                    //If this piecewrite is a composer, select them
+                    if (pieceWriter.ComposerTypeId == composerTypeGuid)
+                    {
+                        Composer composerToSelect = composers.FirstOrDefault(c => c.Id == pieceWriter.ComposerId);
+                        lstComposer.SelectedItems.Add(composerToSelect);
+                    }
+                }
+
+                lstArranger.SelectedItems.Clear();
+                //Get the composerTypeId for composer
+                Guid arrangerTypeId = composerTypes.FirstOrDefault(ct => ct.Description == "Arranger").Id;
+                foreach (PieceWriter pieceWriter in piece.PieceWriters)
+                {
+                    //If this piecewrite is a composer, select them
+                    if (pieceWriter.ComposerTypeId == arrangerTypeId)
+                    {
+                        Composer arrangerToSelect = composers.FirstOrDefault(c => c.Id == pieceWriter.ComposerId);
+                        lstArranger.SelectedItems.Add(arrangerToSelect);
+                    }
+                }
+
+                btnSave.Content = "Save Piece";
+            }
+        }
+
+        private void BtnNew_Click(object sender, RoutedEventArgs e)
+        {
+            //Clear out all values on the screen
+            cboPiece.SelectedItem = null;
+            txtGradeLevel.Text = String.Empty;
+            txtName.Text = String.Empty;
+            txtPerformanceNotes.Text = String.Empty;
+            txtYearWritten.Text = String.Empty;
             lstArranger.SelectedItems.Clear();
-            //Get the composerTypeId for composer
-            Guid arrangerTypeId = composerTypes.FirstOrDefault(ct => ct.Description == "Arranger").Id;
-            foreach (PieceWriter pieceWriter in piece.PieceWriters)
+            lstComposer.SelectedItems.Clear();
+            lstGenre.SelectedItems.Clear();
+
+            btnSave.Content = "Add Piece";
+        }
+
+        private void BtnDeleteComposer_Click(object sender, RoutedEventArgs e)
+        {
+            try
             {
-                //If this piecewrite is a composer, select them
-                if (pieceWriter.ComposerTypeId == arrangerTypeId)
+                if (cboPiece.SelectedItem != null)
                 {
-                    Composer arrangerToSelect = composers.FirstOrDefault(c => c.Id == pieceWriter.ComposerId);
-                    lstArranger.SelectedItems.Add(arrangerToSelect);
+                    //Call the API if the selected item isn't null to delete it.
+                    HttpClient client = InitializeClient();
+                    Piece piece = pieces.ElementAt(cboPiece.SelectedIndex);
+
+                    HttpResponseMessage response = client.DeleteAsync("Piece/" + piece.Id).Result;
+                    pieces.Remove(piece);
+
+                    Rebind();
+
+                    //TO DO. ON DELETE WE MUST DELETE THE ENTRIES IN THE PIECE GENRE TABLE AND THE PIECE WRITERS!!!!!!!!!!!!!!!!!!!!!!!!
                 }
+
+                //Clear the text boxes
+                BtnNew_Click(sender, e);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+
+        }
+
+        private void BtnSave_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if ((string)btnSave.Content == "Add Piece")
+                {
+                    //Add the piece
+
+                    //Make sure that the fields are filled out that cannot be null
+                    if (string.IsNullOrEmpty(txtName.Text))
+                    {
+                        throw new Exception("Piece must have a name");
+                    }
+
+                    //Create and set values on a Piece
+                    Piece piece = new Piece();
+
+                    piece.Name = txtName.Text;
+
+                    if (!string.IsNullOrEmpty(txtGradeLevel.Text))
+                    {
+
+                        piece.GradeLevel = txtGradeLevel.Text;
+                    }
+                    else
+                    {
+                        piece.GradeLevel = string.Empty;
+                    }
+
+
+                    if (!string.IsNullOrEmpty(txtPerformanceNotes.Text))
+                    {
+
+                        piece.PerformanceNotes = txtPerformanceNotes.Text;
+                    }
+                    else
+                    {
+                        piece.PerformanceNotes = string.Empty;
+                    }
+
+                    if (!string.IsNullOrEmpty(txtYearWritten.Text))
+                    {
+                        int yearWritten;
+                        int.TryParse(txtYearWritten.Text, out yearWritten);
+                        piece.YearWritten = yearWritten;
+                    }
+
+                    //Send it to the API
+                    HttpClient client = InitializeClient();
+                    string serializedPiece = JsonConvert.SerializeObject(piece);
+                    var content = new StringContent(serializedPiece);
+                    content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
+                    HttpResponseMessage response = client.PostAsync("Piece", content).Result;
+
+                    if (response.StatusCode == System.Net.HttpStatusCode.OK || response.StatusCode == System.Net.HttpStatusCode.NoContent)
+                    {
+
+                        //Get the new piece Id
+                        response = client.GetAsync("Piece?name=" + piece.Name).Result;
+                        string result = response.Content.ReadAsStringAsync().Result;
+                        Piece retrievedPiece = JsonConvert.DeserializeObject<Piece>(result);
+
+                        foreach (Composer composer in lstComposer.SelectedItems)
+                        {
+                            PieceWriter pieceWriter = new PieceWriter();
+                            pieceWriter.ComposerId = composer.Id;
+                            pieceWriter.PieceId = retrievedPiece.Id;
+                            pieceWriter.ComposerTypeId = composerTypes.FirstOrDefault(ct => ct.Description == "Composer").Id;
+
+                            //Add to the piece
+                            piece.PieceWriters.Add(pieceWriter);
+
+                            //Send it to the API
+                            string serializedPieceWriter = JsonConvert.SerializeObject(pieceWriter);
+                            content = new StringContent(serializedPieceWriter);
+                            content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
+                            response = client.PostAsync("PieceWriter", content).Result;
+                        }
+
+                        foreach (Composer arranger in lstArranger.SelectedItems)
+                        {
+                            PieceWriter pieceWriter = new PieceWriter();
+                            pieceWriter.ComposerId = arranger.Id;
+                            pieceWriter.PieceId = retrievedPiece.Id;
+                            pieceWriter.ComposerTypeId = composerTypes.FirstOrDefault(ct => ct.Description == "Arranger").Id;
+
+                            //Add to the piece
+                            piece.PieceWriters.Add(pieceWriter);
+
+                            //Send it to the API
+                            string serializedPieceWriter = JsonConvert.SerializeObject(pieceWriter);
+                            content = new StringContent(serializedPieceWriter);
+                            content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
+                            response = client.PostAsync("PieceWriter", content).Result;
+                        }
+
+                        foreach (Genre genre in lstGenre.SelectedItems)
+                        {
+                            piece.Genres.Add(genre);
+
+                            //TO DO ADD LOGIC FOR THE GENRE
+                        }
+
+                        pieces.Add(piece);
+
+                    }
+                    else
+                    {
+                        throw new Exception("Piece could not be inserted");
+                    }
+
+                }
+                else
+                {
+                    //Update the piece
+
+
+                }
+
+
+                Rebind();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
     }

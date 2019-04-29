@@ -17,6 +17,14 @@ namespace BAH.MusicPerformanceTracker.BL
         public GenreList Genres { get; set; }
         public PieceWriterList PieceWriters {get;set;}
 
+
+        public Piece()
+        {
+            Genres = new GenreList();
+            PieceWriters = new PieceWriterList();
+        }
+
+
         //Retrieve the piece from the database with this Id
         public void LoadById()
         {
@@ -29,6 +37,39 @@ namespace BAH.MusicPerformanceTracker.BL
 
                     //Set this piece's properties
                     this.Name = piece.Name;
+                    if (piece.YearWritten.HasValue)
+                    {
+                        this.YearWritten = piece.YearWritten.Value;
+                    }
+                    else
+                    {
+                        piece.YearWritten = -1;
+                    }
+                    this.GradeLevel = piece.GradeLevel;
+                    this.PerformanceNotes = piece.PefromanceNotes;
+                    LoadPieceWriters();
+                    LoadGenres();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
+        //Retrieve the piece from the database with this Id
+        public void LoadByName()
+        {
+            try
+            {
+                using (MusicEntities dc = new MusicEntities())
+                {
+                    //Retrieve from the db
+                    tblPiece piece = dc.tblPieces.FirstOrDefault(p => p.Name == this.Name);
+
+                    //Set this piece's properties
+                    this.Id = piece.Id;
                     if (piece.YearWritten.HasValue)
                     {
                         this.YearWritten = piece.YearWritten.Value;

@@ -148,8 +148,8 @@
             </ListBox.ItemContainerStyle>
         </ListBox>
         <Label Content="Genres:" HorizontalAlignment="Left" Margin="51,514,0,0" VerticalAlignment="Top" FontSize="20"/>
-        <Button x:Name="btnDeleteComposer" Content="Delete" HorizontalAlignment="Left" Margin="938,589,0,0" VerticalAlignment="Top" Width="140" Height="35" RenderTransformOrigin="-0.182,0.586" FontSize="16"/>
-        <Button x:Name="btnSave" Content="Save" HorizontalAlignment="Left" Margin="768,589,0,0" VerticalAlignment="Top" Width="140" Height="35" RenderTransformOrigin="-0.182,0.586" FontSize="16"/>
-        <Button x:Name="btnNew" Content="New" HorizontalAlignment="Left" Margin="598,589,0,0" VerticalAlignment="Top" Width="140" Height="35" RenderTransformOrigin="-0.182,0.586" FontSize="16"/>
+        <Button x:Name="btnDeleteComposer" Content="Delete" HorizontalAlignment="Left" Margin="938,589,0,0" VerticalAlignment="Top" Width="140" Height="35" RenderTransformOrigin="-0.182,0.586" FontSize="16" Click="BtnDeleteComposer_Click"/>
+        <Button x:Name="btnSave" Content="Add Piece" HorizontalAlignment="Left" Margin="768,589,0,0" VerticalAlignment="Top" Width="140" Height="35" RenderTransformOrigin="-0.182,0.586" FontSize="16" Click="BtnSave_Click"/>
+        <Button x:Name="btnNew" Content="New" HorizontalAlignment="Left" Margin="598,589,0,0" VerticalAlignment="Top" Width="140" Height="35" RenderTransformOrigin="-0.182,0.586" FontSize="16" Click="BtnNew_Click"/>
     </Grid>
 </Window>
