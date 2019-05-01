@@ -15,17 +15,11 @@ namespace BAH.MusicPerformanceTracker.BL.Test
             GroupMembers.Load();
             Assert.AreEqual(9, GroupMembers.Count);
         }
-
-
+        
         [TestMethod]
         public void InsertTest()
         {
             //Load up Guids
-            PieceList pieces = new PieceList();
-            Piece piece = new Piece();
-            pieces.Load();
-            piece = pieces.FirstOrDefault(p => p.Name == "Rock Music");
-
             GroupList groups = new GroupList();
             Group group = new Group();
             groups.Load();
@@ -35,100 +29,117 @@ namespace BAH.MusicPerformanceTracker.BL.Test
             Performer performer = new Performer();
             performers.Load();
             performer = performers.FirstOrDefault(c => c.FirstName == "Hunter");
-        }
-            /*
-            GroupMember GroupMember = new GroupMember();
-            GroupMember.GroupId = composer.Id;
-            GroupMember.PieceId = piece.Id;
-            GroupMember.PerformerId = ct.Id;
-            
 
-            int results = GroupMember.Insert();
+            InstrumentList instruments = new InstrumentList();
+            Instrument instrument = new Instrument();
+            instruments.Load();
+            instrument = instruments.FirstOrDefault(c => c.Description == "Saxophone");
+
+            
+            GroupMember groupmember = new GroupMember();
+            groupmember.GroupId = group.Id;
+            groupmember.PerformerId = performer.Id;
+            groupmember.Instrument = instrument.Id;
+            groupmember.StartDate = Convert.ToDateTime("04/24/3000");
+            groupmember.EndDate = Convert.ToDateTime("04/25/3000");
+
+            int results = groupmember.Insert();
             Assert.IsTrue(results == 1);
         }
-
-
-
+        
         [TestMethod]
         public void UpdateTest()
         {
             //Load up Guids
-            PieceList pieces = new PieceList();
-            Piece piece = new Piece();
-            pieces.Load();
-            piece = pieces.FirstOrDefault(p => p.Name == "Rock Music");
+            PerformerList performers = new PerformerList();
+            Performer performer = new Performer();
+            performers.Load();
+            performer = performers.FirstOrDefault(p => p.FirstName == "Hunter");
 
             GroupList groups = new GroupList();
-            Group composer = new Group();
+            Group group = new Group();
             groups.Load();
-            composer = groups.FirstOrDefault(c => c.FirstName == "Modest");
+            group = groups.FirstOrDefault(c => c.Name == "Jazz Ensemble");
 
-            PerformerList ctl = new PerformerList();
-            Performer ct = new Performer();
-            ctl.Load();
-            ct = ctl.FirstOrDefault(c => c.Description == "Group");
+            InstrumentList instruments = new InstrumentList();
+            Instrument instrument = new Instrument();
+            instruments.Load();
+            instrument = instruments.FirstOrDefault(c => c.Description == "Euphonium");
 
-            GroupMember GroupMember = new GroupMember();
-            GroupMemberList GroupMembers = new GroupMemberList();
-            GroupMembers.Load();
-            GroupMember = GroupMembers.FirstOrDefault(p => p.GroupId == composer.Id && p.PieceId == piece.Id);
+            GroupMember groupMember = new GroupMember();
+            GroupMemberList groupMembers = new GroupMemberList();
+            groupMembers.Load();
+            groupMember = groupMembers.FirstOrDefault(p => p.GroupId == group.Id && p.PerformerId == performer.Id);
+            groupMember.StartDate = Convert.ToDateTime("04/24/3000");
+            groupMember.EndDate = Convert.ToDateTime("04/25/3000");
 
-            GroupMember.PerformerId = ct.Id;
-            int results = GroupMember.Update();
+            groupMember.Instrument = instrument.Id;
+            int results = groupMember.Update();
 
             Assert.IsTrue(results == 1);
         }
-
-
+        
         [TestMethod]
         public void LoadById()
         {
             //Load up Guids
-            PieceList pieces = new PieceList();
-            Piece piece = new Piece();
-            pieces.Load();
-            piece = pieces.FirstOrDefault(p => p.Name == "Rock Music");
+            PerformerList performers = new PerformerList();
+            Performer performer = new Performer();
+            performers.Load();
+            performer = performers.FirstOrDefault(p => p.FirstName == "Hunter");
 
             GroupList groups = new GroupList();
-            Group composer = new Group();
+            Group group = new Group();
             groups.Load();
-            composer = groups.FirstOrDefault(c => c.FirstName == "Modest");
+            group = groups.FirstOrDefault(c => c.Name == "Jazz Ensemble");
 
-            GroupMember GroupMember = new GroupMember();
-            GroupMemberList GroupMembers = new GroupMemberList();
-            GroupMembers.Load();
-            GroupMember = GroupMembers.FirstOrDefault(p => p.GroupId == composer.Id && p.PieceId == piece.Id);
+            InstrumentList instruments = new InstrumentList();
+            Instrument instrument = new Instrument();
+            instruments.Load();
+            instrument = instruments.FirstOrDefault(c => c.Description == "Euphonium");
 
-            GroupMember newGroupMember = new GroupMember { Id = GroupMember.Id };
-            newGroupMember.LoadById();
+            GroupMember groupMember = new GroupMember();
+            GroupMemberList groupMembers = new GroupMemberList();
+            groupMembers.Load();
+            groupMember = groupMembers.FirstOrDefault(p => p.GroupId == group.Id && p.PerformerId == performer.Id);
+            groupMember.StartDate = Convert.ToDateTime("04/24/3000");
+            groupMember.EndDate = Convert.ToDateTime("04/25/3000");
 
-            Assert.AreEqual(GroupMember.GroupId, newGroupMember.GroupId);
+            GroupMember newgroupmember = new GroupMember { Id = groupMember.Id };
+            newgroupmember.LoadById();
+
+            Assert.AreEqual(groupMember.Instrument, newgroupmember.Instrument);
         }
-
-
+        
         [TestMethod]
         public void DeleteTest()
         {
             //Load up Guids
-            PieceList pieces = new PieceList();
-            Piece piece = new Piece();
-            pieces.Load();
-            piece = pieces.FirstOrDefault(p => p.Name == "Rock Music");
+            PerformerList performers = new PerformerList();
+            Performer performer = new Performer();
+            performers.Load();
+            performer = performers.FirstOrDefault(p => p.FirstName == "Hunter");
 
             GroupList groups = new GroupList();
-            Group composer = new Group();
+            Group group = new Group();
             groups.Load();
-            composer = groups.FirstOrDefault(c => c.FirstName == "Modest");
+            group = groups.FirstOrDefault(c => c.Name == "Jazz Ensemble");
 
-            GroupMember GroupMember = new GroupMember();
-            GroupMemberList GroupMembers = new GroupMemberList();
-            GroupMembers.Load();
-            GroupMember = GroupMembers.FirstOrDefault(p => p.GroupId == composer.Id && p.PieceId == piece.Id);
+            InstrumentList instruments = new InstrumentList();
+            Instrument instrument = new Instrument();
+            instruments.Load();
+            instrument = instruments.FirstOrDefault(c => c.Description == "Euphonium");
 
-            int results = GroupMember.Delete();
+            GroupMember groupMember = new GroupMember();
+            GroupMemberList groupMembers = new GroupMemberList();
+            groupMembers.Load();
+            groupMember = groupMembers.FirstOrDefault(p => p.GroupId == group.Id && p.PerformerId == performer.Id);
+            groupMember.StartDate = Convert.ToDateTime("04/24/3000");
+            groupMember.EndDate = Convert.ToDateTime("04/25/3000");
+
+            int results = groupMember.Delete();
 
             Assert.IsTrue(results == 1);
         }
-        */
     }
 }

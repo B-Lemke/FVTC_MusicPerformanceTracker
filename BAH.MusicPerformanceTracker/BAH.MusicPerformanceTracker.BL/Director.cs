@@ -8,16 +8,22 @@ using BAH.MusicPerformanceTracker.PL;
 
 namespace BAH.MusicPerformanceTracker.BL
 {
-    public class Group
+    public class Director
     {
         public Guid Id { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
-        [DisplayName("Founded Date")]
-        public DateTime FoundedDate { get; set; }
+        [DisplayName("First Name")]
+        public string FirstName { get; set; }
+        [DisplayName("Last Name")]
+        public string LastName { get; set; }
+        [DisplayName("Director Date")]
+        public DateTime BirthDate { get; set; }
+        public string Bio { get; set; }
+        [DisplayName("Full Name")]
+        public string FullName => $"{FirstName} {LastName}";
 
 
-        //Retrieve the group from the database with this Id
+
+        //Retrieve the director from the database with this Id
         public void LoadById()
         {
             try
@@ -25,15 +31,13 @@ namespace BAH.MusicPerformanceTracker.BL
                 using (MusicEntities dc = new MusicEntities())
                 {
                     //Retrieve from the db
-                    tblGroup group = dc.tblGroups.FirstOrDefault(p => p.Id == this.Id);
+                    tblDirector director = dc.tblDirectors.FirstOrDefault(p => p.Id == this.Id);
 
-                    //Set this group's properties
-                    this.Name = group.Name;
-                    this.Description = group.Description;
-                    if (group.FoundedDate.HasValue)
-                    {
-                        this.FoundedDate = group.FoundedDate.Value;
-                    }
+                    //Set this director's properties
+                    this.FirstName = director.FirstName;
+                    this.LastName = director.LastName;
+                    this.Bio = director.Bio;
+                    this.BirthDate = director.BirthDate;
                 }
             }
             catch (Exception ex)
@@ -42,7 +46,7 @@ namespace BAH.MusicPerformanceTracker.BL
             }
         }
 
-        //Insert the group into the db, and generate a new Id for it.
+        //Insert the director into the db, and generate a new Id for it.
         public int Insert()
         {
             try
@@ -53,16 +57,17 @@ namespace BAH.MusicPerformanceTracker.BL
                     this.Id = Guid.NewGuid();
 
                     //Set the properties
-                    tblGroup group = new tblGroup
+                    tblDirector director = new tblDirector
                     {
                         Id = this.Id,
-                        Name = this.Name,
-                        Description = this.Description,
-                        FoundedDate = this.FoundedDate,
+                        FirstName = this.FirstName,
+                        LastName = this.LastName,
+                        Bio = this.Bio,
+                        BirthDate = this.BirthDate
                     };
 
                     //Add it to the table and save changes
-                    dc.tblGroups.Add(group);
+                    dc.tblDirectors.Add(director);
                     return dc.SaveChanges();
                 }
             }
@@ -79,12 +84,13 @@ namespace BAH.MusicPerformanceTracker.BL
                 using (MusicEntities dc = new MusicEntities())
                 {
                     //Retrieve the record from the DB
-                    tblGroup group = dc.tblGroups.FirstOrDefault(c => c.Id == this.Id);
+                    tblDirector director = dc.tblDirectors.FirstOrDefault(c => c.Id == this.Id);
 
                     //Update the properties
-                    group.Name = this.Name;
-                    group.Description = this.Description;
-                    group.FoundedDate = this.FoundedDate;
+                    director.FirstName = this.FirstName;
+                    director.LastName = this.LastName;
+                    director.Bio = this.Bio;
+                    director.BirthDate = this.BirthDate;
 
                     //Save the changes
                     return dc.SaveChanges();
@@ -103,10 +109,10 @@ namespace BAH.MusicPerformanceTracker.BL
                 using (MusicEntities dc = new MusicEntities())
                 {
                     //Retrieve it from the DB
-                    tblGroup group = dc.tblGroups.FirstOrDefault(p => p.Id == this.Id);
+                    tblDirector director = dc.tblDirectors.FirstOrDefault(p => p.Id == this.Id);
 
-                    //Remove the group
-                    dc.tblGroups.Remove(group);
+                    //Remove the director
+                    dc.tblDirectors.Remove(director);
 
                     //Save the changes
                     return dc.SaveChanges();
@@ -119,7 +125,7 @@ namespace BAH.MusicPerformanceTracker.BL
         }
     }
 
-    public class GroupList : List<Group>
+    public class DirectorList : List<Director>
     {
         public void Load()
         {
@@ -127,23 +133,19 @@ namespace BAH.MusicPerformanceTracker.BL
             {
                 using (MusicEntities dc = new MusicEntities())
                 {
-                    var results = dc.tblGroups;
-                    foreach (tblGroup c in results)
+                    var results = dc.tblDirectors;
+                    foreach (tblDirector c in results)
                     {
-                        Group group = new Group
+                        Director director = new Director
                         {
                             Id = c.Id,
-                            Name = c.Name,
-                            Description = c.Description
+                            FirstName = c.FirstName,
+                            LastName = c.LastName,
+                            Bio = c.Bio,
+                            BirthDate = c.BirthDate
                         };
 
-                        //Set the end date
-                        if (c.FoundedDate.HasValue)
-                        {
-                            group.FoundedDate = c.FoundedDate.Value;
-                        }
-
-                        this.Add(group);
+                        this.Add(director);
                     }
                 }
             }

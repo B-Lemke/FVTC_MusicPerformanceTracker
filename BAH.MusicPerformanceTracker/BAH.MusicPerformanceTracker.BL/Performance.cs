@@ -8,16 +8,18 @@ using BAH.MusicPerformanceTracker.PL;
 
 namespace BAH.MusicPerformanceTracker.BL
 {
-    public class Group
+    public class Performance
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        [DisplayName("Founded Date")]
-        public DateTime FoundedDate { get; set; }
+        [DisplayName("Performance Date")]
+        public DateTime PerformanceDate { get; set; }
+        public string Location { get; set; }
+        public string PDFPath { get; set; }
 
 
-        //Retrieve the group from the database with this Id
+        //Retrieve the performance from the database with this Id
         public void LoadById()
         {
             try
@@ -25,15 +27,14 @@ namespace BAH.MusicPerformanceTracker.BL
                 using (MusicEntities dc = new MusicEntities())
                 {
                     //Retrieve from the db
-                    tblGroup group = dc.tblGroups.FirstOrDefault(p => p.Id == this.Id);
+                    tblPerformance performance = dc.tblPerformances.FirstOrDefault(p => p.Id == this.Id);
 
-                    //Set this group's properties
-                    this.Name = group.Name;
-                    this.Description = group.Description;
-                    if (group.FoundedDate.HasValue)
-                    {
-                        this.FoundedDate = group.FoundedDate.Value;
-                    }
+                    //Set this performance's properties
+                    this.Name = performance.Name;
+                    this.Description = performance.Description;
+                    this.PDFPath = performance.pdfPath;
+                    this.PerformanceDate = performance.PerformanceDate;
+                    this.Location = performance.Location;
                 }
             }
             catch (Exception ex)
@@ -42,7 +43,7 @@ namespace BAH.MusicPerformanceTracker.BL
             }
         }
 
-        //Insert the group into the db, and generate a new Id for it.
+        //Insert the performance into the db, and generate a new Id for it.
         public int Insert()
         {
             try
@@ -53,16 +54,18 @@ namespace BAH.MusicPerformanceTracker.BL
                     this.Id = Guid.NewGuid();
 
                     //Set the properties
-                    tblGroup group = new tblGroup
+                    tblPerformance performance = new tblPerformance
                     {
                         Id = this.Id,
                         Name = this.Name,
                         Description = this.Description,
-                        FoundedDate = this.FoundedDate,
+                        PerformanceDate = this.PerformanceDate,
+                        pdfPath = this.PDFPath,
+                        Location = this.Location
                     };
 
                     //Add it to the table and save changes
-                    dc.tblGroups.Add(group);
+                    dc.tblPerformances.Add(performance);
                     return dc.SaveChanges();
                 }
             }
@@ -79,12 +82,14 @@ namespace BAH.MusicPerformanceTracker.BL
                 using (MusicEntities dc = new MusicEntities())
                 {
                     //Retrieve the record from the DB
-                    tblGroup group = dc.tblGroups.FirstOrDefault(c => c.Id == this.Id);
+                    tblPerformance performance = dc.tblPerformances.FirstOrDefault(c => c.Id == this.Id);
 
                     //Update the properties
-                    group.Name = this.Name;
-                    group.Description = this.Description;
-                    group.FoundedDate = this.FoundedDate;
+                    performance.Name = this.Name;
+                    performance.Description = this.Description;
+                    performance.PerformanceDate = this.PerformanceDate;
+                    performance.pdfPath = this.PDFPath;
+                    performance.Location = this.Location;
 
                     //Save the changes
                     return dc.SaveChanges();
@@ -103,10 +108,10 @@ namespace BAH.MusicPerformanceTracker.BL
                 using (MusicEntities dc = new MusicEntities())
                 {
                     //Retrieve it from the DB
-                    tblGroup group = dc.tblGroups.FirstOrDefault(p => p.Id == this.Id);
+                    tblPerformance performance = dc.tblPerformances.FirstOrDefault(p => p.Id == this.Id);
 
-                    //Remove the group
-                    dc.tblGroups.Remove(group);
+                    //Remove the performance
+                    dc.tblPerformances.Remove(performance);
 
                     //Save the changes
                     return dc.SaveChanges();
@@ -119,7 +124,7 @@ namespace BAH.MusicPerformanceTracker.BL
         }
     }
 
-    public class GroupList : List<Group>
+    public class PerformanceList : List<Performance>
     {
         public void Load()
         {
@@ -127,23 +132,20 @@ namespace BAH.MusicPerformanceTracker.BL
             {
                 using (MusicEntities dc = new MusicEntities())
                 {
-                    var results = dc.tblGroups;
-                    foreach (tblGroup c in results)
+                    var results = dc.tblPerformances;
+                    foreach (tblPerformance c in results)
                     {
-                        Group group = new Group
+                        Performance performance = new Performance
                         {
                             Id = c.Id,
                             Name = c.Name,
-                            Description = c.Description
+                            Description = c.Description,
+                            Location = c.Location,
+                            PDFPath = c.pdfPath,
+                            PerformanceDate = c.PerformanceDate
                         };
 
-                        //Set the end date
-                        if (c.FoundedDate.HasValue)
-                        {
-                            group.FoundedDate = c.FoundedDate.Value;
-                        }
-
-                        this.Add(group);
+                        this.Add(performance);
                     }
                 }
             }

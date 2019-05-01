@@ -50,8 +50,11 @@
   <ItemGroup>
     <Compile Include="Composer.cs" />
     <Compile Include="ComposerType.cs" />
+    <Compile Include="Director.cs" />
     <Compile Include="Group.cs" />
     <Compile Include="GroupMember.cs" />
+    <Compile Include="Performance.cs" />
+    <Compile Include="PerformancePiece.cs" />
     <Compile Include="Performer.cs" />
     <Compile Include="PieceWriter.cs" />
     <Compile Include="Piece.cs" />
