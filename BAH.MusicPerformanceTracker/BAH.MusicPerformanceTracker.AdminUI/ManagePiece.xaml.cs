@@ -181,7 +181,7 @@ namespace BAH.MusicPerformanceTracker.AdminUI
                 txtGradeLevel.Text = piece.GradeLevel;
                 txtName.Text = piece.Name;
                 txtPerformanceNotes.Text = piece.PerformanceNotes;
-                txtYearWritten.Text = piece.YearWritten.ToString();
+                txtYearWritten.Text = piece.YearWritten > 0 ? piece.YearWritten.ToString() : String.Empty;
 
                 lstGenre.SelectedItems.Clear();
                 foreach (Genre genre in piece.Genres)
@@ -368,7 +368,7 @@ namespace BAH.MusicPerformanceTracker.AdminUI
                         }
 
                         pieces.Add(piece);
-
+                        Rebind();
                     }
                     else
                     {
@@ -380,11 +380,167 @@ namespace BAH.MusicPerformanceTracker.AdminUI
                 {
                     //Update the piece
 
+                    //Make sure that the fields are filled out that cannot be null
+                    if (string.IsNullOrEmpty(txtName.Text))
+                    {
+                        throw new Exception("Piece must have a name");
+                    }
+
+                    //Create and set values on a Piece
+                    Piece piece = new Piece();
+
+                    piece = pieces[cboPiece.SelectedIndex];
+
+                    piece.Name = txtName.Text;
+
+                    if (!string.IsNullOrEmpty(txtGradeLevel.Text))
+                    {
+
+                        piece.GradeLevel = txtGradeLevel.Text;
+                    }
+                    else
+                    {
+                        piece.GradeLevel = string.Empty;
+                    }
+
+
+                    if (!string.IsNullOrEmpty(txtPerformanceNotes.Text))
+                    {
+
+                        piece.PerformanceNotes = txtPerformanceNotes.Text;
+                    }
+                    else
+                    {
+                        piece.PerformanceNotes = string.Empty;
+                    }
+
+                    if (!string.IsNullOrEmpty(txtYearWritten.Text))
+                    {
+                        int yearWritten;
+                        int.TryParse(txtYearWritten.Text, out yearWritten);
+                        piece.YearWritten = yearWritten;
+                    }
+
+                    //Send it to the API
+                    HttpClient client = InitializeClient();
+                    string serializedPiece = JsonConvert.SerializeObject(piece);
+                    var content = new StringContent(serializedPiece);
+                    content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
+                    HttpResponseMessage response = client.PutAsync("Piece/" + piece.Id, content).Result;
+
+                    if (response.StatusCode == System.Net.HttpStatusCode.OK || response.StatusCode == System.Net.HttpStatusCode.NoContent)
+                    {
+                        Guid composerTypeId = composerTypes.FirstOrDefault(ct => ct.Description == "Composer").Id;
+                        List<Guid> oldComposers = new List<Guid>();
+                        oldComposers = piece.PieceWriters.Where(pw => pw.ComposerTypeId == composerTypeId).Select(pw => pw.ComposerId).ToList();
+
+                        List<Guid> selectedComposers = new List<Guid>();
+
+                        //Add new composers
+                        foreach (Composer composer in lstComposer.SelectedItems)
+                        {
+                            //If they are not in the old composers list, add them.
+                            if (!oldComposers.Contains(composer.Id))
+                            {
+
+                                PieceWriter pieceWriter = new PieceWriter();
+                                pieceWriter.ComposerId = composer.Id;
+                                pieceWriter.PieceId = piece.Id;
+                                pieceWriter.ComposerTypeId = composerTypeId;
+
+                                //Add to the piece
+                                piece.PieceWriters.Add(pieceWriter);
+
+                                //Send it to the API
+                                string serializedPieceWriter = JsonConvert.SerializeObject(pieceWriter);
+                                content = new StringContent(serializedPieceWriter);
+                                content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
+                                response = client.PostAsync("PieceWriter", content).Result;
+                            }
+
+                            //Add to the selected composer list
+                            selectedComposers.Add(composer.Id);
+                        }
+
+                        //Delete the composer peice writers that are no longer selected
+                        foreach(Guid composerId in oldComposers.Except(selectedComposers))
+                        {
+                            PieceWriter pieceWriter = new PieceWriter();
+                            pieceWriter = piece.PieceWriters.FirstOrDefault(pw => pw.ComposerId == composerId && pw.ComposerTypeId == composerTypeId);
+
+                            response = client.DeleteAsync("PieceWriter/" + pieceWriter.Id).Result;
+
+                            piece.PieceWriters.Remove(pieceWriter);
+                        }
+
+
+                        //Setup arrangers
+                        Guid arrangerTypeId = composerTypes.FirstOrDefault(ct => ct.Description == "Arranger").Id;
+                        List<Guid> oldArrangers = new List<Guid>();
+                        oldArrangers = piece.PieceWriters.Where(pw => pw.ComposerTypeId == arrangerTypeId).Select(pw => pw.ComposerId).ToList();
+
+                        List<Guid> selectedArrangers = new List<Guid>();
+
+                        //Add new arrangers
+                        foreach (Composer arranger in lstArranger.SelectedItems)
+                        {
+                            //If they are not in the old arranger list, add them.
+                            if (!oldArrangers.Contains(arranger.Id))
+                            {
+
+                                PieceWriter pieceWriter = new PieceWriter();
+                                pieceWriter.ComposerId = arranger.Id;
+                                pieceWriter.PieceId = piece.Id;
+                                pieceWriter.ComposerTypeId = arrangerTypeId;
+
+                                //Add to the piece
+                                piece.PieceWriters.Add(pieceWriter);
+
+                                //Send it to the API
+                                string serializedPieceWriter = JsonConvert.SerializeObject(pieceWriter);
+                                content = new StringContent(serializedPieceWriter);
+                                content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
+                                response = client.PostAsync("PieceWriter", content).Result;
+                            }
+
+                            //Add to the selected arranger list
+                            selectedComposers.Add(arranger.Id);
+                        }
+
+                        //Delete the arranger peice writers that are no longer selected
+                        foreach (Guid composerId in oldArrangers.Except(selectedArrangers))
+                        {
+                            PieceWriter pieceWriter = new PieceWriter();
+                            pieceWriter = piece.PieceWriters.FirstOrDefault(pw => pw.ComposerId == composerId && pw.ComposerTypeId == arrangerTypeId);
+
+                            response = client.DeleteAsync("PieceWriter/" + pieceWriter.Id).Result;
+
+                            piece.PieceWriters.Remove(pieceWriter);
+                        }
+
+                        foreach (Genre genre in lstGenre.SelectedItems)
+                        {
+                            piece.Genres.Add(genre);
+
+                            //TO DO ADD LOGIC FOR THE GENRE
+                        }
+
+                        //Save index, refresh screen, and reselect where we are.
+                        var index = cboPiece.SelectedIndex;
+                        Rebind();
+                        cboPiece.SelectedIndex = index;
+                    }
+                    else
+                    {
+                        throw new Exception("Piece could not be updated");
+                    }
 
                 }
 
 
-                Rebind();
+
+
+
             }
             catch (Exception ex)
             {
