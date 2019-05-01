@@ -167,4 +167,40 @@ namespace BAH.MusicPerformanceTracker.BL
             }
         }
     }
+
+    public class PieceGenre
+    {
+        public Guid Id { get; set; }
+        public Guid PieceId { get; set; }
+        public Guid GenreId { get; set; }
+
+        public void Add()
+        {
+            using (MusicEntities dc = new MusicEntities())
+            {
+
+                //Set the properties
+                tblPieceGenre pieceGenre = new tblPieceGenre
+                {
+                    Id = Guid.NewGuid(),
+                    PieceId = PieceId,
+                    GenreId = GenreId
+                };
+
+                //Add it to the table and save changes
+                dc.tblPieceGenres.Add(pieceGenre);
+                dc.SaveChanges();
+            }
+        }
+
+        public void Delete()
+        {
+            using (MusicEntities dc = new MusicEntities())
+            {
+                tblPieceGenre pieceGenre = dc.tblPieceGenres.FirstOrDefault(pg => pg.PieceId == PieceId && pg.GenreId == GenreId);
+                dc.tblPieceGenres.Remove(pieceGenre);
+                dc.SaveChanges();
+            }
+        }
+    }
 }

@@ -241,16 +241,16 @@ namespace BAH.MusicPerformanceTracker.AdminUI
             {
                 if (cboPiece.SelectedItem != null)
                 {
-                    //Call the API if the selected item isn't null to delete it.
+                    //Call the API if the selected item isn't null to delete it and its related PieceWriters and PieceGenres
                     HttpClient client = InitializeClient();
+                    HttpResponseMessage response = new HttpResponseMessage();
+
                     Piece piece = pieces.ElementAt(cboPiece.SelectedIndex);
 
-                    HttpResponseMessage response = client.DeleteAsync("Piece/" + piece.Id).Result;
+                    response = client.DeleteAsync("Piece/" + piece.Id).Result;
                     pieces.Remove(piece);
 
                     Rebind();
-
-                    //TO DO. ON DELETE WE MUST DELETE THE ENTRIES IN THE PIECE GENRE TABLE AND THE PIECE WRITERS!!!!!!!!!!!!!!!!!!!!!!!!
                 }
 
                 //Clear the text boxes
@@ -326,6 +326,9 @@ namespace BAH.MusicPerformanceTracker.AdminUI
                         string result = response.Content.ReadAsStringAsync().Result;
                         Piece retrievedPiece = JsonConvert.DeserializeObject<Piece>(result);
 
+                        //Save the Id so that we can update it.
+                        piece.Id = retrievedPiece.Id;
+
                         foreach (Composer composer in lstComposer.SelectedItems)
                         {
                             PieceWriter pieceWriter = new PieceWriter();
@@ -362,13 +365,28 @@ namespace BAH.MusicPerformanceTracker.AdminUI
 
                         foreach (Genre genre in lstGenre.SelectedItems)
                         {
+                            PieceGenre pieceGenre = new PieceGenre
+                            {
+                                GenreId = genre.Id,
+                                PieceId = retrievedPiece.Id
+                            };
+
+                            //Add to the piece
                             piece.Genres.Add(genre);
 
-                            //TO DO ADD LOGIC FOR THE GENRE
+                            //Send it to the API
+                            string serializedPieceGenre = JsonConvert.SerializeObject(pieceGenre);
+                            content = new StringContent(serializedPieceGenre);
+                            content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
+                            response = client.PostAsync("PieceGenre", content).Result;
                         }
 
                         pieces.Add(piece);
                         Rebind();
+
+
+                        //Select the inserted piece
+                        cboPiece.SelectedIndex = pieces.FindIndex(p => p == piece);
                     }
                     else
                     {
@@ -463,7 +481,7 @@ namespace BAH.MusicPerformanceTracker.AdminUI
                         }
 
                         //Delete the composer peice writers that are no longer selected
-                        foreach(Guid composerId in oldComposers.Except(selectedComposers))
+                        foreach (Guid composerId in oldComposers.Except(selectedComposers))
                         {
                             PieceWriter pieceWriter = new PieceWriter();
                             pieceWriter = piece.PieceWriters.FirstOrDefault(pw => pw.ComposerId == composerId && pw.ComposerTypeId == composerTypeId);
@@ -504,7 +522,7 @@ namespace BAH.MusicPerformanceTracker.AdminUI
                             }
 
                             //Add to the selected arranger list
-                            selectedComposers.Add(arranger.Id);
+                            selectedArrangers.Add(arranger.Id);
                         }
 
                         //Delete the arranger peice writers that are no longer selected
@@ -518,12 +536,47 @@ namespace BAH.MusicPerformanceTracker.AdminUI
                             piece.PieceWriters.Remove(pieceWriter);
                         }
 
+
+
+                        //Setup genres
+                        List<Guid> oldGenres = new List<Guid>();
+                        oldGenres = piece.Genres.Select(g => g.Id).ToList();
+
+                        List<Guid> selectedGenres = new List<Guid>();
+
+                        //Add new arrangers
                         foreach (Genre genre in lstGenre.SelectedItems)
                         {
-                            piece.Genres.Add(genre);
+                            //If they are not in the old genre list, add them.
+                            if (!oldGenres.Contains(genre.Id))
+                            {
 
-                            //TO DO ADD LOGIC FOR THE GENRE
+                                PieceGenre pieceGenre = new PieceGenre();
+                                pieceGenre.PieceId = piece.Id;
+                                pieceGenre.GenreId = genre.Id;
+
+                                //Send it to the API
+                                string serializedPieceGenre = JsonConvert.SerializeObject(pieceGenre);
+                                content = new StringContent(serializedPieceGenre);
+                                content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
+                                response = client.PostAsync("PieceGenre", content).Result;
+
+                                piece.Genres.Add(genre);
+                            }
+
+                            //Add to the selected gener list
+                            selectedGenres.Add(genre.Id);
                         }
+
+                        //Delete the genres that are no longer selected
+                        foreach (Guid genreId in oldGenres.Except(selectedGenres))
+                        {
+                            response = client.DeleteAsync("PieceGenre?pieceId=" + piece.Id + "&genreId=" + genreId).Result;
+
+                            Genre genreToRemove = piece.Genres.FirstOrDefault(g => g.Id == genreId);
+                            piece.Genres.Remove(genreToRemove);
+                        }
+
 
                         //Save index, refresh screen, and reselect where we are.
                         var index = cboPiece.SelectedIndex;
@@ -536,10 +589,6 @@ namespace BAH.MusicPerformanceTracker.AdminUI
                     }
 
                 }
-
-
-
-
 
             }
             catch (Exception ex)

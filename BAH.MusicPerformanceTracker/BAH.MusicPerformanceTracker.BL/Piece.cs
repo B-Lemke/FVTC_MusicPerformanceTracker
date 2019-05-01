@@ -151,7 +151,7 @@ namespace BAH.MusicPerformanceTracker.BL
                     piece.GradeLevel = this.GradeLevel;
                     piece.PefromanceNotes = this.PerformanceNotes;
                     //Set the year written
-                    if (piece.YearWritten >= 0)
+                    if (this.YearWritten >= 0)
                     {
                         piece.YearWritten = this.YearWritten;
                     }
@@ -182,9 +182,19 @@ namespace BAH.MusicPerformanceTracker.BL
                     //Remove the piece
                     dc.tblPieces.Remove(piece);
 
+                    foreach (Genre genre in Genres)
+                    {
+                        genre.Delete();
+                    }
+
+                    foreach(PieceWriter pieceWriter in PieceWriters){
+                        pieceWriter.Delete();
+                    }
+
                     //Save the changes
                     return dc.SaveChanges();
                 }
+
             }
             catch (Exception ex)
             {

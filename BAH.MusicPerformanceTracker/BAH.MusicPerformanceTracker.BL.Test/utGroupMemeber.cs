@@ -35,7 +35,7 @@ namespace BAH.MusicPerformanceTracker.BL.Test
             Performer performer = new Performer();
             performers.Load();
             performer = performers.FirstOrDefault(c => c.FirstName == "Hunter");
-
+        }
             /*
             GroupMember GroupMember = new GroupMember();
             GroupMember.GroupId = composer.Id;

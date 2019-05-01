@@ -32,7 +32,7 @@ namespace BAH.MusicPerformanceTracker.PL.Test
                 tblGroup group = new tblGroup();
                 group.Id = Guid.NewGuid();
                 group.Name = "Test Group";
-                group.FoundedDate = "Test Description";
+                group.Description = "Test Description";
                 group.FoundedDate = DateTime.Now;
 
                 dc.tblGroups.Add(group);
