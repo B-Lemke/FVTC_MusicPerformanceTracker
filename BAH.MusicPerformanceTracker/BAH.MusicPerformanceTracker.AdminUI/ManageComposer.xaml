@@ -25,9 +25,9 @@
                 <ComboBox x:Name="cboLocation" HorizontalAlignment="Left" Margin="125,15,0,0" VerticalAlignment="Top" Width="255" Height="35" Grid.ColumnSpan="2"/>
                 <ComboBox x:Name="cboGender" HorizontalAlignment="Left" Margin="125,55,0,0" VerticalAlignment="Top" Width="255" Height="35" Grid.ColumnSpan="2"/>
                 <ComboBox x:Name="cboRace" HorizontalAlignment="Left" Margin="125,95,0,0" VerticalAlignment="Top" Width="255" Height="35" Grid.ColumnSpan="2"/>
-                <Button x:Name="btnClearLocation" Content="Clear" HorizontalAlignment="Left" Margin="243,17,0,0" VerticalAlignment="Top" Width="52" Height="35" Grid.Column="1" FontSize="16"/>
-                <Button x:Name="btnClearGender" Content="Clear" HorizontalAlignment="Left" Margin="243,55,0,0" VerticalAlignment="Top" Width="52" Height="35" Grid.Column="1" FontSize="16"/>
-                <Button x:Name="btnClearRace" Content="Clear" HorizontalAlignment="Left" Margin="243,97,0,0" VerticalAlignment="Top" Width="52" Height="35" Grid.Column="1" FontSize="16"/>
+                <Button x:Name="btnClearLocation" Content="Clear" HorizontalAlignment="Left" Margin="243,17,0,0" VerticalAlignment="Top" Width="52" Height="35" Grid.Column="1" FontSize="16" Click="btnClearLocation_Click"/>
+                <Button x:Name="btnClearGender" Content="Clear" HorizontalAlignment="Left" Margin="243,55,0,0" VerticalAlignment="Top" Width="52" Height="35" Grid.Column="1" FontSize="16" Click="btnClearGender_Click"/>
+                <Button x:Name="btnClearRace" Content="Clear" HorizontalAlignment="Left" Margin="243,97,0,0" VerticalAlignment="Top" Width="52" Height="35" Grid.Column="1" FontSize="16" Click="btnClearRace_Click"/>
                 <Label Content="Location:" HorizontalAlignment="Left" Margin="16,15,0,0" VerticalAlignment="Top" FontSize="20"/>
                 <Label Content="Gender:" HorizontalAlignment="Left" Margin="27,55,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.577,2.36" FontSize="20"/>
                 <Label Content="Race:" HorizontalAlignment="Left" Margin="50,95,0,0" VerticalAlignment="Top" FontSize="20"/>
@@ -36,7 +36,7 @@
 
             </Grid>
         </GroupBox>
-        <ComboBox x:Name="cboComposer" HorizontalAlignment="Left" Margin="180,39,0,0" VerticalAlignment="Top" Width="347" Height="35"/>
+        <ComboBox x:Name="cboComposer" HorizontalAlignment="Left" Margin="180,39,0,0" VerticalAlignment="Top" Width="347" Height="35" SelectionChanged="cboComposer_SelectionChanged" FontSize="14" VerticalContentAlignment="Center"/>
         <Label Content="Composer:" HorizontalAlignment="Left" Margin="48,37,0,0" VerticalAlignment="Top" FontSize="20"/>
         <TextBox x:Name="txtFirstName" HorizontalAlignment="Left" Height="33" Margin="181,103,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="346" FontSize="18"/>
         <TextBox x:Name="txtLastName" HorizontalAlignment="Left" Height="33" Margin="181,149,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="346" FontSize="18"/>
@@ -45,8 +45,8 @@
         <TextBox x:Name="txtBio" HorizontalAlignment="Left" Height="347" Margin="559,85,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="548" FontSize="18" AcceptsReturn="True" AcceptsTab="True"  SpellCheck.IsEnabled="True" 
                  ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto" />
         <Label Content="Composer Bio:" HorizontalAlignment="Left" Margin="559,37,0,0" VerticalAlignment="Top" FontSize="20"/>
-        <Button x:Name="btnDeleteComposer" Content="Delete" HorizontalAlignment="Left" Margin="967,461,0,0" VerticalAlignment="Top" Width="140" Height="35" RenderTransformOrigin="-0.182,0.586" FontSize="16"/>
-        <Button x:Name="btnSave" Content="Save" HorizontalAlignment="Left" Margin="797,461,0,0" VerticalAlignment="Top" Width="140" Height="35" RenderTransformOrigin="-0.182,0.586" FontSize="16"/>
-        <Button x:Name="btnNew" Content="New" HorizontalAlignment="Left" Margin="626,461,0,0" VerticalAlignment="Top" Width="140" Height="35" RenderTransformOrigin="-0.182,0.586" FontSize="16"/>
+        <Button x:Name="btnDeleteComposer" Content="Delete" HorizontalAlignment="Left" Margin="967,461,0,0" VerticalAlignment="Top" Width="140" Height="35" RenderTransformOrigin="-0.182,0.586" FontSize="16" Click="btnDeleteComposer_Click"/>
+        <Button x:Name="btnSave" Content="Save" HorizontalAlignment="Left" Margin="797,461,0,0" VerticalAlignment="Top" Width="140" Height="35" RenderTransformOrigin="-0.182,0.586" FontSize="16" Click="btnSave_Click"/>
+        <Button x:Name="btnNew" Content="New" HorizontalAlignment="Left" Margin="626,461,0,0" VerticalAlignment="Top" Width="140" Height="35" RenderTransformOrigin="-0.182,0.586" FontSize="16" Click="btnNew_Click"/>
     </Grid>
 </Window>
