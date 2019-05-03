@@ -104,10 +104,12 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\utDirector.cs" />
     <Compile Include="Controllers\utInstrument.cs" />
     <Compile Include="Controllers\utGender.cs" />
     <Compile Include="Controllers\utComposerType.cs" />
     <Compile Include="Controllers\utLocation.cs" />
+    <Compile Include="Controllers\utPerformer.cs" />
     <Compile Include="Controllers\utPieceWriter.cs" />
     <Compile Include="Controllers\utPiece.cs" />
     <Compile Include="Controllers\utGenre.cs" />
