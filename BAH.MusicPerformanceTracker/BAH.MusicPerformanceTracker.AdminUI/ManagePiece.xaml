@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BAH.MusicPerformanceTracker.AdminUI"
         mc:Ignorable="d"
-        Title="Manage Piece" Height="686.975" Width="1115.907">
+        Title="Manage Piece" Height="675" Width="1100">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>

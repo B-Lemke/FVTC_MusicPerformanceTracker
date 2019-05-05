@@ -5,13 +5,43 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BAH.MusicPerformanceTracker.AdminUI"
         mc:Ignorable="d"
-        Title="Manage Performance" Height="450" Width="800">
-    <Grid>
+        Title="Manage Performance" Height="507" Width="810">
+    <Grid Margin="0,0,-8,-1">
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                 <GradientStop Color="#FF5C437A" Offset="1"/>
                 <GradientStop Color="#FF94C0FF"/>
             </LinearGradientBrush>
         </Grid.Background>
+        <DatePicker x:Name="dtpDate" HorizontalAlignment="Left" Margin="143,77,0,0" VerticalAlignment="Top" Width="176"/>
+        <TextBox x:Name="txtLocation" HorizontalAlignment="Left" Height="23" Margin="143,113,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="176"/>
+        <TextBox x:Name="txtName" HorizontalAlignment="Left" Height="23" Margin="143,42,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="176"/>
+        <TextBox x:Name="txtDescription" HorizontalAlignment="Left" Height="94" Margin="334,42,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="451"/>
+        <Label Content="Performance Name:" HorizontalAlignment="Left" Margin="21,38,0,0" VerticalAlignment="Top"/>
+        <Label Content="Performance Date:" HorizontalAlignment="Left" Margin="28,75,0,0" VerticalAlignment="Top"/>
+        <Label Content="Location:" HorizontalAlignment="Left" Margin="77,110,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.517,0.115"/>
+        <Label Content="Performance Description:" HorizontalAlignment="Left" Margin="334,7,0,0" VerticalAlignment="Top"/>
+        <ComboBox x:Name="cboPerformance" HorizontalAlignment="Left" Margin="143,7,0,0" VerticalAlignment="Top" Width="176" SelectionChanged="CboPerformance_SelectionChanged"/>
+        <Label Content="Selected Performance:" HorizontalAlignment="Left" Margin="8,7,0,0" VerticalAlignment="Top"/>
+
+        <GroupBox Header="Pieces Perfromed" HorizontalAlignment="Left" Height="266"  VerticalAlignment="Top" Width="775" FontSize="12" Margin="10,141,0,0">
+            <Grid HorizontalAlignment="Left" Height="204" VerticalAlignment="Top" Width="709">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="235*"/>
+                    <ColumnDefinition Width="84*"/>
+                    <ColumnDefinition Width="390*"/>
+                </Grid.ColumnDefinitions>
+
+
+                <DataGrid x:Name="dgvPerformancePieces" HorizontalAlignment="Left" Height="184" Margin="10,10,-41,0" VerticalAlignment="Top" Width="740" Grid.ColumnSpan="3"/>
+                <Button x:Name="btnAddPiece" Content="Add New Piece" HorizontalAlignment="Left" VerticalAlignment="Top" Width="101" Grid.Column="2" Margin="132,211,0,-27"/>
+                <Button  x:Name="btnEditPiece" Content="Edit Piece" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" Grid.Column="2" Margin="248,211,0,-27"/>
+                <Button  x:Name="btnRemovePiece" Content="Remove Piece" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="95" Grid.Column="2" Margin="336,211,-41,-27"/>
+
+            </Grid>
+        </GroupBox>
+        <Button x:Name="btnNewPerformance" Content="New Performance"  HorizontalAlignment="Left" Margin="403,427,0,0" VerticalAlignment="Top" Width="109" Click="BtnNewPerformance_Click"/>
+        <Button x:Name="btnSavePerformance" Content="Add Performance"  HorizontalAlignment="Left" Margin="535,427,0,0" VerticalAlignment="Top" Width="109" Click="BtnSavePerformance_Click"/>
+        <Button x:Name="btnDeletePerformance" Content="Delete Performance"  HorizontalAlignment="Left" Margin="663,427,0,0" VerticalAlignment="Top" Width="122" Click="BtnDeletePerformance_Click"/>
     </Grid>
 </Window>

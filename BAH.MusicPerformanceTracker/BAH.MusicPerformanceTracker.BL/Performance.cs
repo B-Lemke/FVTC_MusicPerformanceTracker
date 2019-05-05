@@ -17,7 +17,13 @@ namespace BAH.MusicPerformanceTracker.BL
         public DateTime PerformanceDate { get; set; }
         public string Location { get; set; }
         public string PDFPath { get; set; }
+        public PerformancePieceList PerfromancePieces { get; set; }
 
+
+        public Performance()
+        {
+            PerfromancePieces = new PerformancePieceList();
+        }
 
         //Retrieve the performance from the database with this Id
         public void LoadById()
@@ -35,6 +41,8 @@ namespace BAH.MusicPerformanceTracker.BL
                     this.PDFPath = performance.pdfPath;
                     this.PerformanceDate = performance.PerformanceDate;
                     this.Location = performance.Location;
+
+                    LoadPerformancePieces();
                 }
             }
             catch (Exception ex)
@@ -42,6 +50,34 @@ namespace BAH.MusicPerformanceTracker.BL
                 throw ex;
             }
         }
+
+        //Retrieve the performance from the database with this Id
+        public void LoadByName()
+        {
+            try
+            {
+                using (MusicEntities dc = new MusicEntities())
+                {
+                    //Retrieve from the db
+                    tblPerformance performance = dc.tblPerformances.FirstOrDefault(p => p.Name == this.Name);
+
+                    //Set this performance's properties
+                    this.Id = performance.Id;
+                    this.Description = performance.Description;
+                    this.Location = performance.Location;
+                    this.PerformanceDate = performance.PerformanceDate;
+                    this.PDFPath = performance.pdfPath;
+                    this.Name = performance.Name;
+
+                    LoadPerformancePieces();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
 
         //Insert the performance into the db, and generate a new Id for it.
         public int Insert()
@@ -122,6 +158,38 @@ namespace BAH.MusicPerformanceTracker.BL
                 throw ex;
             }
         }
+
+
+
+        public void LoadPerformancePieces()
+        {
+            try
+            {
+                using (MusicEntities dc = new MusicEntities())
+                {
+                    var results = dc.tblPerformancePieces.Where(pp => pp.PerformanceId == this.Id);
+                    foreach (tblPerformancePiece p in results)
+                    {
+                        PerformancePiece performancePiece = new PerformancePiece
+                        {
+                            Id = p.Id,
+                            DirectorId = p.DirectorId.GetValueOrDefault(),
+                            GroupId = p.GroupId,
+                            MP3Path = p.MP3Path,
+                            Notes = p.Notes,
+                            PerformanceId = p.PerformanceId,
+                            PieceId = p.PieceId
+                        };
+
+                        this.PerfromancePieces.Add(performancePiece);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 
     public class PerformanceList : List<Performance>
@@ -144,7 +212,7 @@ namespace BAH.MusicPerformanceTracker.BL
                             PDFPath = c.pdfPath,
                             PerformanceDate = c.PerformanceDate
                         };
-
+                        performance.LoadPerformancePieces();
                         this.Add(performance);
                     }
                 }

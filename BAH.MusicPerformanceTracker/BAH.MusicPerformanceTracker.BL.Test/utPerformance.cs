@@ -9,8 +9,11 @@ namespace BAH.MusicPerformanceTracker.BL.Test
     public class utPerformance
     {
         [TestMethod]
-        public void TestMethod1()
+        public void LoadTest()
         {
+            PerformanceList performances = new PerformanceList();
+            performances.Load();
+            Assert.AreEqual(6, performances.Count);
         }
     }
 }

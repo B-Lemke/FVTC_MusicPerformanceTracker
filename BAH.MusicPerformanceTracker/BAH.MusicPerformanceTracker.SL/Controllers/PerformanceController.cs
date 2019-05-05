@@ -26,6 +26,14 @@ namespace BAH.MusicPerformanceTracker.SL.Controllers
             return performance;
         }
 
+        // GET: api/Piece?name={name}
+        public Performance GetByName(string name)
+        {
+            Performance performance = new Performance { Name = name };
+            performance.LoadByName();
+            return performance;
+        }
+
         // POST: api/Performance
         public void Post(Performance performance)
         {
