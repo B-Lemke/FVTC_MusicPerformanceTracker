@@ -11,17 +11,26 @@ namespace BAH.MusicPerformanceTracker.BL
     public class PerformancePiece
     {
         public Guid Id { get; set; }
+        [DisplayName("Piece")]
+        public Guid PieceId { get; set; }
+        [DisplayName("Piece")]
+        public string PieceName { get; set; }
+        [DisplayName("Group")]
+        public Guid GroupId { get; set; }
+        [DisplayName("Group")]
+        public string GroupName { get; set; }
+        [DisplayName("Director")]
+        public Guid DirectorId { get; set; }
+        [DisplayName("Director")]
+        public string DirectorName { get; set; }
+
+        [DisplayName("Performance")]
+        public Guid PerformanceId { get; set; }
+        [DisplayName("Performance")]
+        public string PerformanceName { get; set; }
         public string Notes { get; set; }
         [DisplayName("MP3")]
         public string MP3Path { get; set; }
-        [DisplayName("Director")]
-        public Guid DirectorId { get; set; }
-        [DisplayName("Group")]
-        public Guid GroupId { get; set; }
-        [DisplayName("Performance")]
-        public Guid PerformanceId { get; set; }
-        [DisplayName("Piece")]
-        public Guid PieceId { get; set; }
 
 
         //Retrieve the performance from the database with this Id

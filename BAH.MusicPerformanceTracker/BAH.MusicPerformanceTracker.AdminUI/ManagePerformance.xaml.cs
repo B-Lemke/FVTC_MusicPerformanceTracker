@@ -105,6 +105,13 @@ namespace BAH.MusicPerformanceTracker.AdminUI
                 dgvPerformancePieces.ItemsSource = null;
                 dgvPerformancePieces.ItemsSource = performance.PerfromancePieces;
 
+                dgvPerformancePieces.Columns[0].Visibility = Visibility.Hidden;
+                dgvPerformancePieces.Columns[1].Visibility = Visibility.Hidden;
+                dgvPerformancePieces.Columns[3].Visibility = Visibility.Hidden;
+                dgvPerformancePieces.Columns[5].Visibility = Visibility.Hidden;
+                dgvPerformancePieces.Columns[7].Visibility = Visibility.Hidden;
+
+
 
 
                 btnSavePerformance.Content = "Save Performance";

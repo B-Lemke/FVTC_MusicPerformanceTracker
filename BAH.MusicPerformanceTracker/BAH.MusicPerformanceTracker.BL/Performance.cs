@@ -167,8 +167,30 @@ namespace BAH.MusicPerformanceTracker.BL
             {
                 using (MusicEntities dc = new MusicEntities())
                 {
-                    var results = dc.tblPerformancePieces.Where(pp => pp.PerformanceId == this.Id);
-                    foreach (tblPerformancePiece p in results)
+                    var results = from p in dc.tblPerformancePieces
+                                  join d in dc.tblDirectors on p.DirectorId equals d.Id
+                                  join pi in dc.tblPieces on p.PieceId equals pi.Id
+                                  join g in dc.tblGroups on p.GroupId equals g.Id
+                                  join pe in dc.tblPerformances on p.PerformanceId equals pe.Id
+                                  where p.PerformanceId == this.Id
+                                  select new
+                                  {
+                                      p.Id,
+                                      p.DirectorId,
+                                      p.GroupId,
+                                      p.MP3Path,
+                                      p.Notes,
+                                      p.PerformanceId,
+                                      p.PieceId,
+                                      directorName = d.FirstName + " " + d.LastName,
+                                      pieceName = pi.Name,
+                                      performanceName = pe.Name,
+                                      groupName = g.Name
+                                  };
+
+                        
+                        //dc.tblPerformancePieces.Where(pp => pp.PerformanceId == this.Id);
+                    foreach (var p in results)
                     {
                         PerformancePiece performancePiece = new PerformancePiece
                         {
@@ -178,7 +200,11 @@ namespace BAH.MusicPerformanceTracker.BL
                             MP3Path = p.MP3Path,
                             Notes = p.Notes,
                             PerformanceId = p.PerformanceId,
-                            PieceId = p.PieceId
+                            PieceId = p.PieceId,
+                            PerformanceName = p.performanceName,
+                            PieceName = p.pieceName,
+                            GroupName = p.groupName,
+                            DirectorName = p.directorName
                         };
 
                         this.PerfromancePieces.Add(performancePiece);

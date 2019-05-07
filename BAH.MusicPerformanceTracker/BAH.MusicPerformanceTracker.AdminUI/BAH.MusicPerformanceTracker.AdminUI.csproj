@@ -85,6 +85,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ManagePerformancePiece.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ManagePiece.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -100,6 +104,9 @@
     </Compile>
     <Compile Include="ManagePerformance.xaml.cs">
       <DependentUpon>ManagePerformance.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ManagePerformancePiece.xaml.cs">
+      <DependentUpon>ManagePerformancePiece.xaml</DependentUpon>
     </Compile>
     <Compile Include="ManagePiece.xaml.cs">
       <DependentUpon>ManagePiece.xaml</DependentUpon>

@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BAH.MusicPerformanceTracker
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BAH.MusicPerformanceTracker.AdminUI", "BAH.MusicPerformanceTracker.AdminUI\BAH.MusicPerformanceTracker.AdminUI.csproj", "{241CC3E9-B4C1-47EB-87AD-B092C77B2456}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BAH.MusicPerformanceTracker.PublicUI", "BAH.MusicPerformanceTracker.PublicUI\BAH.MusicPerformanceTracker.PublicUI.csproj", "{E3FD6550-45A2-4625-A783-E21E60282633}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -59,6 +61,10 @@ Global
 		{241CC3E9-B4C1-47EB-87AD-B092C77B2456}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{241CC3E9-B4C1-47EB-87AD-B092C77B2456}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{241CC3E9-B4C1-47EB-87AD-B092C77B2456}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E3FD6550-45A2-4625-A783-E21E60282633}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E3FD6550-45A2-4625-A783-E21E60282633}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E3FD6550-45A2-4625-A783-E21E60282633}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E3FD6550-45A2-4625-A783-E21E60282633}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
