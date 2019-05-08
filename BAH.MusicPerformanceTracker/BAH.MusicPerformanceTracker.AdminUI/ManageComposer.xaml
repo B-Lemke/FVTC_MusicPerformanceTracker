@@ -19,9 +19,9 @@
                     <ColumnDefinition Width="155*"/>
                     <ColumnDefinition Width="312*"/>
                 </Grid.ColumnDefinitions>
-                <Button x:Name="btnManageGenders" Content="Manage Genders" HorizontalAlignment="Left" Margin="9.995,151,0,0" VerticalAlignment="Top" Width="140" Height="35" RenderTransformOrigin="-0.182,0.586" Grid.Column="1" FontSize="16"/>
-                <Button x:Name="btnManageRaces" Content="Manage Races" HorizontalAlignment="Left" Margin="161.995,151,0,0" VerticalAlignment="Top" Width="140" Height="35" Grid.Column="1" FontSize="16"/>
-                <Button x:Name="btnManageLocations" Content="Manage Locations" HorizontalAlignment="Left" Margin="10,151,0,0" VerticalAlignment="Top" Width="140" Height="35" FontSize="16"/>
+                <Button x:Name="btnManageGenders" Content="Manage Genders" HorizontalAlignment="Left" Margin="9.995,151,0,0" VerticalAlignment="Top" Width="140" Height="35" RenderTransformOrigin="-0.182,0.586" Grid.Column="1" FontSize="16" Click="BtnManageGenders_Click"/>
+                <Button x:Name="btnManageRaces" Content="Manage Races" HorizontalAlignment="Left" Margin="161.995,151,0,0" VerticalAlignment="Top" Width="140" Height="35" Grid.Column="1" FontSize="16" Click="BtnManageRaces_Click"/>
+                <Button x:Name="btnManageLocations" Content="Manage Locations" HorizontalAlignment="Left" Margin="10,151,0,0" VerticalAlignment="Top" Width="140" Height="35" FontSize="16" Click="BtnManageLocations_Click"/>
                 <ComboBox x:Name="cboLocation" HorizontalAlignment="Left" Margin="125,15,0,0" VerticalAlignment="Top" Width="255" Height="35" Grid.ColumnSpan="2"/>
                 <ComboBox x:Name="cboGender" HorizontalAlignment="Left" Margin="125,55,0,0" VerticalAlignment="Top" Width="255" Height="35" Grid.ColumnSpan="2"/>
                 <ComboBox x:Name="cboRace" HorizontalAlignment="Left" Margin="125,95,0,0" VerticalAlignment="Top" Width="255" Height="35" Grid.ColumnSpan="2"/>

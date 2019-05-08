@@ -210,6 +210,20 @@ namespace BAH.MusicPerformanceTracker.AdminUI
         private void btnDeleteComposer_Click(object sender, RoutedEventArgs e)
         {
             // Deletes the composer
+            if (cboComposer.SelectedItem != null)
+            {
+                // Call the API if the selected item isn't null to delete it
+                HttpClient client = InitializeClient();
+                HttpResponseMessage response = new HttpResponseMessage();
+
+                Composer composer = composers.ElementAt(cboComposer.SelectedIndex);
+
+                response = client.DeleteAsync("Composer/" + composer.Id).Result;
+                composers.Remove(composer);
+
+                // Clear text boxes
+                btnNew_Click(sender, e);
+            }
         }
 
         private void btnClearLocation_Click(object sender, RoutedEventArgs e)
@@ -259,11 +273,38 @@ namespace BAH.MusicPerformanceTracker.AdminUI
                     {
                         composer.Bio = string.Empty;
                     }
+                    
+                    if (cboLocation.SelectedValue != null)
+                    {
+                        location.Description = cboLocation.SelectedValue.ToString();
+                    }
+                    else
+                    {
+                        location.Description = string.Empty;
+                    }
 
+                    if (cboGender.SelectedValue != null)
+                    {
+                        gender.Description = cboGender.SelectedValue.ToString();
+                    }
+                    else
+                    {
+                        gender.Description = string.Empty;
+                    }
+
+                    if (cboRace.SelectedValue != null)
+                    {
+                        race.Description = cboRace.SelectedValue.ToString();
+                    }
+                    else
+                    {
+                        race.Description = string.Empty;
+                    }
+                    
                     // Send it to the api
                     HttpClient client = InitializeClient();
-                    string serializedPiece = JsonConvert.SerializeObject(composer);
-                    var content = new StringContent(serializedPiece);
+                    string serializedComposer = JsonConvert.SerializeObject(composer);
+                    var content = new StringContent(serializedComposer);
                     content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
                     HttpResponseMessage response = client.PostAsync("Composer", content).Result;
 
@@ -276,13 +317,117 @@ namespace BAH.MusicPerformanceTracker.AdminUI
 
                         // Save the id so that we can update it
                         composer.Id = retrievedComposer.Id;
+
+                        composers.Add(composer);
+                        Rebind();
+
+                        cboComposer.SelectedIndex = composers.FindIndex(c => c == composer);
+                    }
+                    else
+                    {
+                        throw new Exception("Composer could not be inserted");
+                    }
+                }
+                else
+                {
+                    // Update the composer
+
+                    // Make sure that the fields are filled out that cannot be null
+                    if (string.IsNullOrEmpty(txtFirstName.Text))
+                    {
+                        throw new Exception("Composer must have a first name");
+                    }
+
+                    if (string.IsNullOrEmpty(txtLastName.Text))
+                    {
+                        throw new Exception("Composer must have a last name");
+                    }
+
+                    // Create and set values on a composer
+                    Composer composer = new Composer();
+                    composer = composers[cboComposer.SelectedIndex];
+
+                    composer.FirstName = txtFirstName.Text;
+                    composer.LastName = txtLastName.Text;
+
+                    if (!string.IsNullOrEmpty(txtBio.Text))
+                    {
+                        composer.Bio = txtBio.Text;
+                    }
+                    else
+                    {
+                        composer.Bio = string.Empty;
+                    }
+
+                    if (cboLocation.SelectedItem != null)
+                    {
+                        location.Description = cboLocation.SelectedItem.ToString();
+                    }
+                    else
+                    {
+                        location.Description = string.Empty;
+                    }
+
+                    if (cboGender.SelectedItem != null)
+                    {
+                        gender.Description = cboGender.SelectedItem.ToString();
+                    }
+                    else
+                    {
+                        gender.Description = string.Empty;
+                    }
+
+                    if (cboRace.SelectedItem != null)
+                    {
+                        race.Description = cboRace.SelectedItem.ToString();
+                    }
+                    else
+                    {
+                        race.Description = string.Empty;
+                    }
+
+                    // Send it to the api
+                    HttpClient client = InitializeClient();
+                    string serializedComposer = JsonConvert.SerializeObject(composer);
+                    var content = new StringContent(serializedComposer);
+                    content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
+                    HttpResponseMessage response = client.PutAsync("Composer/" + composer.Id, content).Result;
+
+                    if (response.StatusCode == System.Net.HttpStatusCode.OK || response.StatusCode == System.Net.HttpStatusCode.NoContent)
+                    {
+                        //Save index, refresh screen, and reselect where we are.
+                        var index = cboComposer.SelectedIndex;
+                        Rebind();
+                        cboComposer.SelectedIndex = index;
+                    }
+                    else
+                    {
+                        throw new Exception("Composer could not be updated");
                     }
                 }
             }
             catch (Exception ex)
             {
-                throw ex;
+                MessageBox.Show(ex.Message, "Error!");
             }
+        }
+
+        private void BtnManageLocations_Click(object sender, RoutedEventArgs e)
+        {
+            ManageSimple manageSimple = new ManageSimple(ScreenMode.Location);
+            manageSimple.ShowDialog();
+        }
+
+        private void BtnManageGenders_Click(object sender, RoutedEventArgs e)
+        {
+            ManageSimple manageSimple = new ManageSimple(ScreenMode.Gender);
+            manageSimple.ShowDialog();
+        }
+
+        private void BtnManageRaces_Click(object sender, RoutedEventArgs e)
+        {
+            ManageSimple manageSimple = new ManageSimple(ScreenMode.Race);
+            manageSimple.ShowDialog();
         }
     }
 }

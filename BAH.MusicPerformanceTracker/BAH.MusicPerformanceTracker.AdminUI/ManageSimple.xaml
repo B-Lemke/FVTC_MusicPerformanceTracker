@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BAH.MusicPerformanceTracker.AdminUI"
         mc:Ignorable="d"
-        Title="ManageSimple" Height="153.27" Width="551.09">
+        Title="ManageSimple" Height="184.583" Width="257.153">
     <Grid>
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -13,5 +13,12 @@
                 <GradientStop Color="#FF94C0FF"/>
             </LinearGradientBrush>
         </Grid.Background>
+        <Label x:Name="lblAttribute" Content="Label" HorizontalAlignment="Left" Margin="10,36,0,0" VerticalAlignment="Top"/>
+        <Label Content="Description:" HorizontalAlignment="Left" Margin="10,67,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="btnDelete" Content="Delete" HorizontalAlignment="Left" Margin="160,98,0,0" VerticalAlignment="Top" Width="75" Click="BtnDelete_Click"/>
+        <ComboBox x:Name="cboAttribute" HorizontalAlignment="Left" Margin="88,40,0,0" VerticalAlignment="Top" Width="147" />
+        <TextBox x:Name="txtDescription" HorizontalAlignment="Left" Height="23" Margin="88,70,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="147"/>
+        <Button x:Name="btnInsert" Content="Insert" HorizontalAlignment="Left" Margin="10,98,0,0" VerticalAlignment="Top" Width="75" Click="BtnInsert_Click" />
+        <Button x:Name="btnUpdate" Content="Update" HorizontalAlignment="Left" Margin="85,98,0,0" VerticalAlignment="Top" Width="75" Click="BtnUpdate_Click" />
     </Grid>
 </Window>
