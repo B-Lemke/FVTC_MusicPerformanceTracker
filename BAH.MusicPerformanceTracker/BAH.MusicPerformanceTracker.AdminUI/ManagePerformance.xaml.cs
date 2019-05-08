@@ -334,5 +334,48 @@ namespace BAH.MusicPerformanceTracker.AdminUI
                 MessageBox.Show(ex.Message, "Error!");
             }
         }
+
+        private void BtnAddPiece_Click(object sender, RoutedEventArgs e)
+        {
+            int index = cboPerformance.SelectedIndex;
+            ManagePerformancePiece managePerformancePiece = new ManagePerformancePiece(performances[index].Id, performances[index].Name);
+            managePerformancePiece.ShowDialog();
+
+            //Get the new performance piece data
+            Load();
+            Rebind();
+            cboPerformance.SelectedIndex = index;
+        }
+
+        private void BtnRemovePiece_Click(object sender, RoutedEventArgs e)
+        {
+           
+            try
+            {
+                if (cboPerformance.SelectedItem != null && dgvPerformancePieces.SelectedItem != null)
+                {
+                    int index = cboPerformance.SelectedIndex;
+                    PerformancePiece pp = performances[index].PerfromancePieces[dgvPerformancePieces.SelectedIndex];
+
+                    //Call the API if the selected item isn't null to delete it and its related PieceWriters and PieceGenres
+                    HttpClient client = InitializeClient();
+                    HttpResponseMessage response = new HttpResponseMessage();
+
+                   
+                    response = client.DeleteAsync("PerformancePiece/" + pp.Id).Result;
+                    performances[index].PerfromancePieces.Remove(pp);
+
+                    Rebind();
+                    cboPerformance.SelectedIndex = index;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+
+        }
     }
 }

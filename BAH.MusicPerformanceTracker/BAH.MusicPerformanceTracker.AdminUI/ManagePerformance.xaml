@@ -34,9 +34,9 @@
 
 
                 <DataGrid x:Name="dgvPerformancePieces" HorizontalAlignment="Left" Height="184" Margin="10,10,-41,0" VerticalAlignment="Top" Width="740" Grid.ColumnSpan="3" SelectionMode="Single"/>
-                <Button x:Name="btnAddPiece" Content="Add New Piece" HorizontalAlignment="Left" VerticalAlignment="Top" Width="101" Grid.Column="2" Margin="132,211,0,-27"/>
+                <Button x:Name="btnAddPiece" Content="Add New Piece" HorizontalAlignment="Left" VerticalAlignment="Top" Width="101" Grid.Column="2" Margin="132,211,0,-27" Click="BtnAddPiece_Click"/>
                 <Button  x:Name="btnEditPiece" Content="Edit Piece" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="75" Grid.Column="2" Margin="248,211,0,-27"/>
-                <Button  x:Name="btnRemovePiece" Content="Remove Piece" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="95" Grid.Column="2" Margin="336,211,-41,-27"/>
+                <Button  x:Name="btnRemovePiece" Content="Remove Piece" HorizontalAlignment="Left"  VerticalAlignment="Top" Width="95" Grid.Column="2" Margin="336,211,-41,-27" Click="BtnRemovePiece_Click"/>
 
             </Grid>
         </GroupBox>

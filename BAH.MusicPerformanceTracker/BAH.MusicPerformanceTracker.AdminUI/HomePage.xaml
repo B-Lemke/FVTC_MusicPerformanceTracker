@@ -1,0 +1,25 @@
+﻿<Window x:Class="BAH.MusicPerformanceTracker.AdminUI.HomePage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BAH.MusicPerformanceTracker.AdminUI"
+        mc:Ignorable="d"
+        Title="Shapiro Music Performance Tracker" Height="470.455" Width="800">
+    <Grid>
+
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#FF5C437A" Offset="1"/>
+                <GradientStop Color="#FF94C0FF"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Image HorizontalAlignment="Left" Height="439" VerticalAlignment="Top" Width="390" Source="images/piano.jpg" Stretch="UniformToFill"/>
+        <Button x:Name="btnComposers" Content="Manage Composers" HorizontalAlignment="Left" Height="61" Margin="414,282,0,0" VerticalAlignment="Top" Width="356" Click="BtnComposers_Click"/>
+        <Button x:Name="btnPerformances"  Content="Manage Performances" HorizontalAlignment="Left" Height="61" Margin="414,150,0,0" VerticalAlignment="Top" Width="356" Click="BtnPerformances_Click" />
+        <Button x:Name="btnPieces" Content="Manage Pieces" HorizontalAlignment="Left" Height="61" Margin="414,216,0,0" VerticalAlignment="Top" Width="356" Click="BtnPieces_Click"/>
+        <Button x:Name="btnReporting" Content="Reporting" HorizontalAlignment="Left" Height="61" Margin="414,348,0,0" VerticalAlignment="Top" Width="356"/>
+        <Label Content="Shapiro &#xD;&#xA;" HorizontalContentAlignment="Center" Height="81" Margin="414,10,22,0" VerticalAlignment="Top" Width="356" FontSize="48" HorizontalAlignment="Center"/>
+        <Label Content="Music Performance Tracker" HorizontalAlignment="Left" Margin="444,91,0,0" VerticalAlignment="Top" FontSize="24"/>
+    </Grid>
+</Window>
