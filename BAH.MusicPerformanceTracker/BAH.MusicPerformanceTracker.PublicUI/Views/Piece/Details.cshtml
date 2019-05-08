@@ -1,0 +1,49 @@
+﻿@model BAH.MusicPerformanceTracker.BL.Piece
+
+@{
+    ViewBag.Title = Model.Name;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Model.Name</h2>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GradeLevel)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GradeLevel)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.YearWritten)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.YearWritten)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PerformanceNotes)
+        </dt>
+
+        <dd style="white-space: pre-line">
+            @Html.DisplayFor(model => model.PerformanceNotes)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("View All Pieces", "Index")
+</p>
