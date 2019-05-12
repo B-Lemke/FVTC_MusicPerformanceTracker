@@ -61,6 +61,7 @@
     <Folder Include="PreDeployment" />
     <Folder Include="PostDeployment" />
     <Folder Include="PostDeployment\DefaultData" />
+    <Folder Include="ExtraScripts" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Tables\tblPerformer.sql" />
@@ -105,6 +106,7 @@
     <None Include="PostDeployment\DefaultData\Performances.sql" />
     <None Include="PostDeployment\DefaultData\PerformancePieces.sql" />
     <None Include="PostDeployment\DefaultData\PieceGenres.sql" />
+    <None Include="ExtraScripts\searchLogTable.sql" />
   </ItemGroup>
   <ItemGroup>
     <PostDeploy Include="PostDeployment\PostDeployment.sql" />

@@ -19,6 +19,26 @@
         </dd>
 
         <dt>
+            Piece Writers:
+        </dt>
+
+        @if (Model.PieceWriters.Count == 0)
+        {
+            <h3>None</h3>
+        }
+        else
+        {
+            foreach (var item in Model.PieceWriters)
+            {
+
+                @Html.ActionLink(@item.FullName, "Details", "Composer", new { id = item.ComposerId }, null) <span>|</span>
+                @item.ComposerTypeDescription<br />
+
+            }
+        }
+
+
+        <dt>
             @Html.DisplayNameFor(model => model.GradeLevel)
         </dt>
 

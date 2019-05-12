@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +16,10 @@ namespace BAH.MusicPerformanceTracker.BL
         public Guid PieceId { get; set; }
         public Guid ComposerId { get; set; }
         public Guid ComposerTypeId { get; set; }
+        [DisplayName("Name")]
+        public string FullName { get; set; }
+        public string ComposerTypeDescription { get; set; }
+
 
         //Retrieve the pieceWriter from the database with this Id
         public void LoadById()
@@ -155,19 +160,36 @@ namespace BAH.MusicPerformanceTracker.BL
             {
                 using (MusicEntities dc = new MusicEntities())
                 {
-                    var results = dc.tblPieceWriters.Where(pw => pw.PieceId == id);
-                    foreach (tblPieceWriter p in results)
+                    var results = from pw in dc.tblPieceWriters
+                                  join c in dc.tblComposers on pw.ComposerId equals c.Id
+                                  join ct in dc.tblComposerTypes on pw.ComposerTypeId equals ct.Id
+                                  select new
+                                  {
+                                      Id = pw.Id,
+                                      ComposerTypeId = pw.ComposerTypeId,
+                                      ComposerId = pw.ComposerId,
+                                      PieceId = pw.PieceId,
+                                      ComposerName = c.FirstName + " " + c.LastName,
+                                      ComposerType = ct.Description
+                                  };
+
+
+                    foreach (var p in results)
                     {
                         PieceWriter pieceWriter = new PieceWriter
                         {
                             Id = p.Id,
                             ComposerTypeId = p.ComposerTypeId,
                             ComposerId = p.ComposerId,
-                            PieceId = p.PieceId
+                            PieceId = p.PieceId,
+                            ComposerTypeDescription = p.ComposerType,
+                            FullName = p.ComposerName
                         };
 
                         this.Add(pieceWriter);
                     }
+
+                    
                 }
             }
             catch (Exception ex)

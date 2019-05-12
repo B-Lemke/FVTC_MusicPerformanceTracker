@@ -48,6 +48,9 @@ namespace BAH.MusicPieceTracker.PublicUI.Controllers
             string result = response.Content.ReadAsStringAsync().Result;
             piece = JsonConvert.DeserializeObject<Piece>(result);
 
+            
+
+
             return View(piece);
         }
 

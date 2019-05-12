@@ -28,7 +28,7 @@
             @Html.DisplayFor(modelItem => item.Name)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.PerformanceDate)
+            @item.PerformanceDate.ToString("MM/dd/yyyy")
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Location)

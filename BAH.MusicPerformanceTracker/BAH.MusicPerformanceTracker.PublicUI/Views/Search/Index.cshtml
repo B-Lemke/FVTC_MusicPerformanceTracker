@@ -1,0 +1,40 @@
+﻿@model IEnumerable<BAH.MusicPerformanceTracker.BL.Performance>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Search</h2>
+
+@using (Html.BeginForm())
+{
+    <p>
+        Search by Name: @Html.TextBox("searchQuery", ViewBag.CurrentFilter as string)
+        <input type="submit" value="Search" />
+    </p>
+}
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.ActionLink("Performance", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+        <th>
+            @Html.ActionLink("Performance Date", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink(item.Name, "Details", "Performance", new { id = item.Id }, null)
+            </td>
+            <td>
+                @item.PerformanceDate.ToString("MM/dd/yyyy")
+            </td>
+        </tr>
+    }
+
+</table>
