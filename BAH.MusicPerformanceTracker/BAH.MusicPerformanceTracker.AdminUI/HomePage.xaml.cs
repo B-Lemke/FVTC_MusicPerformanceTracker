@@ -41,5 +41,11 @@ namespace BAH.MusicPerformanceTracker.AdminUI
             ManageComposer manageComposer = new ManageComposer();
             manageComposer.ShowDialog();
         }
+
+        private void BtnReporting_Click(object sender, RoutedEventArgs e)
+        {
+            Login login = new Login();
+            login.ShowDialog();
+        }
     }
 }

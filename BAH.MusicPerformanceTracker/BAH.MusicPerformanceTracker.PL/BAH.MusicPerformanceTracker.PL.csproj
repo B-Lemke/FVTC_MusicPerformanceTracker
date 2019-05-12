@@ -114,6 +114,9 @@
     <Compile Include="tblRace.cs">
       <DependentUpon>MusicPerformanceTracker.tt</DependentUpon>
     </Compile>
+    <Compile Include="tblUser.cs">
+      <DependentUpon>MusicPerformanceTracker.tt</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

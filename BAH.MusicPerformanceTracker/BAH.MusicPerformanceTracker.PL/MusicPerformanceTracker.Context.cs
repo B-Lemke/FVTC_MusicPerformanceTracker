@@ -41,5 +41,6 @@ namespace BAH.MusicPerformanceTracker.PL
         public virtual DbSet<tblPiece> tblPieces { get; set; }
         public virtual DbSet<tblComposer> tblComposers { get; set; }
         public virtual DbSet<tblGroup> tblGroups { get; set; }
+        public virtual DbSet<tblUser> tblUsers { get; set; }
     }
 }
