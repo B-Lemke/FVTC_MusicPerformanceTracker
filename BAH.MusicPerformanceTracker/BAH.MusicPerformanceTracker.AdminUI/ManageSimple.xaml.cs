@@ -192,7 +192,7 @@ namespace BAH.MusicPerformanceTracker.AdminUI
 
                     Race race = new Race();
 
-                    if (genders.Any(l => l.Description == txtDescription.Text))
+                    if (races.Any(l => l.Description == txtDescription.Text))
                     {
                         throw new Exception("This race has already exists.");
                     }
