@@ -26,6 +26,14 @@ namespace BAH.MusicPerformanceTracker.SL.Controllers
             return gender;
         }
 
+        // GET: api/Gender?description={description}
+        public Gender GetByDescription(string description)
+        {
+            Gender gender = new Gender { Description = description };
+            gender.LoadByDescription();
+            return gender;
+        }
+
         // POST: api/Locaiton
         public void Post(Gender gender)
         {

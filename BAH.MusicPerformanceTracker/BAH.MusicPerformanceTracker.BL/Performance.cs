@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BAH.MusicPerformanceTracker.PL;
 using BAH.Utilities.Reporting;
+using System.Net.Mail;
 
 namespace BAH.MusicPerformanceTracker.BL
 {
@@ -102,11 +103,30 @@ namespace BAH.MusicPerformanceTracker.BL
                         pdfPath = this.PDFPath,
                         Location = this.Location
                     };
-
+                    
                     //Add it to the table and save changes
                     dc.tblPerformances.Add(performance);
+
+                    // Send an email to inform that a new performance was added
+                    // Password: $haphir0MT
+                    MailMessage mail = new MailMessage();
+                    SmtpClient smtpClient = new SmtpClient("smtp.gmail.com");
+
+                    mail.From = new MailAddress("shapiromusictracker@gmail.com");
+                    mail.To.Add("huntersiebers12@gmail.com");
+                    mail.Subject = "New Performance Added!";
+                    mail.Body = "A new performance was added! Check it out here: http://shapiro.azurewebsites.net";
+
+                    smtpClient.Port = 587;
+                    smtpClient.Credentials = new System.Net.NetworkCredential("shapiromusictracker@gmail.com", "$haphir0MT");
+                    smtpClient.EnableSsl = true;
+
+                    smtpClient.Send(mail);
+
                     return dc.SaveChanges();
                 }
+
+                
             }
             catch (Exception ex)
             {

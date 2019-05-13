@@ -126,11 +126,9 @@ namespace BAH.MusicPerformanceTracker.AdminUI
                         //Save the Id so that we can update it.
                         location.Id = retrievedLocation.Id;
 
-
                         locations.Add(location);
                         Rebind();
-
-
+                        
                         //Select the inserted location
                         cboAttribute.SelectedIndex = locations.FindIndex(p => p == location); 
                     }
@@ -174,11 +172,9 @@ namespace BAH.MusicPerformanceTracker.AdminUI
                         //Save the Id so that we can update it.
                         gender.Id = retrievedGender.Id;
 
-
                         genders.Add(gender);
                         Rebind();
-
-
+                        
                         //Select the inserted location
                         cboAttribute.SelectedIndex = genders.FindIndex(p => p == gender);
                     }
