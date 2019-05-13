@@ -1,4 +1,4 @@
-﻿@model IEnumerable<BAH.MusicPerformanceTracker.BL.Performance>
+﻿@model BAH.MusicPerformanceTracker.PublicUI.ViewModels.SearchResult
 
 @{
     ViewBag.Title = "Index";
@@ -7,10 +7,13 @@
 
 <h2>Search</h2>
 
+
+
 @using (Html.BeginForm())
 {
     <p>
         Search by Name: @Html.TextBox("searchQuery", ViewBag.CurrentFilter as string)
+        @Html.DropDownList("ddlSearchTable", new SelectList(Enum.GetValues(typeof(BAH.MusicPerformanceTracker.PublicUI.ViewModels.SearchType))))
         <input type="submit" value="Search" />
     </p>
 }
@@ -25,7 +28,7 @@
         </th>
     </tr>
 
-    @foreach (var item in Model)
+    @foreach (var item in Model.PerformanceList)
     {
         <tr>
             <td>
