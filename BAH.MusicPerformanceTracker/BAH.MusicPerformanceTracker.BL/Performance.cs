@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BAH.MusicPerformanceTracker.PL;
+using BAH.Utilities.Reporting;
 
 namespace BAH.MusicPerformanceTracker.BL
 {
@@ -222,6 +223,40 @@ namespace BAH.MusicPerformanceTracker.BL
 
     public class PerformanceList : List<Performance>
     {
+
+        public void Export()
+        {
+
+            try
+            {
+                string[,] data = new string[this.Count + 1, 4];
+                int counter = 0;
+
+                data[counter, 0] = "Performance Name";
+                data[counter, 1] = "Description";
+                data[counter, 2] = "Date";
+                data[counter, 3] = "Location";
+                counter++;
+
+                foreach (var p in this)
+                {
+                    data[counter, 0] = p.Name;
+                    data[counter, 1] = p.Description;
+                    data[counter, 2] = p.PerformanceDate.ToString();
+                    data[counter, 3] = p.Location;
+                    counter++;
+                }
+
+                Excel.Export("Performances_" + DateTime.Now.Month + "-" + DateTime.Now.Day + "-" + DateTime.Now.Year + ".xlsx", data);
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+
+        }
+
         public void Load()
         {
             try

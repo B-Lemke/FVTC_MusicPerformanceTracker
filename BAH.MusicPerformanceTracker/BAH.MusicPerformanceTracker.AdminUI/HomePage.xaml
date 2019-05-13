@@ -15,11 +15,11 @@
             </LinearGradientBrush>
         </Grid.Background>
         <Image HorizontalAlignment="Left" Height="439" VerticalAlignment="Top" Width="390" Source="images/piano.jpg" Stretch="UniformToFill"/>
-        <Button x:Name="btnComposers" Content="Manage Composers" HorizontalAlignment="Left" Height="61" Margin="414,282,0,0" VerticalAlignment="Top" Width="356" Click="BtnComposers_Click"/>
-        <Button x:Name="btnPerformances"  Content="Manage Performances" HorizontalAlignment="Left" Height="61" Margin="414,150,0,0" VerticalAlignment="Top" Width="356" Click="BtnPerformances_Click" />
-        <Button x:Name="btnPieces" Content="Manage Pieces" HorizontalAlignment="Left" Height="61" Margin="414,216,0,0" VerticalAlignment="Top" Width="356" Click="BtnPieces_Click"/>
-        <Button x:Name="btnReporting" Content="Reporting" HorizontalAlignment="Left" Height="61" Margin="414,348,0,0" VerticalAlignment="Top" Width="356" Click="BtnReporting_Click"/>
+        <Button x:Name="btnComposers" Content="Manage Composers" HorizontalAlignment="Left" Height="61" Margin="414,282,0,0" VerticalAlignment="Top" Width="356" Click="BtnComposers_Click" FontSize="20"/>
+        <Button x:Name="btnPerformances"  Content="Manage Performances" HorizontalAlignment="Left" Height="61" Margin="414,150,0,0" VerticalAlignment="Top" Width="356" Click="BtnPerformances_Click" FontSize="20" />
+        <Button x:Name="btnPieces" Content="Manage Pieces" HorizontalAlignment="Left" Height="61" Margin="414,216,0,0" VerticalAlignment="Top" Width="356" Click="BtnPieces_Click" FontSize="20"/>
+        <Button x:Name="btnReporting" Content="Reporting" HorizontalAlignment="Left" Height="61" Margin="414,348,0,0" VerticalAlignment="Top" Width="356" Click="BtnReporting_Click" FontSize="20"/>
         <Label Content="Shapiro &#xD;&#xA;" HorizontalContentAlignment="Center" Height="81" Margin="414,10,22,0" VerticalAlignment="Top" Width="356" FontSize="48" HorizontalAlignment="Center"/>
-        <Label Content="Music Performance Tracker" HorizontalAlignment="Left" Margin="444,91,0,0" VerticalAlignment="Top" FontSize="24"/>
+        <Label Content="Music Performance Tracker" HorizontalAlignment="Left" Margin="395,78,0,0" VerticalAlignment="Top" FontSize="32"/>
     </Grid>
 </Window>

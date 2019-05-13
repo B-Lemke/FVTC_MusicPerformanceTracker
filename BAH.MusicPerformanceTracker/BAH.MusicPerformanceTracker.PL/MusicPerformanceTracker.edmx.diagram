@@ -22,6 +22,7 @@
         <EntityTypeShape EntityType="lemkedbModel.tblComposer" Width="1.5" PointX="10.375" PointY="9.75" />
         <EntityTypeShape EntityType="lemkedbModel.tblGroup" Width="1.5" PointX="6.75" PointY="0.75" />
         <EntityTypeShape EntityType="lemkedbModel.tblUser" Width="1.5" PointX="11.375" PointY="0.75" />
+        <EntityTypeShape EntityType="lemkedbModel.SearchLog" Width="1.5" PointX="11.375" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

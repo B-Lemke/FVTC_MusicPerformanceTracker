@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C67943EE-8DD5-4C97-A116-CC54BAF28441}</ProjectGuid>
+    <ProjectGuid>{8107F1E9-2BB4-4D0C-B0B3-4E2FC6EC22F0}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BAH.MusicPerformanceTracker.BL</RootNamespace>
-    <AssemblyName>BAH.MusicPerformanceTracker.BL</AssemblyName>
+    <RootNamespace>BAH.Utilities.Reporting</RootNamespace>
+    <AssemblyName>BAH.Utilities.Reporting</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -31,14 +31,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1000\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -48,38 +45,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Composer.cs" />
-    <Compile Include="ComposerType.cs" />
-    <Compile Include="Director.cs" />
-    <Compile Include="Group.cs" />
-    <Compile Include="GroupMember.cs" />
-    <Compile Include="Performance.cs" />
-    <Compile Include="PerformancePiece.cs" />
-    <Compile Include="Performer.cs" />
-    <Compile Include="PieceWriter.cs" />
-    <Compile Include="Piece.cs" />
-    <Compile Include="Instrument.cs" />
-    <Compile Include="Location.cs" />
-    <Compile Include="Race.cs" />
-    <Compile Include="Gender.cs" />
-    <Compile Include="Genre.cs" />
+    <Compile Include="Excel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Searches.cs" />
-    <Compile Include="User.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\BAH.MusicPerformanceTracker.PL\BAH.MusicPerformanceTracker.PL.csproj">
-      <Project>{adf72de3-396e-4bf1-b1c0-b0ef1ed58539}</Project>
-      <Name>BAH.MusicPerformanceTracker.PL</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\BAH.Utilities.Reporting\BAH.Utilities.Reporting.csproj">
-      <Project>{8107f1e9-2bb4-4d0c-b0b3-4e2fc6ec22f0}</Project>
-      <Name>BAH.Utilities.Reporting</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

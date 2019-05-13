@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BAH.MusicPerformanceTracker.AdminUI"
         mc:Ignorable="d"
-        Title="Reporting" Height="450" Width="800">
+        Title="Reporting" Height="318.324" Width="348.722">
     <Grid>
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -13,5 +13,7 @@
                 <GradientStop Color="#FF94C0FF"/>
             </LinearGradientBrush>
         </Grid.Background>
+        <Button x:Name="btnReportSearches" Content="Report Searches" HorizontalAlignment="Left" Height="88" Margin="51,37,0,0" VerticalAlignment="Top" Width="241" FontSize="20" Click="BtnReportSearches_Click"/>
+        <Button x:Name="btnReportPerformances" Content="Report Performances" HorizontalAlignment="Left" Height="88" Margin="51,144,0,0" VerticalAlignment="Top" Width="241" FontSize="20" Click="BtnReportPerformances_Click" />
     </Grid>
 </Window>

@@ -15,6 +15,17 @@
           <Property Name="LastName" Type="varchar" MaxLength="25" Nullable="false" />
           <Property Name="UserPass" Type="varchar" MaxLength="32" Nullable="false" />
         </EntityType>
+        <EntityType Name="SearchLog">
+          <Key>
+            <PropertyRef Name="SearchId" />
+          </Key>
+          <Property Name="SearchId" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="SearchDate" Type="datetime" />
+          <Property Name="SearchLevel" Type="varchar" MaxLength="200" />
+          <Property Name="SearchLogger" Type="varchar" MaxLength="200" />
+          <Property Name="SearchQuery" Type="varchar" MaxLength="2000" />
+          <Property Name="SearchTable" Type="varchar" MaxLength="2000" />
+        </EntityType>
         <EntityType Name="tblComposer">
           <Key>
             <PropertyRef Name="Id" />
@@ -159,6 +170,7 @@
         </EntityType>
         <EntityContainer Name="lemkedbModelStoreContainer">
           <EntitySet Name="tblUser" EntityType="Self.tblUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SearchLog" EntityType="Self.SearchLog" Schema="music" store:Type="Tables" />
           <EntitySet Name="tblComposer" EntityType="Self.tblComposer" Schema="music" store:Type="Tables" />
           <EntitySet Name="tblComposerType" EntityType="Self.tblComposerType" Schema="music" store:Type="Tables" />
           <EntitySet Name="tblDirector" EntityType="Self.tblDirector" Schema="music" store:Type="Tables" />
@@ -229,6 +241,7 @@
           <EntitySet Name="tblComposers" EntityType="lemkedbModel.tblComposer" />
           <EntitySet Name="tblGroups" EntityType="lemkedbModel.tblGroup" />
           <EntitySet Name="tblUsers" EntityType="lemkedbModel.tblUser" />
+          <EntitySet Name="SearchLogs" EntityType="lemkedbModel.SearchLog" />
         </EntityContainer>
         <EntityType Name="tblComposerType">
           <Key>
@@ -350,6 +363,17 @@
           <Property Name="FirstName" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
           <Property Name="LastName" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
           <Property Name="UserPass" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="SearchLog">
+          <Key>
+            <PropertyRef Name="SearchId" />
+          </Key>
+          <Property Name="SearchId" Type="Guid" Nullable="false" />
+          <Property Name="SearchDate" Type="DateTime" Precision="3" />
+          <Property Name="SearchLevel" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="SearchLogger" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="SearchQuery" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="SearchTable" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -523,6 +547,18 @@
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SearchLogs">
+            <EntityTypeMapping TypeName="lemkedbModel.SearchLog">
+              <MappingFragment StoreEntitySet="SearchLog">
+                <ScalarProperty Name="SearchTable" ColumnName="SearchTable" />
+                <ScalarProperty Name="SearchQuery" ColumnName="SearchQuery" />
+                <ScalarProperty Name="SearchLogger" ColumnName="SearchLogger" />
+                <ScalarProperty Name="SearchLevel" ColumnName="SearchLevel" />
+                <ScalarProperty Name="SearchDate" ColumnName="SearchDate" />
+                <ScalarProperty Name="SearchId" ColumnName="SearchId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

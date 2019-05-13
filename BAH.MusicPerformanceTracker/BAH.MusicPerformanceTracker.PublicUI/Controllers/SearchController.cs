@@ -49,7 +49,7 @@ namespace BAH.MusicPerformanceTracker.PublicUI.Controllers
             if (!string.IsNullOrEmpty(searchQuery))
             {
                 log4net.LogicalThreadContext.Properties["tableName"] = "Performances";
-
+                log4net.LogicalThreadContext.Properties["searchId"] = Guid.NewGuid();
                 filteredPerformances = performances.Where(p => p.Name.ToLower().Contains(searchQuery));
                 if (filteredPerformances.Count() <= 0)
                 {
