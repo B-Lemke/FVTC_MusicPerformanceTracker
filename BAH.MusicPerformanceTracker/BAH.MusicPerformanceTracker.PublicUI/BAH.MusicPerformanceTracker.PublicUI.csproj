@@ -137,6 +137,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ComposerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PerformanceController.cs" />
     <Compile Include="Controllers\PieceController.cs" />
@@ -166,6 +167,7 @@
     <Content Include="Content\bootstrap-grid.css.map" />
     <None Include="Properties\PublishProfiles\shapiro - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\shapiro - Web Deploy.pubxml" />
+    <Content Include="Images\cover.jpg" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -229,6 +231,8 @@
     <Content Include="Views\Piece\Index.cshtml" />
     <Content Include="Views\Piece\Details.cshtml" />
     <Content Include="Views\Search\Index.cshtml" />
+    <Content Include="Views\Composer\Index.cshtml" />
+    <Content Include="Views\Composer\Details.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

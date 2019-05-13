@@ -12,32 +12,61 @@
 @using (Html.BeginForm())
 {
     <p>
-        Search by Name: @Html.TextBox("searchQuery", ViewBag.CurrentFilter as string)
-        @Html.DropDownList("ddlSearchTable", new SelectList(Enum.GetValues(typeof(BAH.MusicPerformanceTracker.PublicUI.ViewModels.SearchType))))
+        Search by Name: @Html.TextBox("searchQuery", ViewBag.CurrentFilter as string, new { @class = "form-control d-inline" })
+        @Html.DropDownList("ddlSearchTable", new SelectList(Enum.GetValues(typeof(BAH.MusicPerformanceTracker.PublicUI.ViewModels.SearchType))), null, new { @class = "form-control d-inline" })
         <input type="submit" value="Search" />
     </p>
 }
 
-<table class="table">
-    <tr>
-        <th>
-            @Html.ActionLink("Performance", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter })
-        </th>
-        <th>
-            @Html.ActionLink("Performance Date", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter })
-        </th>
-    </tr>
-
-    @foreach (var item in Model.PerformanceList)
-    {
+@if (Model.SearchMode == BAH.MusicPerformanceTracker.PublicUI.ViewModels.SearchType.Performance)
+{
+    <table class="table">
         <tr>
-            <td>
-                @Html.ActionLink(item.Name, "Details", "Performance", new { id = item.Id }, null)
-            </td>
-            <td>
-                @item.PerformanceDate.ToString("MM/dd/yyyy")
-            </td>
+            <th>
+                @Html.ActionLink("Performance", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter, ddlSearchTable = Model.SearchMode.ToString() })
+            </th>
+            <th>
+                @Html.ActionLink("Performance Date", "Index", new { sortOrder = ViewBag.DateSortParm, currentFilter = ViewBag.CurrentFilter, ddlSearchTable = Model.SearchMode.ToString() })
+            </th>
         </tr>
-    }
 
-</table>
+        @foreach (var item in Model.PerformanceList)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(item.Name, "Details", "Performance", new { id = item.Id }, null)
+                </td>
+                <td>
+                    @item.PerformanceDate.ToString("MM/dd/yyyy")
+                </td>
+            </tr>
+        }
+
+    </table>
+}
+else if (Model.SearchMode == BAH.MusicPerformanceTracker.PublicUI.ViewModels.SearchType.Piece)
+{
+    <table class="table">
+        <tr>
+            <th>
+                @Html.ActionLink("Piece", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter, ddlSearchTable = Model.SearchMode.ToString() })
+            </th>
+            <th>
+                @Html.ActionLink("Year Written", "Index", new { sortOrder = ViewBag.YearSortParm, currentFilter = ViewBag.CurrentFilter, ddlSearchTable = Model.SearchMode.ToString() })
+            </th>
+        </tr>
+
+        @foreach (var item in Model.PieceList)
+        {
+            <tr>
+                <td>
+                    @Html.ActionLink(item.Name, "Details", "Piece", new { id = item.Id }, null)
+                </td>
+                <td>
+                    @item.YearWritten
+                </td>
+            </tr>
+        }
+
+    </table>
+}

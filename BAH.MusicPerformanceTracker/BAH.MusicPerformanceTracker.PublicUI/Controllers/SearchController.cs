@@ -17,7 +17,7 @@ namespace BAH.MusicPerformanceTracker.PublicUI.Controllers
         log4net.ILog log = log4net.LogManager.GetLogger("Search.Logger");
 
         PerformanceList performances;
-
+        PieceList pieces;
 
         // GET: Search
         public ActionResult Index(string sortOrder, string searchQuery, string currentFilter, string ddlSearchTable)
@@ -102,11 +102,87 @@ namespace BAH.MusicPerformanceTracker.PublicUI.Controllers
                 SearchResult searchResult = new SearchResult();
                 searchResult.PerformanceList.AddRange(sortedPerformances);
 
+
+                searchResult.SearchMode = SearchType.Performance;
+                return View(searchResult);
+            }
+            else if (ddlSearchTable == "Piece")
+            {
+                pieces = new PieceList();
+
+                //Initialize Cient
+                HttpClient client = InitializeClient();
+
+                //Call the API
+                HttpResponseMessage response = client.GetAsync("Piece").Result;
+
+                //Deserialize the json
+                string result = response.Content.ReadAsStringAsync().Result;
+                dynamic items = (JArray)JsonConvert.DeserializeObject(result);
+                pieces = items.ToObject<PieceList>();
+
+                IEnumerable<Piece> filteredPieces;
+
+                //Filter by search box
+                if (!string.IsNullOrEmpty(searchQuery))
+                {
+                    log4net.LogicalThreadContext.Properties["tableName"] = "Pieces";
+                    log4net.LogicalThreadContext.Properties["searchId"] = Guid.NewGuid();
+                    filteredPieces = pieces.Where(p => p.Name.ToLower().Contains(searchQuery.ToLower()));
+                    if (filteredPieces.Count() <= 0)
+                    {
+                        if (log.IsWarnEnabled)
+                        {
+                            log.Warn(searchQuery);
+                        }
+                    }
+                    else
+                    {
+                        if (log.IsInfoEnabled)
+                        {
+                            log.Info(searchQuery);
+                        }
+                    }
+                }
+                else
+                {
+                    filteredPieces = pieces;
+                }
+
+
+
+                //Set the sorting options
+                ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+                ViewBag.YearSortParm = sortOrder == "Year" ? "year_desc" : "Year";
+
+                System.Collections.Generic.List<Piece> sortedPieces;
+
+                switch (sortOrder)
+                {
+                    case "name_desc":
+                        sortedPieces = filteredPieces.OrderByDescending(p => p.Name).ToList();
+                        break;
+                    case "Year":
+                        sortedPieces = filteredPieces.OrderBy(p => p.YearWritten).ToList();
+                        break;
+                    case "year_desc":
+                        sortedPieces = filteredPieces.OrderByDescending(p => p.YearWritten).ToList();
+                        break;
+                    default:
+                        sortedPieces = filteredPieces.OrderBy(p => p.Name).ToList();
+                        break;
+                }
+
+                SearchResult searchResult = new SearchResult();
+                searchResult.PieceList.AddRange(sortedPieces);
+
+                searchResult.SearchMode = SearchType.Piece;
                 return View(searchResult);
             }
             else
             {
-                return View();
+                SearchResult searchResult = new SearchResult();
+                return View(searchResult);
             }
         }
 

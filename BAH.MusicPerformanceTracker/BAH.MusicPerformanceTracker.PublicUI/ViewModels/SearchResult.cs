@@ -12,10 +12,14 @@ namespace BAH.MusicPerformanceTracker.PublicUI.ViewModels
         public SearchType Type { get; set; }
         public PerformanceList PerformanceList { get; set; }
         public PieceList PieceList { get; set; }
+        public SearchType SearchMode { get; set; }
+
+
 
         public SearchResult()
         {
             PerformanceList = new PerformanceList();
+            PieceList = new PieceList();
         }
 
     }

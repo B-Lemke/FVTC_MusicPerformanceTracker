@@ -1,0 +1,27 @@
+﻿@model IEnumerable<BAH.MusicPerformanceTracker.BL.Composer>
+
+@{
+    ViewBag.Title = "Composers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Composers</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FullName)
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+       
+        <td>
+            @Html.ActionLink(item.FullName, "Details", "Composer", new { id = item.Id }, null)
+        </td>
+      
+    </tr>
+}
+
+</table>
