@@ -47,11 +47,6 @@ namespace BAH.MusicPerformanceTracker.AdminUI
             {
                 MessageBox.Show("Cannot Log In", "Error");
             }
-
-
-
-
-
         }
 
 

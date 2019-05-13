@@ -61,6 +61,27 @@ namespace BAH.MusicPerformanceTracker.BL
             }
         }
 
+        //Retrieve the gender from the database with this Id
+        public void LoadByDescription()
+        {
+            try
+            {
+                using (MusicEntities dc = new MusicEntities())
+                {
+                    //Retrieve from the db
+                    tblGender gender = dc.tblGenders.FirstOrDefault(p => p.Description == this.Description);
+
+                    //Set this gender's properties
+                    this.Id = gender.Id;
+                    this.Description = gender.Description;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public int Update()
         {
             try

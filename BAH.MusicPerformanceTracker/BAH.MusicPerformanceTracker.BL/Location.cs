@@ -61,6 +61,27 @@ namespace BAH.MusicPerformanceTracker.BL
             }
         }
 
+        //Retrieve the location from the database with this Id
+        public void LoadByDescription()
+        {
+            try
+            {
+                using (MusicEntities dc = new MusicEntities())
+                {
+                    //Retrieve from the db
+                    tblLocation location = dc.tblLocations.FirstOrDefault(p => p.Description == this.Description);
+
+                    //Set this location's properties
+                    this.Id = location.Id;
+                    this.Description = location.Description;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public int Update()
         {
             try

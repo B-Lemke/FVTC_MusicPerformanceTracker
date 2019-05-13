@@ -26,6 +26,14 @@ namespace BAH.MusicPerformanceTracker.SL.Controllers
             return location;
         }
 
+        // GET: api/Location?description={description}
+        public Location GetByDescription(string description)
+        {
+            Location location = new Location { Description = description };
+            location.LoadByDescription();
+            return location;
+        }
+
         // POST: api/Locaiton
         public void Post(Location location)
         {

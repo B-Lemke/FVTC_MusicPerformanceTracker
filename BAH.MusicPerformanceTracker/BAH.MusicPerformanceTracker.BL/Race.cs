@@ -61,6 +61,27 @@ namespace BAH.MusicPerformanceTracker.BL
             }
         }
 
+        //Retrieve the race from the database with this Id
+        public void LoadByDescription()
+        {
+            try
+            {
+                using (MusicEntities dc = new MusicEntities())
+                {
+                    //Retrieve from the db
+                    tblRace race = dc.tblRaces.FirstOrDefault(p => p.Description == this.Description);
+
+                    //Set this race's properties
+                    this.Id = race.Id;
+                    this.Description = race.Description;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public int Update()
         {
             try

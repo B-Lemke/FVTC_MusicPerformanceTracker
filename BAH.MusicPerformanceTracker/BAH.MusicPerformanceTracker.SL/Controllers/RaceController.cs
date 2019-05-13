@@ -26,6 +26,14 @@ namespace BAH.MusicPerformanceTracker.SL.Controllers
             return race;
         }
 
+        // GET: api/Race?description={description}
+        public Race GetByDescription(string description)
+        {
+            Race race = new Race { Description = description };
+            race.LoadByDescription();
+            return race;
+        }
+
         // POST: api/Race
         public void Post(Race race)
         {

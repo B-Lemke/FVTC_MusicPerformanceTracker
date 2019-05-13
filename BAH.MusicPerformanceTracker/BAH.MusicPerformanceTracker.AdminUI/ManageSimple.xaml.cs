@@ -126,11 +126,9 @@ namespace BAH.MusicPerformanceTracker.AdminUI
                         //Save the Id so that we can update it.
                         location.Id = retrievedLocation.Id;
 
-
                         locations.Add(location);
                         Rebind();
-
-
+                        
                         //Select the inserted location
                         cboAttribute.SelectedIndex = locations.FindIndex(p => p == location); 
                     }
@@ -174,11 +172,9 @@ namespace BAH.MusicPerformanceTracker.AdminUI
                         //Save the Id so that we can update it.
                         gender.Id = retrievedGender.Id;
 
-
                         genders.Add(gender);
                         Rebind();
-
-
+                        
                         //Select the inserted location
                         cboAttribute.SelectedIndex = genders.FindIndex(p => p == gender);
                     }
@@ -196,7 +192,7 @@ namespace BAH.MusicPerformanceTracker.AdminUI
 
                     Race race = new Race();
 
-                    if (genders.Any(l => l.Description == txtDescription.Text))
+                    if (races.Any(l => l.Description == txtDescription.Text))
                     {
                         throw new Exception("This race has already exists.");
                     }
