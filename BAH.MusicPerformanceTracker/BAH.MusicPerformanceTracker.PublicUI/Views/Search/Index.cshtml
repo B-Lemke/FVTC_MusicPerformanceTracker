@@ -14,7 +14,7 @@
     <p>
         Search by Name: @Html.TextBox("searchQuery", ViewBag.CurrentFilter as string, new { @class = "form-control d-inline" })
         @Html.DropDownList("ddlSearchTable", new SelectList(Enum.GetValues(typeof(BAH.MusicPerformanceTracker.PublicUI.ViewModels.SearchType))), null, new { @class = "form-control d-inline" })
-        <input type="submit" value="Search" />
+        <input type="submit" value="Search" class="form-control d-inline" />
     </p>
 }
 
@@ -66,6 +66,44 @@ else if (Model.SearchMode == BAH.MusicPerformanceTracker.PublicUI.ViewModels.Sea
                     @item.YearWritten
                 </td>
             </tr>
+        }
+
+    </table>
+}
+else if (Model.SearchMode == BAH.MusicPerformanceTracker.PublicUI.ViewModels.SearchType.Composer)
+{
+    <table class="table">
+        <tr>
+            <th>
+                @Html.ActionLink("Composer", "Index", new { sortOrder = ViewBag.NameSortParm, currentFilter = ViewBag.CurrentFilter, ddlSearchTable = Model.SearchMode.ToString() })
+            </th>
+            <th>
+                @Html.ActionLink("Gender", "Index", new { sortOrder = ViewBag.GenderSortParm, currentFilter = ViewBag.CurrentFilter, ddlSearchTable = Model.SearchMode.ToString() })
+            </th>
+            <th>
+                @Html.ActionLink("Race", "Index", new { sortOrder = ViewBag.RaceSortParm, currentFilter = ViewBag.CurrentFilter, ddlSearchTable = Model.SearchMode.ToString() })
+            </th>
+            <th>
+                @Html.ActionLink("Location", "Index", new { sortOrder = ViewBag.LocationSortParm, currentFilter = ViewBag.CurrentFilter, ddlSearchTable = Model.SearchMode.ToString() })
+            </th>
+        </tr>
+
+        @foreach (var item in Model.ComposerList)
+        {
+        <tr>
+            <td>
+                @Html.ActionLink(item.FullName, "Details", "Composer", new { id = item.Id }, null)
+            </td>
+            <td>
+                @item.Gender
+            </td>
+            <td>
+                @item.Race
+            </td>
+            <td>
+                @item.Location
+            </td>
+        </tr>
         }
 
     </table>

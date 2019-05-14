@@ -1,47 +1,38 @@
 ﻿@model BAH.MusicPerformanceTracker.BL.Composer
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = Model.FullName;
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
-
 <div>
-    <h4>Composer</h4>
+    <h4 class="mt-2">@Model.FullName</h4>
     <hr />
     <dl class="dl-horizontal">
 
+
         <dt>
-            @Html.DisplayNameFor(model => model.FullName)
+            @Html.DisplayNameFor(model => model.Gender)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.FullName)
+            @Html.DisplayFor(model => model.Gender)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.GenderId)
+            @Html.DisplayNameFor(model => model.Race)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.GenderId)
+            @Html.DisplayFor(model => model.Race)
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.RaceId)
+            @Html.DisplayNameFor(model => model.Location)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.RaceId)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.LocationId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LocationId)
+            @Html.DisplayFor(model => model.Location)
         </dd>
 
         <dt>
@@ -52,8 +43,27 @@
             @Html.DisplayFor(model => model.Bio)
         </dd>
 
+
+
+        <hr />
+        <h3>Pieces in this system:</h3>
+        @if (Model.PiecesWritten == null || Model.PiecesWritten.Count == 0)
+        {
+            <h5>None in the system.</h5>
+        }
+        else
+        {
+            foreach (var item in Model.PiecesWritten)
+            {
+                <div class="card mt-2">
+                    <div class="card-body">
+                        <span class="h5">@Html.ActionLink(@item.Name, "Details", "Piece", new { id = item.Id }, null) </span><br />
+                    </div>
+                </div>
+            }
+        }
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("View All Composers", "Index")
 </p>

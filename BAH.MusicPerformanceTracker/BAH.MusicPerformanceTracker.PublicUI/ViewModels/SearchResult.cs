@@ -12,6 +12,7 @@ namespace BAH.MusicPerformanceTracker.PublicUI.ViewModels
         public SearchType Type { get; set; }
         public PerformanceList PerformanceList { get; set; }
         public PieceList PieceList { get; set; }
+        public ComposerList ComposerList { get; set; }
         public SearchType SearchMode { get; set; }
 
 
@@ -20,12 +21,14 @@ namespace BAH.MusicPerformanceTracker.PublicUI.ViewModels
         {
             PerformanceList = new PerformanceList();
             PieceList = new PieceList();
+            ComposerList = new ComposerList();
         }
 
     }
     public enum SearchType
     {
         Performance,
-        Piece
+        Piece,
+        Composer
     }
 }

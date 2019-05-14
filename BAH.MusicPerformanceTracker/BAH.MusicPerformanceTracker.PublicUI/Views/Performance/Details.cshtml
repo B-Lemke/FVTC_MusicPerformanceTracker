@@ -5,10 +5,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>@Model.Name</h2>
+<h2 class="mt-2">@Model.Name</h2>
 
 <div>
-    <h4>Performance</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -47,7 +46,7 @@
 
         @if (Model.PerfromancePieces.Count == 0)
         {
-            <h3>None</h3>
+            <h5>None</h5>
         }
         else
         {
@@ -57,8 +56,8 @@
                     <div class="card-body">
                         <span class="h2">@Html.ActionLink(@item.PieceName, "Details", "Piece", new { id = item.PieceId }, null) </span><br />
                         @item.GroupName <br />
-                        @item.DirectorName <br />
-                        @item.Notes
+                        Director: @item.DirectorName <br />
+                        Notes: @item.Notes
                     </div>
                 </div>
             }

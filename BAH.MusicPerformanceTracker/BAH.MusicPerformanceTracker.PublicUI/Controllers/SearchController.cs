@@ -18,12 +18,13 @@ namespace BAH.MusicPerformanceTracker.PublicUI.Controllers
 
         PerformanceList performances;
         PieceList pieces;
+        ComposerList composers;
 
         // GET: Search
         public ActionResult Index(string sortOrder, string searchQuery, string currentFilter, string ddlSearchTable)
         {
             //Store the previous search
-            if (string.IsNullOrEmpty(searchQuery))
+            if (string.IsNullOrEmpty(searchQuery) && !string.IsNullOrEmpty(currentFilter))
             {
                 searchQuery = currentFilter;
             }
@@ -155,6 +156,8 @@ namespace BAH.MusicPerformanceTracker.PublicUI.Controllers
                 ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
                 ViewBag.YearSortParm = sortOrder == "Year" ? "year_desc" : "Year";
 
+
+
                 System.Collections.Generic.List<Piece> sortedPieces;
 
                 switch (sortOrder)
@@ -177,6 +180,93 @@ namespace BAH.MusicPerformanceTracker.PublicUI.Controllers
                 searchResult.PieceList.AddRange(sortedPieces);
 
                 searchResult.SearchMode = SearchType.Piece;
+                return View(searchResult);
+            }
+            else if (ddlSearchTable == "Composer")
+            {
+                composers = new ComposerList();
+
+                //Initialize Cient
+                HttpClient client = InitializeClient();
+
+                //Call the API
+                HttpResponseMessage response = client.GetAsync("Composer").Result;
+
+                //Deserialize the json
+                string result = response.Content.ReadAsStringAsync().Result;
+                dynamic items = (JArray)JsonConvert.DeserializeObject(result);
+                composers = items.ToObject<ComposerList>();
+
+                IEnumerable<Composer> filteredComposers;
+
+                //Filter by search box
+                if (!string.IsNullOrEmpty(searchQuery))
+                {
+                    log4net.LogicalThreadContext.Properties["tableName"] = "Composers";
+                    log4net.LogicalThreadContext.Properties["searchId"] = Guid.NewGuid();
+                    filteredComposers = composers.Where(p => p.FullName.ToLower().Contains(searchQuery.ToLower()));
+                    if (filteredComposers.Count() <= 0)
+                    {
+                        if (log.IsWarnEnabled)
+                        {
+                            log.Warn(searchQuery);
+                        }
+                    }
+                    else
+                    {
+                        if (log.IsInfoEnabled)
+                        {
+                            log.Info(searchQuery);
+                        }
+                    }
+                }
+                else
+                {
+                    filteredComposers = composers;
+                }
+
+
+
+                //Set the sorting options
+                ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+                ViewBag.GenderSortParm = sortOrder == "Gender" ? "gender_desc" : "Gender";
+                ViewBag.RaceSortParm = sortOrder == "Race" ? "race_desc" : "Race";
+                ViewBag.LocationSortParm = sortOrder == "Location" ? "location_desc" : "Location";
+
+                System.Collections.Generic.List<Composer> sortedComposers;
+
+                switch (sortOrder)
+                {
+                    case "name_desc":
+                        sortedComposers = filteredComposers.OrderByDescending(c => c.FullName).ToList();
+                        break;
+                    case "Gender":
+                        sortedComposers = filteredComposers.OrderBy(c => c.Gender).ToList();
+                        break;
+                    case "gender_desc":
+                        sortedComposers = filteredComposers.OrderByDescending(c => c.Gender).ToList();
+                        break;
+                    case "Race":
+                        sortedComposers = filteredComposers.OrderBy(c => c.Race).ToList();
+                        break;
+                    case "race_desc":
+                        sortedComposers = filteredComposers.OrderByDescending(c => c.Race).ToList();
+                        break;
+                    case "Location":
+                        sortedComposers = filteredComposers.OrderBy(c => c.Location).ToList();
+                        break;
+                    case "location_desc":
+                        sortedComposers = filteredComposers.OrderByDescending(c => c.Location).ToList();
+                        break;
+                    default:
+                        sortedComposers = filteredComposers.OrderBy(c => c.FullName).ToList();
+                        break;
+                }
+
+                SearchResult searchResult = new SearchResult();
+                searchResult.ComposerList.AddRange(sortedComposers);
+
+                searchResult.SearchMode = SearchType.Composer;
                 return View(searchResult);
             }
             else

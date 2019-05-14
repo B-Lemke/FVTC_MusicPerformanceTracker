@@ -163,6 +163,7 @@ namespace BAH.MusicPerformanceTracker.BL
                     var results = from pw in dc.tblPieceWriters
                                   join c in dc.tblComposers on pw.ComposerId equals c.Id
                                   join ct in dc.tblComposerTypes on pw.ComposerTypeId equals ct.Id
+                                  where pw.PieceId == id
                                   select new
                                   {
                                       Id = pw.Id,
