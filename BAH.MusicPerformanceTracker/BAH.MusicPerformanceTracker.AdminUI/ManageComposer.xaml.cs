@@ -276,31 +276,21 @@ namespace BAH.MusicPerformanceTracker.AdminUI
                     
                     if (cboLocation.SelectedValue != null)
                     {
-                        location.Description = cboLocation.SelectedValue.ToString();
+                        composer.LocationId = (Guid)cboLocation.SelectedValue;
                     }
-                    else
-                    {
-                        location.Description = string.Empty;
-                    }
+
 
                     if (cboGender.SelectedValue != null)
                     {
-                        gender.Description = cboGender.SelectedValue.ToString();
+                        composer.GenderId = (Guid)cboGender.SelectedValue;
                     }
-                    else
-                    {
-                        gender.Description = string.Empty;
-                    }
+
 
                     if (cboRace.SelectedValue != null)
                     {
-                        race.Description = cboRace.SelectedValue.ToString();
+                        composer.RaceId = (Guid)cboRace.SelectedValue;
                     }
-                    else
-                    {
-                        race.Description = string.Empty;
-                    }
-                    
+
                     // Send it to the api
                     HttpClient client = InitializeClient();
                     string serializedComposer = JsonConvert.SerializeObject(composer);
@@ -359,32 +349,23 @@ namespace BAH.MusicPerformanceTracker.AdminUI
                         composer.Bio = string.Empty;
                     }
 
-                    if (cboLocation.SelectedItem != null)
+                    if (cboLocation.SelectedValue != null)
                     {
-                        location.Description = cboLocation.SelectedItem.ToString();
-                    }
-                    else
-                    {
-                        location.Description = string.Empty;
+                        composer.LocationId = (Guid)cboLocation.SelectedValue;
                     }
 
-                    if (cboGender.SelectedItem != null)
+
+                    if (cboGender.SelectedValue != null)
                     {
-                        gender.Description = cboGender.SelectedItem.ToString();
-                    }
-                    else
-                    {
-                        gender.Description = string.Empty;
+                        composer.GenderId = (Guid)cboGender.SelectedValue;
                     }
 
-                    if (cboRace.SelectedItem != null)
+
+                    if (cboRace.SelectedValue != null)
                     {
-                        race.Description = cboRace.SelectedItem.ToString();
+                        composer.RaceId = (Guid)cboRace.SelectedValue;
                     }
-                    else
-                    {
-                        race.Description = string.Empty;
-                    }
+
 
                     // Send it to the api
                     HttpClient client = InitializeClient();
@@ -399,6 +380,9 @@ namespace BAH.MusicPerformanceTracker.AdminUI
                         var index = cboComposer.SelectedIndex;
                         Rebind();
                         cboComposer.SelectedIndex = index;
+
+
+                        MessageBox.Show("Composer Saved.", "Success");
                     }
                     else
                     {

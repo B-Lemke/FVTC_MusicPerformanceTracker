@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BAH.MusicPerformanceTracker.AdminUI"
         mc:Ignorable="d"
-        Title="Manage Piece for a Performance" Height="276.043" Width="391.139">
+        Title="Manage Piece for a Performance" Height="477.147" Width="598.882">
     <Grid>
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
@@ -13,16 +13,16 @@
                 <GradientStop Color="#FF94C0FF"/>
             </LinearGradientBrush>
         </Grid.Background>
-        <ComboBox x:Name="cboPiece" HorizontalAlignment="Left" Margin="106,44,0,0" VerticalAlignment="Top" Width="256"/>
-        <ComboBox x:Name="cboGroup" HorizontalAlignment="Left" Margin="106,71,0,0" VerticalAlignment="Top" Width="256"/>
-        <ComboBox x:Name="cboDirector" HorizontalAlignment="Left" Margin="106,100,0,0" VerticalAlignment="Top" Width="256"/>
-        <Label Content="Piece:" HorizontalAlignment="Left" Margin="17,44,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.342,-0.197"/>
-        <Label Content="Director:" HorizontalAlignment="Left" Margin="17,96,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.342,-0.197"/>
-        <Label Content="Group:" HorizontalAlignment="Left" Margin="17,67,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.342,-0.197"/>
-        <Button x:Name="btnSubmit" Content="Submit" HorizontalAlignment="Left" Margin="287,215,0,0" VerticalAlignment="Top" Width="75" Click="BtnSubmit_Click" />
-        <Label Content="Performance:" HorizontalAlignment="Left" Margin="17,13,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.342,-0.197"/>
-        <Label x:Name="lblPerformance" Content="" HorizontalAlignment="Left" Margin="106,13,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.342,-0.197" Width="189"/>
-        <TextBox x:Name="txtNotes" HorizontalAlignment="Left" Height="69" Margin="106,131,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="256"/>
-        <Label Content="Notes:" HorizontalAlignment="Left" Margin="17,131,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.342,-0.197"/>
+        <ComboBox x:Name="cboPiece" HorizontalAlignment="Left" Margin="171,67,0,0" VerticalAlignment="Top" Width="378" FontSize="20"/>
+        <ComboBox x:Name="cboGroup" HorizontalAlignment="Left" Margin="171,115,0,0" VerticalAlignment="Top" Width="378" FontSize="20"/>
+        <ComboBox x:Name="cboDirector" HorizontalAlignment="Left" Margin="171,163,0,0" VerticalAlignment="Top" Width="378" FontSize="20"/>
+        <Label Content="Piece:" HorizontalAlignment="Left" Margin="82,63,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.342,-0.197" FontSize="20"/>
+        <Label Content="Director:" HorizontalAlignment="Left" Margin="58,159,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.342,-0.197" FontSize="20"/>
+        <Label Content="Group:" HorizontalAlignment="Left" Margin="73,111,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.342,-0.197" FontSize="20"/>
+        <Button x:Name="btnSubmit" Content="Submit" HorizontalAlignment="Left" Margin="462,391,0,0" VerticalAlignment="Top" Width="87" Click="BtnSubmit_Click" FontSize="20" Height="36" />
+        <Label Content="Performance:" HorizontalAlignment="Left" Margin="17,13,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.342,-0.197" FontSize="20"/>
+        <Label x:Name="lblPerformance" Content="" HorizontalAlignment="Left" Margin="171,13,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.342,-0.197" Width="378" FontSize="20"/>
+        <TextBox x:Name="txtNotes" HorizontalAlignment="Left" Height="164" Margin="171,210,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="378" FontSize="20"/>
+        <Label Content="Notes:" HorizontalAlignment="Left" Margin="76,210,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.342,-0.197" FontSize="20"/>
     </Grid>
 </Window>

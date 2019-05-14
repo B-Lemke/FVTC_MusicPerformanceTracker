@@ -28,6 +28,7 @@ namespace BAH.MusicPerformanceTracker.AdminUI
         PieceList pieces;
         GroupList groups;
         DirectorList directors;
+        PerformancePiece performancePiece = new PerformancePiece();
 
         public ManagePerformancePiece(Guid performanceId, string performanceName)
         {
@@ -43,6 +44,30 @@ namespace BAH.MusicPerformanceTracker.AdminUI
             Rebind();
 
             lblPerformance.Content = PerformanceName;
+        }
+
+        public ManagePerformancePiece(Guid performanceId, string performanceName, PerformancePiece pp)
+        {
+            InitializeComponent();
+            pieces = new PieceList();
+            groups = new GroupList();
+            directors = new DirectorList();
+
+            PerformanceId = performanceId;
+            PerformanceName = performanceName;
+
+            Load();
+            Rebind();
+
+            lblPerformance.Content = PerformanceName;
+
+            performancePiece = pp;
+            cboDirector.SelectedValue = pp.DirectorId;
+            cboGroup.SelectedValue = pp.GroupId;
+            cboPiece.SelectedValue = pp.PieceId;
+            txtNotes.Text = pp.Notes;
+
+            btnSubmit.Content = "Update";
         }
 
         private static HttpClient InitializeClient()
@@ -147,26 +172,50 @@ namespace BAH.MusicPerformanceTracker.AdminUI
         {
             try
             {
-                PerformancePiece performancePiece = new PerformancePiece();
-
-                if (cboPiece.SelectedItem != null)
+                if(btnSubmit.Content.ToString() == "Submit")
                 {
-                    performancePiece.DirectorId = directors[cboDirector.SelectedIndex].Id;
+                    PerformancePiece performancePiece = new PerformancePiece();
+
+                    if (cboPiece.SelectedItem != null)
+                    {
+                        performancePiece.DirectorId = directors[cboDirector.SelectedIndex].Id;
+                    }
+
+                    performancePiece.PieceId = pieces[cboPiece.SelectedIndex].Id;
+                    performancePiece.GroupId = groups[cboGroup.SelectedIndex].Id;
+                    performancePiece.PerformanceId = PerformanceId;
+                    performancePiece.Notes = txtNotes.Text;
+
+                    //Send it to the API
+                    HttpClient client = InitializeClient();
+                    string serializedPerformancePiece = JsonConvert.SerializeObject(performancePiece);
+                    var content = new StringContent(serializedPerformancePiece);
+                    content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
+                    HttpResponseMessage response = client.PostAsync("PerformancePiece", content).Result;
+
+                    this.Close();
                 }
+                else
+                {
+                    if (cboPiece.SelectedItem != null)
+                    {
+                        performancePiece.DirectorId = directors[cboDirector.SelectedIndex].Id;
+                    }
 
-                performancePiece.PieceId = pieces[cboPiece.SelectedIndex].Id;
-                performancePiece.GroupId = groups[cboGroup.SelectedIndex].Id;
-                performancePiece.PerformanceId = PerformanceId;
-                performancePiece.Notes = txtNotes.Text;
+                    performancePiece.PieceId = pieces[cboPiece.SelectedIndex].Id;
+                    performancePiece.GroupId = groups[cboGroup.SelectedIndex].Id;
+                    performancePiece.PerformanceId = PerformanceId;
+                    performancePiece.Notes = txtNotes.Text;
 
-                //Send it to the API
-                HttpClient client = InitializeClient();
-                string serializedPerformancePiece = JsonConvert.SerializeObject(performancePiece);
-                var content = new StringContent(serializedPerformancePiece);
-                content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
-                HttpResponseMessage response = client.PostAsync("PerformancePiece", content).Result;
+                    //Send it to the API
+                    HttpClient client = InitializeClient();
+                    string serializedPerformancePiece = JsonConvert.SerializeObject(performancePiece);
+                    var content = new StringContent(serializedPerformancePiece);
+                    content.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue("application/json");
+                    HttpResponseMessage response = client.PutAsync("PerformancePiece/"+performancePiece.Id, content).Result;
 
-                this.Close();
+                    this.Close();
+                }
 
             }
             catch (Exception ex)

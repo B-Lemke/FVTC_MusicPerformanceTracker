@@ -582,6 +582,9 @@ namespace BAH.MusicPerformanceTracker.AdminUI
                         var index = cboPiece.SelectedIndex;
                         Rebind();
                         cboPiece.SelectedIndex = index;
+
+
+                        MessageBox.Show("Piece has been saved!", "Success");
                     }
                     else
                     {

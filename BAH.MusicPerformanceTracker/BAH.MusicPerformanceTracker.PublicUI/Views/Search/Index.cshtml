@@ -63,7 +63,9 @@ else if (Model.SearchMode == BAH.MusicPerformanceTracker.PublicUI.ViewModels.Sea
                     @Html.ActionLink(item.Name, "Details", "Piece", new { id = item.Id }, null)
                 </td>
                 <td>
-                    @item.YearWritten
+                    @if (item.YearWritten > 0) { 
+                    @Html.DisplayFor(modelItem => item.YearWritten)
+                    }
                 </td>
             </tr>
         }

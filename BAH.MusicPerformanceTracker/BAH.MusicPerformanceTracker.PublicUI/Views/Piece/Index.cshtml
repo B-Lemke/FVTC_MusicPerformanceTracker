@@ -31,7 +31,10 @@
             @Html.DisplayFor(modelItem => item.GradeLevel)
         </td>
         <td>
+            @if (item.YearWritten > 0) { 
             @Html.DisplayFor(modelItem => item.YearWritten)
+            }
+
         </td>
         <td>
             @Html.ActionLink("Details", "Details", new { id=item.Id })

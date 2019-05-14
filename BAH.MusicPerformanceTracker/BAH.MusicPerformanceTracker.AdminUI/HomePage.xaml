@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BAH.MusicPerformanceTracker.AdminUI"
         mc:Ignorable="d"
-        Title="Shapiro Music Performance Tracker" Height="470.455" Width="800">
+        Title="Shapiro Music Performance Tracker" Height="470.455" Width="808.019">
     <Grid>
 
         <Grid.Background>

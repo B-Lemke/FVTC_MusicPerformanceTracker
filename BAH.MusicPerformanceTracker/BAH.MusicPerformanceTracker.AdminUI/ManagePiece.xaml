@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BAH.MusicPerformanceTracker.AdminUI"
         mc:Ignorable="d"
-        Title="Manage Piece" Height="675" Width="1100">
+        Title="Manage Piece" Height="675" Width="1116.5">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -16,19 +16,19 @@
                 <GradientStop Color="#FF94C0FF"/>
             </LinearGradientBrush>
         </Grid.Background>
-        <ComboBox x:Name="cboPiece" HorizontalAlignment="Left" Margin="140,35,0,0" VerticalAlignment="Top" Width="347" Height="35" SelectionChanged="CboPiece_SelectionChanged" FontSize="18"/>
+        <ComboBox x:Name="cboPiece" HorizontalAlignment="Left" Margin="140,35,0,0" VerticalAlignment="Top" Width="347" Height="35" SelectionChanged="CboPiece_SelectionChanged" FontSize="20"/>
         <Label Content="Piece:" HorizontalAlignment="Left" Margin="66,33,0,0" VerticalAlignment="Top" FontSize="20"/>
-        <TextBox x:Name="txtName" HorizontalAlignment="Left" Height="33" Margin="141,88,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="346" FontSize="18"/>
-        <TextBox x:Name="txtGradeLevel" HorizontalAlignment="Left" Height="33" Margin="141,134,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="346" FontSize="18"/>
+        <TextBox x:Name="txtName" HorizontalAlignment="Left" Height="33" Margin="141,88,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="346" FontSize="20"/>
+        <TextBox x:Name="txtGradeLevel" HorizontalAlignment="Left" Height="33" Margin="141,134,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="346" FontSize="20"/>
         <Label Content="Piece Name:" HorizontalAlignment="Left" Margin="8,82,0,0" VerticalAlignment="Top" FontSize="20" RenderTransformOrigin="0.187,0.643"/>
         <Label Content="Grade Level:" HorizontalAlignment="Left" Margin="10,128,0,0" VerticalAlignment="Top" FontSize="20"/>
-        <TextBox x:Name="txtYearWritten" HorizontalAlignment="Left" Height="33" Margin="141,180,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="346" FontSize="18"/>
+        <TextBox x:Name="txtYearWritten" HorizontalAlignment="Left" Height="33" Margin="141,180,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="346" FontSize="20"/>
         <Label Content="Year Written:" HorizontalAlignment="Left" Margin="10,177,0,0" VerticalAlignment="Top" FontSize="20"/>
-        <TextBox x:Name="txtPerformanceNotes" HorizontalAlignment="Left" Height="478" Margin="518,88,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="563" FontSize="18" AcceptsReturn="True" AcceptsTab="True"  SpellCheck.IsEnabled="True" 
+        <TextBox x:Name="txtPerformanceNotes" HorizontalAlignment="Left" Height="478" Margin="518,88,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="563" FontSize="20" AcceptsReturn="True" AcceptsTab="True"  SpellCheck.IsEnabled="True" 
             ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Auto" />
         <Label Content="Performance Notes:" HorizontalAlignment="Left" Margin="518,33,0,0" VerticalAlignment="Top" FontSize="20"/>
-        
-        <ListBox x:Name="lstComposer" HorizontalAlignment="Left" Height="110" Margin="140,234,0,0" VerticalAlignment="Top" Width="347" SelectionMode="Multiple" FontSize="14">
+
+        <ListBox x:Name="lstComposer" HorizontalAlignment="Left" Height="110" Margin="140,234,0,0" VerticalAlignment="Top" Width="347" SelectionMode="Multiple" FontSize="20">
             <ListBox.Resources>
                 <SolidColorBrush x:Key="ItemContainerBackground" Color="#FFF" />
                 <SolidColorBrush x:Key="ItemContainerForeground" Color="#000" />
@@ -67,7 +67,7 @@
                 </Style>
             </ListBox.ItemContainerStyle>
         </ListBox>
-        <ListBox x:Name="lstArranger" HorizontalAlignment="Left" Height="110" Margin="140,374,0,0" VerticalAlignment="Top" Width="347" SelectionMode="Multiple" FontSize="14">
+        <ListBox x:Name="lstArranger" HorizontalAlignment="Left" Height="110" Margin="140,374,0,0" VerticalAlignment="Top" Width="347" SelectionMode="Multiple" FontSize="20">
             <ListBox.Resources>
                 <SolidColorBrush x:Key="ItemContainerBackground" Color="#FFF" />
                 <SolidColorBrush x:Key="ItemContainerForeground" Color="#000" />
@@ -108,7 +108,7 @@
         </ListBox>
         <Label Content="Composer(s):" HorizontalAlignment="Left" Margin="10,234,0,0" VerticalAlignment="Top" FontSize="20"/>
         <Label Content="Arranger(s):" HorizontalAlignment="Left" Margin="22,374,0,0" VerticalAlignment="Top" FontSize="20"/>
-        <ListBox x:Name="lstGenre" HorizontalAlignment="Left" Height="110" Margin="140,514,0,0" VerticalAlignment="Top" Width="347" SelectionMode="Multiple" FontSize="14">
+        <ListBox x:Name="lstGenre" HorizontalAlignment="Left" Height="110" Margin="140,514,0,0" VerticalAlignment="Top" Width="347" SelectionMode="Multiple" FontSize="20">
             <ListBox.Resources>
                 <SolidColorBrush x:Key="ItemContainerBackground" Color="#FFF" />
                 <SolidColorBrush x:Key="ItemContainerForeground" Color="#000" />

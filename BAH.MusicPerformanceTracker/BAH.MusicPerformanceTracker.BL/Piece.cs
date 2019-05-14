@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,10 +12,14 @@ namespace BAH.MusicPerformanceTracker.BL
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
+        [DisplayName("Grade Level")]
         public string GradeLevel { get; set; }
+        [DisplayName("Year Written")]
         public int YearWritten { get; set; }
+        [DisplayName("Performance Notes")]
         public string PerformanceNotes { get; set; }
         public GenreList Genres { get; set; }
+        [DisplayName("Composers")]
         public PieceWriterList PieceWriters {get;set;}
 
 

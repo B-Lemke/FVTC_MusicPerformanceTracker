@@ -24,7 +24,7 @@ namespace BAH.MusicPerformanceTracker.AdminUI
     public partial class ManagePerformance : Window
     {
         PerformanceList performances;
-
+        Performance performance;
 
         public ManagePerformance()
         {
@@ -72,7 +72,9 @@ namespace BAH.MusicPerformanceTracker.AdminUI
                     throw new Exception("Error: " + performanceResponse.ReasonPhrase);
                 }
 
-
+                btnAddPiece.IsEnabled = false;
+                btnRemovePiece.IsEnabled = false;
+                btnEditPiece.IsEnabled = false;
             }
             catch (Exception ex)
             {
@@ -95,7 +97,7 @@ namespace BAH.MusicPerformanceTracker.AdminUI
         {
             if (cboPerformance.SelectedItem != null)
             {
-                Performance performance = performances.ElementAt(cboPerformance.SelectedIndex);
+                performance = performances.ElementAt(cboPerformance.SelectedIndex);
                 //Change the boxes on screen based onthe selected object.
                 txtDescription.Text = performance.Description;
                 txtLocation.Text = performance.Location;
@@ -116,11 +118,19 @@ namespace BAH.MusicPerformanceTracker.AdminUI
 
                 btnSavePerformance.Content = "Save Performance";
 
+                btnAddPiece.IsEnabled = true;
+                btnRemovePiece.IsEnabled = true;
+                btnEditPiece.IsEnabled = true;
 
 
 
 
-
+            }
+            else
+            {
+                btnAddPiece.IsEnabled = false;
+                btnRemovePiece.IsEnabled = false;
+                btnEditPiece.IsEnabled = false;
             }
         }
 
@@ -134,6 +144,8 @@ namespace BAH.MusicPerformanceTracker.AdminUI
             dtpDate.SelectedDate = null;
 
             btnSavePerformance.Content = "Add Performance";
+
+            dgvPerformancePieces.ItemsSource = null;
         }
 
         private void BtnDeletePerformance_Click(object sender, RoutedEventArgs e)
@@ -178,7 +190,7 @@ namespace BAH.MusicPerformanceTracker.AdminUI
                     }
 
                     //Create and set values on a Performance
-                    Performance performance = new Performance();
+                   performance = new Performance();
 
                     if(performances.Any(p => p.Name == txtName.Text))
                     {
@@ -259,7 +271,7 @@ namespace BAH.MusicPerformanceTracker.AdminUI
                     }
 
                     //Create and set values on a Performance
-                    Performance performance = new Performance();
+                    performance = new Performance();
 
                     performance = performances[cboPerformance.SelectedIndex];
 
@@ -376,6 +388,33 @@ namespace BAH.MusicPerformanceTracker.AdminUI
             }
 
 
+        }
+
+        private void BtnEditPiece_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+
+                if (dgvPerformancePieces.SelectedIndex != -1 && dgvPerformancePieces.SelectedIndex < performance.PerfromancePieces.Count)
+                {
+                    int index = cboPerformance.SelectedIndex;
+                    ManagePerformancePiece managePerformancePiece = new ManagePerformancePiece(performances[index].Id, performances[index].Name, (PerformancePiece)dgvPerformancePieces.SelectedItem);
+                    managePerformancePiece.ShowDialog();
+
+                    //Get the new performance piece data
+                    Load();
+                    Rebind();
+                    cboPerformance.SelectedIndex = index;
+                }
+                else
+                {
+                    MessageBox.Show("Please select a piece to edit", "Error");
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }

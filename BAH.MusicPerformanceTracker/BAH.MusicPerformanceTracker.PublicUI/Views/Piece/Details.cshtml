@@ -31,29 +31,58 @@
             foreach (var item in Model.PieceWriters)
             {
 
-                @Html.ActionLink(@item.FullName, "Details", "Composer", new { id = item.ComposerId }, null) <span>|</span>
-                @item.ComposerTypeDescription<br />
+                @Html.ActionLink(@item.FullName, "Details", "Composer", new { id = item.ComposerId }, null)
+                <span>|</span>
+                @item.ComposerTypeDescription
+                <br />
 
             }
         }
 
-
         <dt>
-            @Html.DisplayNameFor(model => model.GradeLevel)
+            Genres:
         </dt>
+        @if (Model.Genres.Count == 0)
+        {
+            <h3>None</h3>
+        }
+        else
+        {
+            int count = 0;
+            foreach (var item in Model.Genres)
+            {
+                count++;
 
-        <dd>
-            @Html.DisplayFor(model => model.GradeLevel)
-        </dd>
+                @item.Description
+                if (count != Model.Genres.Count)
+                {
+                    <span class="m-2"> | </span>
+                }
 
-        <dt>
-            @Html.DisplayNameFor(model => model.YearWritten)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.YearWritten)
-        </dd>
+            }
+        }
 
+        @if (!string.IsNullOrEmpty(Model.GradeLevel))
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.GradeLevel)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.GradeLevel)
+            </dd>
+        }
+        @if (Model.YearWritten > 0)
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.YearWritten)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.YearWritten)
+            </dd>
+        }
         <dt>
             @Html.DisplayNameFor(model => model.PerformanceNotes)
         </dt>
