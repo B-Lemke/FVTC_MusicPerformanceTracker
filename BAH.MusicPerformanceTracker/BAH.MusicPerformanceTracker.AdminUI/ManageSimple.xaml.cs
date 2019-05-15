@@ -246,14 +246,19 @@ namespace BAH.MusicPerformanceTracker.AdminUI
                 {
                     if (ScreenMode.Location == screenmode)
                     {
-                        if (string.IsNullOrEmpty(txtDescription.Text))
-                        {
-                            throw new Exception("Please enter a location");
-                        }
-
                         Location location = new Location();
                         location = locations[cboAttribute.SelectedIndex];
 
+                        if (!string.IsNullOrEmpty(txtDescription.Text))
+                        {
+                            location.Description = txtDescription.Text;
+                        }
+                        else
+                        {
+                            throw new Exception("Please enter a location");
+                        }
+                        
+                        /*
                         var locationMatches = locations.Select(l => l.Description).Where(l => l == txtDescription.Text);
                         int locationMatchCount = locationMatches.Count();
                         if (locationMatchCount > 0)
@@ -267,7 +272,8 @@ namespace BAH.MusicPerformanceTracker.AdminUI
                                 throw new Exception("This location has already exists.");
                             }
                         }
-                        
+                        */
+
                         //Send it to the API
                         HttpClient client = InitializeClient();
                         string serializedLocation = JsonConvert.SerializeObject(location);
@@ -289,14 +295,21 @@ namespace BAH.MusicPerformanceTracker.AdminUI
                     }
                     else if (ScreenMode.Gender == screenmode)
                     {
-                        if (string.IsNullOrEmpty(txtDescription.Text))
+                        Gender gender = new Gender();
+                        gender = genders[cboAttribute.SelectedIndex];
+
+                        if (!string.IsNullOrEmpty(txtDescription.Text))
+                        {
+                            gender.Description = txtDescription.Text;
+                        }
+                        else
                         {
                             throw new Exception("Please enter a gender");
                         }
 
-                        Gender gender = new Gender();
-                        gender = genders[cboAttribute.SelectedIndex];
+                        
 
+                        /*
                         var genderMatches = genders.Select(l => l.Description).Where(l => l == txtDescription.Text);
                         int genderMatchCount = genderMatches.Count();
                         if (genderMatchCount > 0)
@@ -310,6 +323,7 @@ namespace BAH.MusicPerformanceTracker.AdminUI
                                 throw new Exception("This gender has already exists.");
                             }
                         }
+                        */
 
                         //Send it to the API
                         HttpClient client = InitializeClient();
@@ -332,14 +346,19 @@ namespace BAH.MusicPerformanceTracker.AdminUI
                     }
                     else if (ScreenMode.Race == screenmode)
                     {
-                        if (string.IsNullOrEmpty(txtDescription.Text))
-                        {
-                            throw new Exception("Please enter a race");
-                        }
-
                         Race race = new Race();
                         race = races[cboAttribute.SelectedIndex];
 
+                        if (!string.IsNullOrEmpty(txtDescription.Text))
+                        {
+                            race.Description = txtDescription.Text;
+                        }
+                        else
+                        {
+                            throw new Exception("Please enter a race");
+                        }
+                        
+                        /*
                         var raceMatches = races.Select(l => l.Description).Where(l => l == txtDescription.Text);
                         int raceMatchCount = raceMatches.Count();
                         if (raceMatchCount > 0)
@@ -353,6 +372,7 @@ namespace BAH.MusicPerformanceTracker.AdminUI
                                 throw new Exception("This race has already exists.");
                             }
                         }
+                        */
 
                         //Send it to the API
                         HttpClient client = InitializeClient();
@@ -401,6 +421,9 @@ namespace BAH.MusicPerformanceTracker.AdminUI
                             locations.Remove(location);
 
                             Rebind();
+
+                            txtDescription.Focus();
+                            txtDescription.SelectAll();
                         }
                     }
                     else if (ScreenMode.Gender == screenmode)
@@ -417,6 +440,9 @@ namespace BAH.MusicPerformanceTracker.AdminUI
                             genders.Remove(gender);
 
                             Rebind();
+
+                            txtDescription.Focus();
+                            txtDescription.SelectAll();
                         }
                     }
                     else if (ScreenMode.Race == screenmode)
@@ -433,6 +459,9 @@ namespace BAH.MusicPerformanceTracker.AdminUI
                             races.Remove(race);
 
                             Rebind();
+
+                            txtDescription.Focus();
+                            txtDescription.SelectAll();
                         }
                     }
                 }
@@ -440,6 +469,31 @@ namespace BAH.MusicPerformanceTracker.AdminUI
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error!");
+            }
+        }
+
+        private void CboAttribute_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (cboAttribute.SelectedItem != null)
+            {
+                if (ScreenMode.Location == screenmode)
+                {
+                    Location location = locations.ElementAt(cboAttribute.SelectedIndex);
+
+                    txtDescription.Text = location.Description;
+                }
+                else if (ScreenMode.Gender == screenmode)
+                {
+                    Gender gender = genders.ElementAt(cboAttribute.SelectedIndex);
+
+                    txtDescription.Text = gender.Description;
+                }
+                else if (ScreenMode.Race == screenmode)
+                {
+                    Race race = races.ElementAt(cboAttribute.SelectedIndex);
+
+                    txtDescription.Text = race.Description;
+                }
             }
         }
     }

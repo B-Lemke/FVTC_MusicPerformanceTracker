@@ -108,14 +108,15 @@ namespace BAH.MusicPerformanceTracker.BL
                     dc.tblPerformances.Add(performance);
 
                     // Send an email to inform that a new performance was added
-                    // Password: $haphir0MT
+                    // Shapiro password: $haphir0MT
+                    // Test password: MusicTrackerT3st
                     MailMessage mail = new MailMessage();
                     SmtpClient smtpClient = new SmtpClient("smtp.gmail.com");
 
                     mail.From = new MailAddress("shapiromusictracker@gmail.com");
-                    mail.To.Add("huntersiebers12@gmail.com");
+                    mail.To.Add("musictrackertest@gmail.com");
                     mail.Subject = "New Performance Added!";
-                    mail.Body = "A new performance was added! Check it out here: http://shapiro.azurewebsites.net";
+                    mail.Body = "A new performance was added! Check it out here: http://shapiro.azurewebsites.net/Performance/Details/" + this.Id;
 
                     smtpClient.Port = 587;
                     smtpClient.Credentials = new System.Net.NetworkCredential("shapiromusictracker@gmail.com", "$haphir0MT");
