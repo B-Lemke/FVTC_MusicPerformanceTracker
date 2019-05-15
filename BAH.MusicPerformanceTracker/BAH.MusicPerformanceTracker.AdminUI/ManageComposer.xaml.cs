@@ -221,6 +221,8 @@ namespace BAH.MusicPerformanceTracker.AdminUI
                 response = client.DeleteAsync("Composer/" + composer.Id).Result;
                 composers.Remove(composer);
 
+                Rebind();
+
                 // Clear text boxes
                 btnNew_Click(sender, e);
             }
@@ -301,7 +303,7 @@ namespace BAH.MusicPerformanceTracker.AdminUI
                     if (response.StatusCode == System.Net.HttpStatusCode.OK || response.StatusCode == System.Net.HttpStatusCode.NoContent)
                     {
                         // get the new composer id
-                        response = client.GetAsync("Composer?name=" + composer.FirstName).Result;
+                        response = client.GetAsync("Composer?name=" + composer.LastName).Result;
                         string result = response.Content.ReadAsStringAsync().Result;
                         Composer retrievedComposer = JsonConvert.DeserializeObject<Composer>(result);
 

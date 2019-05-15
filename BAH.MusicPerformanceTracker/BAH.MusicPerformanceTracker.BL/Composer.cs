@@ -84,6 +84,28 @@ namespace BAH.MusicPerformanceTracker.BL
             }
         }
 
+        //Retrieve the performance from the database with this Id
+        public void LoadByName()
+        {
+            try
+            {
+                using (MusicEntities dc = new MusicEntities())
+                {
+                    //Retrieve from the db
+                    tblComposer composer = dc.tblComposers.FirstOrDefault(p => p.LastName == this.LastName);
+
+                    //Set this performance's properties
+                    this.Id = composer.Id;
+                    this.FirstName = composer.FirstName;
+                    this.LastName = composer.LastName;
+                    this.Bio = composer.Bio;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
 
         //Insert the composer into the db, and generate a new Id for it.
         public int Insert()

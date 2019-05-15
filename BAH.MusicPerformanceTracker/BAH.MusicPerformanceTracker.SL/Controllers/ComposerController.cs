@@ -26,6 +26,14 @@ namespace BAH.MusicPerformanceTracker.SL.Controllers
             return composer;
         }
 
+        // GET: api/Composer?name={name}
+        public Composer GetByName(string name)
+        {
+            Composer composer = new Composer { LastName = name };
+            composer.LoadByName();
+            return composer;
+        }
+
         // POST: api/Composer
         public void Post(Composer composer)
         {
